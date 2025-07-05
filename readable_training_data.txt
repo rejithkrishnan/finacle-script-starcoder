@@ -1,0 +1,1856 @@
+--- Parsed Training Data from: training_data.json ---
+
+=============== Example 1 ===============
+[PROMPT]:
+Create a simple Finacle script that prints 'Hello World'.
+
+[EXPECTED SCRIPT]:
+<--start
+# This is a comment
+print("Hello World")
+end-->
+===================================
+
+=============== Example 2 ===============
+[PROMPT]:
+Assign the number 100 to scratchpad variable sv_a and print it.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 100
+print(sv_a)
+end-->
+===================================
+
+=============== Example 3 ===============
+[PROMPT]:
+Assign the string 'Finacle' to a local variable lv_b and print it.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_b = "Finacle"
+print(lv_b)
+end-->
+===================================
+
+=============== Example 4 ===============
+[PROMPT]:
+Add the numbers 55 and 45 and store the result in sv_c.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 55
+sv_b = 45
+sv_c = sv_a + sv_b
+print(sv_c)
+end-->
+===================================
+
+=============== Example 5 ===============
+[PROMPT]:
+Subtract 25 from 75 and print the output.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_x = 75
+sv_y = 25
+sv_z = sv_x - sv_y
+print(sv_z)
+end-->
+===================================
+
+=============== Example 6 ===============
+[PROMPT]:
+Multiply 12 by 10 and display the result.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_m = 12
+sv_n = 10
+sv_result = sv_m * sv_n
+print(sv_result)
+end-->
+===================================
+
+=============== Example 7 ===============
+[PROMPT]:
+Divide 100 by 4 and show the result.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_p = 100
+sv_q = 4
+sv_r = sv_p / sv_q
+print(sv_r)
+end-->
+===================================
+
+=============== Example 8 ===============
+[PROMPT]:
+Concatenate the strings 'Core' and 'Banking' with a space in between.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_str1 = "Core"
+sv_str2 = "Banking"
+sv_full = sv_str1 + " " + sv_str2
+print(sv_full)
+end-->
+===================================
+
+=============== Example 9 ===============
+[PROMPT]:
+Check if sv_a is equal to 50. If so, print 'Equal'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 50
+if (sv_a == 50) then
+  print("Equal")
+endif
+end-->
+===================================
+
+=============== Example 10 ===============
+[PROMPT]:
+If variable sv_b is not equal to 'TEST', print 'Not Equal'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_b = "PROD"
+if (sv_b != "TEST") then
+  print("Not Equal")
+endif
+end-->
+===================================
+
+=============== Example 11 ===============
+[PROMPT]:
+If sv_c is greater than 100, print 'Greater', otherwise print 'Not Greater'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_c = 101
+if (sv_c > 100) then
+  print("Greater")
+else
+  print("Not Greater")
+endif
+end-->
+===================================
+
+=============== Example 12 ===============
+[PROMPT]:
+Check if sv_d is less than or equal to 5. If it is, print 'OK'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_d = 5
+if (sv_d <= 5) then
+  print("OK")
+endif
+end-->
+===================================
+
+=============== Example 13 ===============
+[PROMPT]:
+If sv_a is 'Y' AND sv_b is 'ACTIVE', print 'Proceed'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "Y"
+sv_b = "ACTIVE"
+if ((sv_a == "Y") AND (sv_b == "ACTIVE")) then
+  print("Proceed")
+endif
+end-->
+===================================
+
+=============== Example 14 ===============
+[PROMPT]:
+If sv_status is 'CLOSED' OR sv_status is 'LOCKED', print 'Action Required'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_status = "CLOSED"
+if ((sv_status == "CLOSED") OR (sv_status == "LOCKED")) then
+  print("Action Required")
+endif
+end-->
+===================================
+
+=============== Example 15 ===============
+[PROMPT]:
+Use a while loop to print numbers from 1 to 3.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_a = 1
+while (lv_a <= 3)
+do
+  print(lv_a)
+  lv_a = lv_a + 1
+endwhile
+end-->
+===================================
+
+=============== Example 16 ===============
+[PROMPT]:
+Use the unary minus operator to make the number 10 negative.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 10
+sv_b = -sv_a
+print(sv_b)
+end-->
+===================================
+
+=============== Example 17 ===============
+[PROMPT]:
+Jump to a label named 'skip_section' using GOTO.
+
+[EXPECTED SCRIPT]:
+<--start
+print("Part 1")
+GOTO skip_section
+print("This should not be printed")
+skip_section:
+print("Part 2")
+end-->
+===================================
+
+=============== Example 18 ===============
+[PROMPT]:
+Call a subroutine named 'print_routine' using GOSUB and then exit.
+
+[EXPECTED SCRIPT]:
+<--start
+GOSUB print_routine
+EXITSCRIPT
+print_routine:
+  print("Inside subroutine")
+  RETURN
+end-->
+===================================
+
+=============== Example 19 ===============
+[PROMPT]:
+Call another script named 'child_script.scr'.
+
+[EXPECTED SCRIPT]:
+<--start
+print("Calling another script...")
+CALL("child_script.scr")
+print("Returned from child script.")
+end-->
+===================================
+
+=============== Example 20 ===============
+[PROMPT]:
+Start execution of a script named 'new_process.scr' and do not return.
+
+[EXPECTED SCRIPT]:
+<--start
+print("Starting new process...")
+START("new_process.scr")
+# This line will not be reached
+end-->
+===================================
+
+=============== Example 21 ===============
+[PROMPT]:
+Extract 'abc' from the string 'xyzabcdef' using MID$.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_s = "xyzabcdef"
+sv_sub = Mid$(sv_s, 3, 3)
+print(sv_sub)
+end-->
+===================================
+
+=============== Example 22 ===============
+[PROMPT]:
+Get the first 4 characters of the string 'FinacleCore'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_s = "FinacleCore"
+sv_left = Left$(sv_s, 4)
+print(sv_left)
+end-->
+===================================
+
+=============== Example 23 ===============
+[PROMPT]:
+Get the last 4 characters of 'FinacleCore'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_s = "FinacleCore"
+sv_right = Right$(sv_s, 4)
+print(sv_right)
+end-->
+===================================
+
+=============== Example 24 ===============
+[PROMPT]:
+Convert the string '123.45' to a double and print it.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = CDOUBLE("123.45")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 25 ===============
+[PROMPT]:
+Convert the string '987' to an integer.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = CINT("987")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 26 ===============
+[PROMPT]:
+Convert the string 'HeLLo' to all lowercase.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = TOLOWER("HeLLo")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 27 ===============
+[PROMPT]:
+Convert 'world' to all uppercase.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = TOUPPER("world")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 28 ===============
+[PROMPT]:
+Find the length of the string 'Extensibility'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_len = STRLEN("Extensibility")
+print(sv_len)
+end-->
+===================================
+
+=============== Example 29 ===============
+[PROMPT]:
+Get the character at position 5 in the string 'Finacle Scripting'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_char = CHARAT("Finacle Scripting", 5)
+print(sv_char)
+end-->
+===================================
+
+=============== Example 30 ===============
+[PROMPT]:
+Remove leading spaces from the string '  indented'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "  indented"
+sv_b = LTRIM(sv_a)
+print(sv_b)
+end-->
+===================================
+
+=============== Example 31 ===============
+[PROMPT]:
+Remove trailing spaces from 'padded   '.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "padded   "
+sv_b = RTRIM(sv_a)
+print(sv_b)
+end-->
+===================================
+
+=============== Example 32 ===============
+[PROMPT]:
+Remove both leading and trailing asterisks from '***TRIMMED***'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "***TRIMMED***"
+sv_b = TRIM(sv_a, "*")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 33 ===============
+[PROMPT]:
+Left-pad the string 'ID' with zeros to a total length of 8.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "ID"
+sv_b = LPAD(sv_a, 8, "0")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 34 ===============
+[PROMPT]:
+Right-pad the string 'User' with '#' to a total length of 10.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "User"
+sv_b = RPAD(sv_a, 10, "#")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 35 ===============
+[PROMPT]:
+Check if a repository named 'GLOBAL' exists.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_exists = REPEXISTS("GLOBAL")
+if (sv_exists == 1) then
+  print("Repository exists.")
+else
+  print("Repository does not exist.")
+endif
+end-->
+===================================
+
+=============== Example 36 ===============
+[PROMPT]:
+Check if a class named 'INPUT' exists in the 'BANCS' repository.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_exists = CLASSEXISTS("BANCS", "INPUT")
+if (sv_exists == 1) then
+  print("Class exists.")
+endif
+end-->
+===================================
+
+=============== Example 37 ===============
+[PROMPT]:
+Check if the field 'userId' exists in 'BANCS.STDIN'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_exists = FIELDEXISTS(BANCS.STDIN.userId)
+if (sv_exists == 1) then
+  print("Field exists.")
+endif
+end-->
+===================================
+
+=============== Example 38 ===============
+[PROMPT]:
+Create a temporary repository named 'MY_TEMP_REP'.
+
+[EXPECTED SCRIPT]:
+<--start
+CREATEREP("MY_TEMP_REP")
+print("Repository created.")
+end-->
+===================================
+
+=============== Example 39 ===============
+[PROMPT]:
+Create a STRING class named 'DATA' in the 'MY_TEMP_REP' repository.
+
+[EXPECTED SCRIPT]:
+<--start
+# Assumes MY_TEMP_REP exists
+# 5 is the type for STRING
+CREATECLASS("MY_TEMP_REP", "DATA", 5)
+print("Class created.")
+end-->
+===================================
+
+=============== Example 40 ===============
+[PROMPT]:
+Delete the temporary class 'DATA' from the 'MY_TEMP_REP' repository.
+
+[EXPECTED SCRIPT]:
+<--start
+DELETECLASS("MY_TEMP_REP", "DATA")
+print("Class deleted.")
+end-->
+===================================
+
+=============== Example 41 ===============
+[PROMPT]:
+Delete the temporary repository 'MY_TEMP_REP'.
+
+[EXPECTED SCRIPT]:
+<--start
+DELETEREP("MY_TEMP_REP")
+print("Repository deleted.")
+end-->
+===================================
+
+=============== Example 42 ===============
+[PROMPT]:
+Assign the value 'test_user' to the repository field BANCS.INPUT.user.
+
+[EXPECTED SCRIPT]:
+<--start
+BANCS.INPUT.user = "test_user"
+print(BANCS.INPUT.user)
+end-->
+===================================
+
+=============== Example 43 ===============
+[PROMPT]:
+Copy the value from repository field BANCS.STDIN.userId to sv_a.
+
+[EXPECTED SCRIPT]:
+<--start
+# This assumes the field has a value
+sv_a = BANCS.STDIN.userId
+print(sv_a)
+end-->
+===================================
+
+=============== Example 44 ===============
+[PROMPT]:
+Set the script return status to Failure.
+
+[EXPECTED SCRIPT]:
+<--start
+BANCS.OUTPUT.successOrFailure = "F"
+end-->
+===================================
+
+=============== Example 45 ===============
+[PROMPT]:
+Set the script return status to Success.
+
+[EXPECTED SCRIPT]:
+<--start
+BANCS.OUTPUT.successOrFailure = "S"
+end-->
+===================================
+
+=============== Example 46 ===============
+[PROMPT]:
+Turn on script tracing.
+
+[EXPECTED SCRIPT]:
+<--start
+TRACE ON
+print("Tracing is now active.")
+end-->
+===================================
+
+=============== Example 47 ===============
+[PROMPT]:
+Turn off script tracing.
+
+[EXPECTED SCRIPT]:
+<--start
+TRACE OFF
+print("Tracing is now inactive.")
+end-->
+===================================
+
+=============== Example 48 ===============
+[PROMPT]:
+Exit the current script immediately.
+
+[EXPECTED SCRIPT]:
+<--start
+print("About to exit...")
+EXITSCRIPT
+print("This will not be printed.")
+end-->
+===================================
+
+=============== Example 49 ===============
+[PROMPT]:
+Call a user hook function named 'VALIDATE_USER'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = URHK_VALIDATE_USER("some_input_data")
+if (sv_a == 0) then
+  print("User hook successful.")
+else
+  print("User hook failed.")
+endif
+end-->
+===================================
+
+=============== Example 50 ===============
+[PROMPT]:
+Call a user routine 'CalculateInterest' from the default library.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = URTN_CalculateInterest("account_data")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 51 ===============
+[PROMPT]:
+Set a library name to 'CUSTOM.DLL' for user routines.
+
+[EXPECTED SCRIPT]:
+<--start
+LIBNAME "CUSTOM.DLL"
+sv_a = URTN_CustomRoutine("data")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 52 ===============
+[PROMPT]:
+Find the position of 'script' in 'Finacle scripting language'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_pos = GETPOSITION("Finacle scripting language", "script")
+print(sv_pos)
+end-->
+===================================
+
+=============== Example 53 ===============
+[PROMPT]:
+Do a case-insensitive search for 'FINACLE' in 'Welcome to Finacle'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_pos = GETIPOSITION("Welcome to Finacle", "FINACLE")
+print(sv_pos)
+end-->
+===================================
+
+=============== Example 54 ===============
+[PROMPT]:
+Compare the strings 'Hello' and 'hello' without case sensitivity.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_result = STRICMP("Hello", "hello")
+if (sv_result == 1) then
+  print("Strings are the same, ignoring case.")
+endif
+end-->
+===================================
+
+=============== Example 55 ===============
+[PROMPT]:
+Assign 12 to sv_a, 20 to sv_b. Check if sv_a is less than sv_b.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 12
+sv_b = 20
+if (sv_a < sv_b) then
+  print("sv_a is less than sv_b")
+endif
+end-->
+===================================
+
+=============== Example 56 ===============
+[PROMPT]:
+Check if sv_x is greater than or equal to 100.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_x = 100
+if (sv_x >= 100) then
+  print("sv_x is 100 or more.")
+endif
+end-->
+===================================
+
+=============== Example 57 ===============
+[PROMPT]:
+Loop while a counter lv_i is less than 5, incrementing it each time.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_i = 0
+while (lv_i < 5)
+do
+  print(lv_i)
+  lv_i = lv_i + 1
+endwhile
+end-->
+===================================
+
+=============== Example 58 ===============
+[PROMPT]:
+If BANCS.INPUT.acct_type is 'SBA' or 'CAA', print 'Operative Account'.
+
+[EXPECTED SCRIPT]:
+<--start
+# Assuming BANCS.INPUT.acct_type is set
+if ((BANCS.INPUT.acct_type == "SBA") OR (BANCS.INPUT.acct_type == "CAA")) then
+  print("Operative Account")
+endif
+end-->
+===================================
+
+=============== Example 59 ===============
+[PROMPT]:
+Create an integer class 'COUNTERS' in repository 'SESSION'.
+
+[EXPECTED SCRIPT]:
+<--start
+# 1 is the type for INTEGER
+CREATEREP("SESSION")
+CREATECLASS("SESSION", "COUNTERS", 1)
+SESSION.COUNTERS.login_attempts = 0
+print(SESSION.COUNTERS.login_attempts)
+end-->
+===================================
+
+=============== Example 60 ===============
+[PROMPT]:
+Create a double class 'BALANCES' in repository 'SESSION'.
+
+[EXPECTED SCRIPT]:
+<--start
+# 2 is the type for DOUBLE
+CREATEREP("SESSION")
+CREATECLASS("SESSION", "BALANCES", 2)
+SESSION.BALANCES.min_bal = 100.50
+print(SESSION.BALANCES.min_bal)
+end-->
+===================================
+
+=============== Example 61 ===============
+[PROMPT]:
+Find the difference between 500 and 125.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 500
+sv_b = 125
+sv_diff = sv_a - sv_b
+print(sv_diff)
+end-->
+===================================
+
+=============== Example 62 ===============
+[PROMPT]:
+Calculate 7 times 8.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 7
+sv_b = 8
+sv_prod = sv_a * sv_b
+print(sv_prod)
+end-->
+===================================
+
+=============== Example 63 ===============
+[PROMPT]:
+Divide 99 by 3.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 99
+sv_b = 3
+sv_quotient = sv_a / sv_b
+print(sv_quotient)
+end-->
+===================================
+
+=============== Example 64 ===============
+[PROMPT]:
+Add 'Mr. ' to the name 'Stark'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_title = "Mr. "
+sv_name = "Stark"
+sv_full_name = sv_title + sv_name
+print(sv_full_name)
+end-->
+===================================
+
+=============== Example 65 ===============
+[PROMPT]:
+If a local variable lv_flag is 0, print 'Flag is off'.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_flag = 0
+if (lv_flag == 0) then
+  print("Flag is off")
+endif
+end-->
+===================================
+
+=============== Example 66 ===============
+[PROMPT]:
+If sv_country is not 'IN', print 'International'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_country = "US"
+if (sv_country != "IN") then
+  print("International")
+endif
+end-->
+===================================
+
+=============== Example 67 ===============
+[PROMPT]:
+If sv_age is greater than 60, print 'Senior'. Else, print 'Not senior'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_age = 65
+if (sv_age > 60) then
+  print("Senior")
+else
+  print("Not senior")
+endif
+end-->
+===================================
+
+=============== Example 68 ===============
+[PROMPT]:
+If sv_score is less than 50, print 'Fail'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_score = 49
+if (sv_score < 50) then
+  print("Fail")
+endif
+end-->
+===================================
+
+=============== Example 69 ===============
+[PROMPT]:
+If product code is 'A' and region is 'North', print 'Category A-North'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_prod = "A"
+sv_region = "North"
+if ((sv_prod == "A") AND (sv_region == "North")) then
+  print("Category A-North")
+endif
+end-->
+===================================
+
+=============== Example 70 ===============
+[PROMPT]:
+If sv_env is 'UAT' or 'SIT', print 'Test Environment'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_env = "UAT"
+if ((sv_env == "UAT") OR (sv_env == "SIT")) then
+  print("Test Environment")
+endif
+end-->
+===================================
+
+=============== Example 71 ===============
+[PROMPT]:
+Use a while loop to print even numbers from 2 to 10.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_a = 2
+while (lv_a <= 10)
+do
+  print(lv_a)
+  lv_a = lv_a + 2
+endwhile
+end-->
+===================================
+
+=============== Example 72 ===============
+[PROMPT]:
+Make sv_b the negative of sv_a, where sv_a is -5.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = -5
+sv_b = -sv_a
+print(sv_b)
+end-->
+===================================
+
+=============== Example 73 ===============
+[PROMPT]:
+Extract 'Script' from 'Finacle-Script-Tool' using MID$.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_s = "Finacle-Script-Tool"
+sv_sub = Mid$(sv_s, 8, 6)
+print(sv_sub)
+end-->
+===================================
+
+=============== Example 74 ===============
+[PROMPT]:
+Get the first 7 characters of 'Welcome'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_s = "Welcome"
+sv_left = Left$(sv_s, 7)
+print(sv_left)
+end-->
+===================================
+
+=============== Example 75 ===============
+[PROMPT]:
+Get the last 3 characters of 'Automation'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_s = "Automation"
+sv_right = Right$(sv_s, 3)
+print(sv_right)
+end-->
+===================================
+
+=============== Example 76 ===============
+[PROMPT]:
+Convert the string '99.99' to a double data type.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = CDOUBLE("99.99")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 77 ===============
+[PROMPT]:
+Convert '42' from a string to an integer.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = CINT("42")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 78 ===============
+[PROMPT]:
+Convert 'FINACLE' to lowercase.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = TOLOWER("FINACLE")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 79 ===============
+[PROMPT]:
+Convert 'custom' to uppercase.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = TOUPPER("custom")
+print(sv_a)
+end-->
+===================================
+
+=============== Example 80 ===============
+[PROMPT]:
+What is the length of the string 'Repository'?
+
+[EXPECTED SCRIPT]:
+<--start
+sv_len = STRLEN("Repository")
+print(sv_len)
+end-->
+===================================
+
+=============== Example 81 ===============
+[PROMPT]:
+What is the character at position 0 of 'Script'?
+
+[EXPECTED SCRIPT]:
+<--start
+sv_char = CHARAT("Script", 0)
+print(sv_char)
+end-->
+===================================
+
+=============== Example 82 ===============
+[PROMPT]:
+Trim leading hyphens from '---data'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "---data"
+sv_b = LTRIM(sv_a, "-")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 83 ===============
+[PROMPT]:
+Trim trailing slashes from 'path//'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "path//"
+sv_b = RTRIM(sv_a, "/")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 84 ===============
+[PROMPT]:
+Remove leading and trailing spaces from '  padded string  '.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "  padded string  "
+sv_b = TRIM(sv_a)
+print(sv_b)
+end-->
+===================================
+
+=============== Example 85 ===============
+[PROMPT]:
+Left-pad 'Go' with '>' to a length of 5.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "Go"
+sv_b = LPAD(sv_a, 5, ">")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 86 ===============
+[PROMPT]:
+Right-pad 'End' with '<' to a length of 6.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "End"
+sv_b = RPAD(sv_a, 6, "<")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 87 ===============
+[PROMPT]:
+If repository 'USER_REP' does not exist, create it.
+
+[EXPECTED SCRIPT]:
+<--start
+if (REPEXISTS("USER_REP") == 0) then
+  CREATEREP("USER_REP")
+  print("Repository Created.")
+endif
+end-->
+===================================
+
+=============== Example 88 ===============
+[PROMPT]:
+If class 'PREFS' does not exist in 'USER_REP', create it as a STRING class.
+
+[EXPECTED SCRIPT]:
+<--start
+# Assumes USER_REP exists
+if (CLASSEXISTS("USER_REP", "PREFS") == 0) then
+  CREATECLASS("USER_REP", "PREFS", 5)
+  print("Class Created.")
+endif
+end-->
+===================================
+
+=============== Example 89 ===============
+[PROMPT]:
+If field 'theme' does not exist in USER_REP.PREFS, create and set it to 'dark'.
+
+[EXPECTED SCRIPT]:
+<--start
+if (FIELDEXISTS(USER_REP.PREFS.theme) == 0) then
+  USER_REP.PREFS.theme = "dark"
+  print(USER_REP.PREFS.theme)
+endif
+end-->
+===================================
+
+=============== Example 90 ===============
+[PROMPT]:
+Assign an integer value 2025 to the repository field CONFIG.SYSTEM.year.
+
+[EXPECTED SCRIPT]:
+<--start
+# Assumes CONFIG.SYSTEM is an INTEGER class
+CONFIG.SYSTEM.year = 2025
+print(CONFIG.SYSTEM.year)
+end-->
+===================================
+
+=============== Example 91 ===============
+[PROMPT]:
+Read the value of the 'onlineOrBatch' field from the 'BANCS.STDIN' repository into a variable.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_mode = BANCS.STDIN.onlineOrBatch
+print(sv_mode)
+end-->
+===================================
+
+=============== Example 92 ===============
+[PROMPT]:
+Write a nested if statement. If sv_a > 10, then check if sv_b > 20.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 11
+sv_b = 21
+if (sv_a > 10) then
+  print("sv_a is greater than 10")
+  if (sv_b > 20) then
+    print("sv_b is also greater than 20")
+  endif
+endif
+end-->
+===================================
+
+=============== Example 93 ===============
+[PROMPT]:
+Use GOSUB inside an if condition to call a subroutine.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 1
+if (sv_a == 1) THEN
+  GOSUB sub1
+ENDIF
+EXITSCRIPT
+sub1:
+  print("In subroutine 1")
+  RETURN
+end-->
+===================================
+
+=============== Example 94 ===============
+[PROMPT]:
+Dynamically change the type of sv_a from an integer to a string.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 12345
+print("sv_a is an integer now.")
+sv_a = "Hello"
+print("sv_a is a string now.")
+end-->
+===================================
+
+=============== Example 95 ===============
+[PROMPT]:
+Call a user hook named 'FETCH_CUST_DATA' and check the return value.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_ret = URHK_FETCH_CUST_DATA("cif_id_123")
+if (sv_ret == 0) then
+  print("Fetch successful")
+else
+  print("Fetch failed")
+endif
+end-->
+===================================
+
+=============== Example 96 ===============
+[PROMPT]:
+Calculate 15 plus 30 minus 10.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_result = 15 + 30 - 10
+print(sv_result)
+end-->
+===================================
+
+=============== Example 97 ===============
+[PROMPT]:
+Create a script to find the difference between 99 and 44.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_val1 = 99
+sv_val2 = 44
+sv_result = sv_val1 - sv_val2
+print(sv_result)
+end-->
+===================================
+
+=============== Example 98 ===============
+[PROMPT]:
+Calculate 3 multiplied by 4 plus 5.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 3
+sv_b = 4
+sv_c = 5
+sv_result = sv_a * sv_b + sv_c
+print(sv_result)
+end-->
+===================================
+
+=============== Example 99 ===============
+[PROMPT]:
+Check if a string 'test' is equal to 'test'.
+
+[EXPECTED SCRIPT]:
+<--start
+if ("test" == "test") then
+  print("Strings are equal")
+endif
+end-->
+===================================
+
+=============== Example 100 ===============
+[PROMPT]:
+Loop from 10 down to 1 and print each number.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_i = 10
+while (lv_i > 0)
+do
+  print(lv_i)
+  lv_i = lv_i - 1
+endwhile
+end-->
+===================================
+
+=============== Example 101 ===============
+[PROMPT]:
+Check if BANCS.INPUT.value is empty. If it is, set success to 'F'.
+
+[EXPECTED SCRIPT]:
+<--start
+if (BANCS.INPUT.value == "") then
+  BANCS.OUTPUT.successOrFailure = "F"
+else
+  BANCS.OUTPUT.successOrFailure = "S"
+endif
+end-->
+===================================
+
+=============== Example 102 ===============
+[PROMPT]:
+Replace the middle 2 characters of '123456' with 'XX' using SET$.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "123456"
+sv_b = SET$(sv_a, 2, 2, "XX")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 103 ===============
+[PROMPT]:
+Format the number 12.345 to two decimal places.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 12.345
+sv_b = FORMAT$(sv_a, "%.2f")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 104 ===============
+[PROMPT]:
+Create a temporary repository 'LOGS', a string class 'MESSAGES', and add a field 'error1' with value 'File not found'.
+
+[EXPECTED SCRIPT]:
+<--start
+CREATEREP("LOGS")
+CREATECLASS("LOGS", "MESSAGES", 5)
+LOGS.MESSAGES.error1 = "File not found"
+print(LOGS.MESSAGES.error1)
+end-->
+===================================
+
+=============== Example 105 ===============
+[PROMPT]:
+In a loop, if the counter is 5, use GOTO to jump to the end.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_i = 0
+while (lv_i < 10)
+do
+  if (lv_i == 5) then
+    GOTO end_loop
+  endif
+  print(lv_i)
+  lv_i = lv_i + 1
+endwhile
+end_loop:
+print("Loop finished.")
+end-->
+===================================
+
+=============== Example 106 ===============
+[PROMPT]:
+What is 200 minus 75?
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 200
+sv_b = 75
+sv_c = sv_a - sv_b
+print(sv_c)
+end-->
+===================================
+
+=============== Example 107 ===============
+[PROMPT]:
+How do you represent 1500 multiplied by 2?
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 1500
+sv_b = 2
+sv_c = sv_a * sv_b
+print(sv_c)
+end-->
+===================================
+
+=============== Example 108 ===============
+[PROMPT]:
+Find the sum of 1, 2, 3, 4, and 5 using a loop.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_sum = 0
+lv_i = 1
+while (lv_i <= 5)
+do
+  lv_sum = lv_sum + lv_i
+  lv_i = lv_i + 1
+endwhile
+print(lv_sum)
+end-->
+===================================
+
+=============== Example 109 ===============
+[PROMPT]:
+If a string sv_a is longer than 10 characters, print 'Too long'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "This is a very long string"
+if (STRLEN(sv_a) > 10) then
+  print("Too long")
+endif
+end-->
+===================================
+
+=============== Example 110 ===============
+[PROMPT]:
+Read the home currency code into a variable.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_home_ccy = BANCS.STDIN.homeCrncyCode
+print(sv_home_ccy)
+end-->
+===================================
+
+=============== Example 111 ===============
+[PROMPT]:
+Check if the current menu option is 'HACLI'.
+
+[EXPECTED SCRIPT]:
+<--start
+if (BANCS.STDIN.menuOption == "HACLI") then
+  print("Customer Inquiry Menu")
+endif
+end-->
+===================================
+
+=============== Example 112 ===============
+[PROMPT]:
+Add a string to the HTML output buffer.
+
+[EXPECTED SCRIPT]:
+<--start
+AddToHTML("<h1>Welcome User</h1>")
+end-->
+===================================
+
+=============== Example 113 ===============
+[PROMPT]:
+Execute an external program 'validate.exe' with argument 'data.xml'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_ret = UREX("validate.exe", "returndata.tmp", "data.xml")
+print(sv_ret)
+end-->
+===================================
+
+=============== Example 114 ===============
+[PROMPT]:
+If lv_a is not 1 and not 2, print 'Other'.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_a = 3
+if ((lv_a != 1) AND (lv_a != 2)) then
+  print("Other")
+endif
+end-->
+===================================
+
+=============== Example 115 ===============
+[PROMPT]:
+Combine 'Hello' and 123 into a single string.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "Hello"
+sv_b = 123
+sv_c = sv_a + sv_b
+print(sv_c)
+end-->
+===================================
+
+=============== Example 116 ===============
+[PROMPT]:
+Create a float class 'RATES' and add a field 'tax_rate'.
+
+[EXPECTED SCRIPT]:
+<--start
+# 3 is the type for FLOAT
+CREATEREP("CONFIG")
+CREATECLASS("CONFIG", "RATES", 3)
+CONFIG.RATES.tax_rate = 0.15
+print(CONFIG.RATES.tax_rate)
+end-->
+===================================
+
+=============== Example 117 ===============
+[PROMPT]:
+Write a script that does nothing but has a start and end tag.
+
+[EXPECTED SCRIPT]:
+<--start
+# This script is empty.
+end-->
+===================================
+
+=============== Example 118 ===============
+[PROMPT]:
+Set a variable to the result of 100/5.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 100/5
+print(sv_a)
+end-->
+===================================
+
+=============== Example 119 ===============
+[PROMPT]:
+In a loop from 1 to 10, print 'Five' when the counter hits 5.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_i = 1
+while (lv_i <= 10)
+do
+  if (lv_i == 5) then
+    print("Five")
+  else
+    print(lv_i)
+  endif
+  lv_i = lv_i + 1
+endwhile
+end-->
+===================================
+
+=============== Example 120 ===============
+[PROMPT]:
+What is the result of 10 minus 20?
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 10
+sv_b = 20
+sv_c = sv_a - sv_b
+print(sv_c)
+end-->
+===================================
+
+=============== Example 121 ===============
+[PROMPT]:
+Take the string 'abcde', get the middle character 'c'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "abcde"
+sv_b = Mid$(sv_a, 2, 1)
+print(sv_b)
+end-->
+===================================
+
+=============== Example 122 ===============
+[PROMPT]:
+Check if BANCS.STDIN.WFflg is equal to 'Y'.
+
+[EXPECTED SCRIPT]:
+<--start
+# Checks if script is a workflow script
+if (BANCS.STDIN.WFflg == "Y") then
+  print("This is a workflow script.")
+endif
+end-->
+===================================
+
+=============== Example 123 ===============
+[PROMPT]:
+Use PUTREPFIELD to set the value of a field named 'MY_REP.MY_CLASS.MY_FIELD'.
+
+[EXPECTED SCRIPT]:
+<--start
+CREATEREP("MY_REP")
+CREATECLASS("MY_REP", "MY_CLASS", 5)
+sv_a = "MY_REP.MY_CLASS.MY_FIELD"
+sv_b = "My Value"
+PUTREPFIELD(sv_a, sv_b)
+end-->
+===================================
+
+=============== Example 124 ===============
+[PROMPT]:
+Use GETREPFIELD to retrieve the value of 'MY_REP.MY_CLASS.MY_FIELD'.
+
+[EXPECTED SCRIPT]:
+<--start
+# Assumes the field was set previously
+sv_a = "MY_REP.MY_CLASS.MY_FIELD"
+sv_b = GETREPFIELD(sv_a)
+print(sv_b)
+end-->
+===================================
+
+=============== Example 125 ===============
+[PROMPT]:
+Write a script to check if 25 is greater than 15.
+
+[EXPECTED SCRIPT]:
+<--start
+if (25 > 15) then
+  print("Yes, 25 is greater.")
+endif
+end-->
+===================================
+
+=============== Example 126 ===============
+[PROMPT]:
+Take the number 50 and subtract 5.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 50 - 5
+print(sv_a)
+end-->
+===================================
+
+=============== Example 127 ===============
+[PROMPT]:
+Print the current system date from the BANCS.STDIN repository.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_date = BANCS.STDIN.sysDate
+print(sv_date)
+end-->
+===================================
+
+=============== Example 128 ===============
+[PROMPT]:
+Format an account number by taking the last 4 digits of '12345678' and prefixing with 'ACC-'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_full_num = "12345678"
+sv_last_four = Right$(sv_full_num, 4)
+sv_formatted = "ACC-" + sv_last_four
+print(sv_formatted)
+end-->
+===================================
+
+=============== Example 129 ===============
+[PROMPT]:
+If input value in BANCS.INPUT.amount is less than 1000 and the transaction type is 'CASH', set a flag.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_flag = 0
+if ((CINT(BANCS.INPUT.amount) < 1000) AND (BANCS.INPUT.tranType == "CASH")) then
+  lv_flag = 1
+endif
+print(lv_flag)
+end-->
+===================================
+
+=============== Example 130 ===============
+[PROMPT]:
+Create a character class and store the character 'A'.
+
+[EXPECTED SCRIPT]:
+<--start
+# 4 is the type for CHAR
+CREATEREP("TEMP")
+CREATECLASS("TEMP", "CHARS", 4)
+TEMP.CHARS.myChar = 'A'
+print(TEMP.CHARS.myChar)
+end-->
+===================================
+
+=============== Example 131 ===============
+[PROMPT]:
+Use a subroutine to add two numbers.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_x = 10
+sv_y = 20
+GOSUB add_routine
+print(sv_z)
+EXITSCRIPT
+add_routine:
+  sv_z = sv_x + sv_y
+  RETURN
+end-->
+===================================
+
+=============== Example 132 ===============
+[PROMPT]:
+If sv_a is 1, print 'One'. If it's 2, print 'Two'. Otherwise, print 'Other'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 2
+if (sv_a == 1) then
+  print("One")
+else
+  if (sv_a == 2) then
+    print("Two")
+  else
+    print("Other")
+  endif
+endif
+end-->
+===================================
+
+=============== Example 133 ===============
+[PROMPT]:
+Find the result of (10 + 5) * 2.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_result = (10 + 5) * 2
+print(sv_result)
+end-->
+===================================
+
+=============== Example 134 ===============
+[PROMPT]:
+Print the description of the current service outlet (SOL).
+
+[EXPECTED SCRIPT]:
+<--start
+sv_sol_desc = BANCS.STDIN.mySolDesc
+print(sv_sol_desc)
+end-->
+===================================
+
+=============== Example 135 ===============
+[PROMPT]:
+Demonstrate a simple GOTO loop that prints 3 times.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 3
+loop_start:
+if (sv_a == 0) then
+  GOTO loop_end
+endif
+print(sv_a)
+sv_a = sv_a - 1
+GOTO loop_start
+loop_end:
+end-->
+===================================
+
+=============== Example 136 ===============
+[PROMPT]:
+If sv_a is not null, process it. (Check for empty string)
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = "some data"
+if (sv_a != "") then
+  print("Processing data...")
+endif
+end-->
+===================================
+
+=============== Example 137 ===============
+[PROMPT]:
+Pad the number 123 with leading zeros to make it 5 digits long.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 123
+sv_b = LPAD(sv_a, 5, "0")
+print(sv_b)
+end-->
+===================================
+
+=============== Example 138 ===============
+[PROMPT]:
+Convert a char 'c' to a string.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 'c'
+sv_b = GETSTRING(sv_a)
+print(sv_b)
+end-->
+===================================
+
+=============== Example 139 ===============
+[PROMPT]:
+Create a script that calculates 1000 minus 1.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 1000 - 1
+print(sv_a)
+end-->
+===================================
+
+=============== Example 140 ===============
+[PROMPT]:
+Assign 25 to sv_a. Check if sv_a is less than 30 OR greater than 20.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 25
+if ((sv_a < 30) OR (sv_a > 20)) then
+  print("Condition met.")
+endif
+end-->
+===================================
+
+=============== Example 141 ===============
+[PROMPT]:
+What is 50 divided by 2, plus 10?
+
+[EXPECTED SCRIPT]:
+<--start
+sv_result = 50 / 2 + 10
+print(sv_result)
+end-->
+===================================
+
+=============== Example 142 ===============
+[PROMPT]:
+Check if the length of 'Hello' is 5.
+
+[EXPECTED SCRIPT]:
+<--start
+if (STRLEN("Hello") == 5) then
+  print("Length is 5.")
+endif
+end-->
+===================================
+
+=============== Example 143 ===============
+[PROMPT]:
+Take the uppercase of 'test' and compare it to 'TEST'.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = TOUPPER("test")
+if (sv_a == "TEST") then
+  print("Match")
+endif
+end-->
+===================================
+
+=============== Example 144 ===============
+[PROMPT]:
+Show me a script that does a subtraction: 42 minus 12.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_a = 42
+sv_b = 12
+sv_c = sv_a - sv_b
+print(sv_c)
+end-->
+===================================
+
+=============== Example 145 ===============
+[PROMPT]:
+Calculate 33 - 11 and print the value.
+
+[EXPECTED SCRIPT]:
+<--start
+lv_a = 33
+lv_b = 11
+lv_c = lv_a - lv_b
+print(lv_c)
+end-->
+===================================
+
+=============== Example 146 ===============
+[PROMPT]:
+Give me the result of 77 subtracted by 7.
+
+[EXPECTED SCRIPT]:
+<--start
+sv_result = 77 - 7
+print(sv_result)
+end-->
+===================================
+
+--- Found and parsed 146 examples. ---
