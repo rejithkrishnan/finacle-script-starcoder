@@ -1,0 +1,34 @@
+[
+    {
+        "prompt": "Create a simple Finacle script that prints the string 'Hello World'.",
+        "script": "<--start\nprint(\"Hello World\")\nend-->"
+    },
+    {
+        "prompt": "Write a script to declare a numeric variable sv_a with a value of 10 and then print it.",
+        "script": "<--start\nsv_a = 10\nprint(sv_a)\nend-->"
+    },
+    {
+        "prompt": "Create a script that adds two numbers, 10 and 5, stores the result in sv_c, and then prints the result.",
+        "script": "<--start\nsv_a = 10\nsv_b = 5\nsv_c = sv_a + sv_b\nprint(sv_c)\nend-->"
+    },
+    {
+        "prompt": "Generate a script that concatenates two strings, 'FIRST' and 'SECOND', with ' AND ' in between, and prints the combined string.",
+        "script": "<--start\nsv_a = \"FIRST\"\nsv_c = \"SECOND\"\nsv_d = sv_a + \" AND \" + sv_c\nprint(sv_d)\nend-->"
+    },
+    {
+        "prompt": "Write a script that checks if a variable sv_a is equal to 10. If it is, print 'sv_a is 10'. Otherwise, print 'sv_a is not 10'.",
+        "script": "<--start\nsv_a = 10\nif (sv_a == 10) then\n  print(\"sv_a is 10\")\nelse\n  print(\"sv_a is not 10\")\nendif\nend-->"
+    },
+    {
+        "prompt": "Create a script that uses a while loop to print numbers from 1 to 5.",
+        "script": "<--start\nsv_a = 1\nwhile (sv_a <= 5)\ndo\n  print(sv_a)\n  sv_a = sv_a + 1\nendwhile\nend-->"
+    },
+    {
+        "prompt": "Generate a script that demonstrates the use of the MID$ built-in function to extract '45678' from '1234567890'.",
+        "script": "<--start\nsv_a = Mid$(\"1234567890\", 3, 5)\nprint(sv_a)\nend-->"
+    },
+    {
+        "prompt": "Create a script that checks if the repository 'myrep' exists. If not, create it.",
+        "script": "<--start\nif (REPEXISTS(\"myrep\") == 0) then\n  CREATEREP(\"myrep\")\nendif\nend-->"
+    }
+]
