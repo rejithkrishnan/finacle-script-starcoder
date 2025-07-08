@@ -1,0 +1,240 @@
+- prompt: Write a script that assigns a number to a scratchpad variable and includes a comment.
+  script: |-
+    <--start
+    # Assigning a numeric constant
+    sv_a = 100.50
+    print(sv_a)
+    end-->
+- prompt: Create a script that uses a double-quoted string.
+  script: |-
+    <--start
+    sv_s = "This is a string literal."
+    print(sv_s)
+    end-->
+- prompt: Show me an example of a simple IF/THEN/ELSE conditional block.
+  script: |-
+    <--start
+    # Using IF, THEN, ELSE, ENDIF keywords
+    sv_a = 10
+    if (sv_a > 5) then
+      print("Greater than 5")
+    else
+      print("Not greater than 5")
+    endif
+    end-->
+- prompt: Create a script with a WHILE/DO loop that iterates 3 times.
+  script: |-
+    <--start
+    # Using WHILE and DO keywords
+    lv_c = 0
+    while (lv_c < 3)
+    do
+      print("Iteration")
+      lv_c = lv_c + 1
+    endwhile
+    end-->
+- prompt: Generate a script that uses GOTO to jump to a label defined at the end.
+  script: |-
+    <--start
+    # Using GOTO and a label definition
+    print("About to jump...")
+    GOTO end_label
+    print("This line is skipped.")
+    end_label:
+    print("Jumped to the end.")
+    end-->
+- prompt: Write a script that calls a subroutine with GOSUB and then returns.
+  script: |-
+    <--start
+    # Using GOSUB and RETURN keywords
+    GOSUB my_subroutine
+    EXITSCRIPT
+
+    my_subroutine:
+      print("Inside the subroutine.")
+      RETURN
+    end-->
+- prompt: Demonstrate how to call an external script named 'process_data.scr'.
+  script: |-
+    <--start
+    # Using the CALL keyword
+    print("Calling external script...")
+    CALL("process_data.scr")
+    end-->
+- prompt: Create a script that uses the LEFT$ function to extract the first 3 characters of a string.
+  script: |-
+    <--start
+    # Using a built-in function
+    sv_a = "Finacle"
+    sv_b = Left$(sv_a, 3)
+    print(sv_b)
+    end-->
+- prompt: How do you call a user-defined routine named 'URTN_CALCULATE_FEE'?
+  script: |-
+    <--start
+    # Using a user-defined routine name pattern
+    sv_a = "some_data"
+    sv_b = URTN_CALCULATE_FEE(sv_a)
+    print(sv_b)
+    end-->
+- prompt: Show how to assign a value to a local variable.
+  script: |-
+    <--start
+    # Using the lv_ variable pattern
+    lv_a = "This is a local variable."
+    print(lv_a)
+    end-->
+- prompt: Write a script that reads from a repository variable.
+  script: |-
+    <--start
+    # Using the repository variable pattern
+    sv_a = BANCS.INPUT.userName
+    print(sv_a)
+    end-->
+- prompt: Demonstrate the use of an arithmetic operator like multiplication.
+  script: |-
+    <--start
+    # Using the * arithmetic operator
+    sv_a = 10
+    sv_b = 5
+    sv_c = sv_a * sv_b
+    print(sv_c)
+    end-->
+- prompt: Use a comparison operator to check if two variables are not equal.
+  script: |-
+    <--start
+    # Using the != comparison operator
+    sv_a = 100
+    sv_b = 200
+    if (sv_a != sv_b) then
+      print("They are not equal.")
+    endif
+    end-->
+- prompt: Create a script with a logical AND operator in the condition.
+  script: |-
+    <--start
+    # Using the AND logical operator
+    sv_a = 10
+    sv_b = "ACTIVE"
+    if ((sv_a > 5) AND (sv_b == "ACTIVE")) then
+      print("Conditions met.")
+    endif
+    end-->
+- prompt: Write a script to get the system date and user ID from the repository and print them.
+  script: |-
+    <--start
+    # Accessing multiple repository variables
+    sv_a = BANCS.STDIN.sysDate
+    sv_b = BANCS.STDIN.userId
+    print("Date: " + sv_a)
+    print("User: " + sv_b)
+    end-->
+- prompt: If a local variable lv_a is less than 10 AND greater than 0, print 'Single Digit'.
+  script: |-
+    <--start
+    # Using multiple comparison operators with AND
+    lv_a = 7
+    if ((lv_a < 10) AND (lv_a > 0)) then
+      print("Single Digit")
+    endif
+    end-->
+- prompt: Create a script that uses a GOSUB to a subroutine which itself contains an IF statement.
+  script: |-
+    <--start
+    # Complex GOSUB with internal logic
+    sv_a = "CHECK"
+    GOSUB validation_routine
+    EXITSCRIPT
+
+    validation_routine:
+      if (sv_a == "CHECK") then
+        print("Validation in progress.")
+      endif
+      RETURN
+    end-->
+- prompt: Take a string, convert it to uppercase, and then extract the first 4 characters.
+  script: |-
+    <--start
+    # Chaining function concepts: TOUPPER and LEFT$
+    sv_a = "finacle"
+    sv_b = TOUPPER(sv_a)
+    sv_c = Left$(sv_b, 4)
+    print(sv_c)
+    end-->
+- prompt: Write a script that turns TRACE ON, performs an addition, and then turns TRACE OFF.
+  script: |-
+    <--start
+    # Using TRACE ON/OFF keywords
+    TRACE ON
+    sv_a = 100 + 200
+    print(sv_a)
+    TRACE OFF
+    end-->
+- prompt: If a variable sv_a equals "A", GOTO label_a. If it equals "B", GOTO label_b.
+  script: |-
+    <--start
+    # Multiple GOTO statements from different conditions
+    sv_a = "B"
+    if (sv_a == "A") then
+      GOTO label_a
+    endif
+    if (sv_a == "B") then
+      GOTO label_b
+    endif
+    EXITSCRIPT
+
+    label_a:
+      print("In section A.")
+      EXITSCRIPT
+    label_b:
+      print("In section B.")
+      EXITSCRIPT
+    end-->
+- prompt: Use the CINT function to convert a string "50" to a number before performing an arithmetic operation.
+  script: |-
+    <--start
+    # Using a conversion function with an operator
+    sv_a = "50"
+    sv_b = CINT(sv_a)
+    sv_c = sv_b * 2
+    print(sv_c)
+    end-->
+- prompt: Check if either a local variable lv_a is "Y" OR a scratchpad variable sv_b is "Y".
+  script: |-
+    <--start
+    # Using the OR logical operator with different variable types
+    lv_a = "N"
+    sv_b = "Y"
+    if ((lv_a == "Y") OR (sv_b == "Y")) then
+      print("At least one condition is met.")
+    endif
+    end-->
+- prompt: Demonstrate a nested loop structure.
+  script: |-
+    <--start
+    # Nested WHILE/DO loops
+    lv_a = 0
+    while (lv_a < 2)
+    do
+      lv_b = 0
+      while (lv_b < 3)
+      do
+        print("Inner loop")
+        lv_b = lv_b + 1
+      endwhile
+      print("Outer loop")
+      lv_a = lv_a + 1
+    endwhile
+    end-->
+- prompt: Define a label and have a GOTO jump to it from within an IF block.
+  script: |-
+    <--start
+    sv_a = 100
+    if (sv_a == 100) then
+      print("Value is 100, jumping...")
+      GOTO my_label
+    endif
+    print("This should be skipped.")
+    my_label:
+    print("Execution continues here.")
+    end-->

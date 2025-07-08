@@ -1,0 +1,570 @@
+[
+  {
+    "prompt": "Format the following Finacle script correctly:\n<--start\nsv_a = 1\nprint(sv_a)\nend-->",
+    "script": "<--start\n    sv_a = 1\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation for this IF block:\n<--start\nIF (sv_a == 1) THEN\nprint(\"one\")\nENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a == 1) THEN\n        print(\"one\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this IF/ELSE statement:\n<--start\nIF (sv_a > 10) THEN\nprint(\"big\")\nELSE\nprint(\"small\")\nENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a > 10) THEN\n        print(\"big\")\n    ELSE\n        print(\"small\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting to this WHILE loop:\n<--start\nWHILE (sv_a < 3)\nsv_a = sv_a + 1\nprint(sv_a)\nDO\nend-->",
+    "script": "<--start\n    WHILE (sv_a < 3)\n        sv_a = sv_a + 1\n        print(sv_a)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Format this script with a label definition:\n<--start\nGOTO my_label\nmy_label:\nprint(\"here\")\nend-->",
+    "script": "<--start\n    GOTO my_label\nmy_label:\n    print(\"here\")\nend-->"
+  },
+  {
+    "prompt": "Reformat this nested IF statement:\n<--start\nIF (sv_a > 0) THEN\nIF (sv_b > 0) THEN\nprint(\"both positive\")\nENDIF\nENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a > 0) THEN\n        IF (sv_b > 0) THEN\n            print(\"both positive\")\n        ENDIF\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation for this script with a GOSUB:\n<--start\nGOSUB my_sub\nEXITSCRIPT\nmy_sub:\nRETURN\nend-->",
+    "script": "<--start\n    GOSUB my_sub\n    EXITSCRIPT\nmy_sub:\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Remove the unnecessary blank lines from this script:\n<--start\n\n\nsv_a = 1\n\n\nprint(sv_a)\n\n\nend-->",
+    "script": "<--start\n    sv_a = 1\n\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Format this script and remove the special block comments:\n<--start\nsv_a = 1\n#{\nprint(sv_a)\n#}\nend-->",
+    "script": "<--start\n    sv_a = 1\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation of this script which includes a comment:\n<--start\n# This is a test\nsv_a = 100\nend-->",
+    "script": "<--start\n    # This is a test\n    sv_a = 100\nend-->"
+  },
+  {
+    "prompt": "Reformat this complex nested block:\n<--start\nIF (sv_a > 0) THEN\nWHILE (sv_b > 0)\nprint(\"inner\")\nsv_b = sv_b - 1\nDO\nENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a > 0) THEN\n        WHILE (sv_b > 0)\n            print(\"inner\")\n            sv_b = sv_b - 1\n        DO\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Apply correct formatting to a script with an IF, ELSE, and another IF inside the ELSE:\n<--start\nIF (sv_a == 1) THEN\nprint(\"one\")\nELSE\nIF (sv_a == 2) THEN\nprint(\"two\")\nENDIF\nENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a == 1) THEN\n        print(\"one\")\n    ELSE\n        IF (sv_a == 2) THEN\n            print(\"two\")\n        ENDIF\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script where a label is inside an IF block:\n<--start\nIF (sv_a > 10) THEN\nmy_label:\nprint(\"inside\")\nENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a > 10) THEN\n    my_label:\n        print(\"inside\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Clean up the formatting of this script with multiple empty lines.\n<--start\nsv_a=1\n\n\n\nsv_b=2\n\nend-->",
+    "script": "<--start\n    sv_a=1\n\n    sv_b=2\nend-->"
+  },
+  {
+    "prompt": "Format this simple assignment script:\n<--start\nsv_a = \"test\"\nend-->",
+    "script": "<--start\n    sv_a = \"test\"\nend-->"
+  },
+  {
+    "prompt": "Correct indentation for a script with only a comment inside.\n<--start\n# Do nothing\nend-->",
+    "script": "<--start\n    # Do nothing\nend-->"
+  },
+  {
+    "prompt": "Reformat a script containing a WHILE loop with an ELSE statement inside an IF.\n<--start\nWHILE(sv_a>0)\nIF(sv_a==1)THEN\nprint(1)\nELSE\nprint(0)\nENDIF\nsv_a=sv_a-1\nDO\nend-->",
+    "script": "<--start\n    WHILE(sv_a>0)\n        IF(sv_a==1)THEN\n            print(1)\n        ELSE\n            print(0)\n        ENDIF\n        sv_a=sv_a-1\n    DO\nend-->"
+  },
+  {
+    "prompt": "Format this script, ensuring the label is outdented correctly.\n<--start\nIF (sv_a == 1) THEN\nGOSUB routine1\nENDIF\nroutine1:\nprint(\"routine 1\")\nRETURN\nend-->",
+    "script": "<--start\n    IF (sv_a == 1) THEN\n        GOSUB routine1\n    ENDIF\nroutine1:\n    print(\"routine 1\")\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Correctly indent the following script:\n<--start\nCREATEREP(\"A\")\nCREATECLASS(\"A\",\"B\",5)\nDELETEREP(\"A\")\nend-->",
+    "script": "<--start\n    CREATEREP(\"A\")\n    CREATECLASS(\"A\",\"B\",5)\n    DELETEREP(\"A\")\nend-->"
+  },
+  {
+    "prompt": "Format this script, which has multiple levels of nesting.\n<--start\nIF(sv_a>0)THEN\nIF(sv_b>0)THEN\nWHILE(sv_c>0)\nprint(sv_c)\nsv_c=sv_c-1\nDO\nENDIF\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>0)THEN\n        IF(sv_b>0)THEN\n            WHILE(sv_c>0)\n                print(sv_c)\n                sv_c=sv_c-1\n            DO\n        ENDIF\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this code, paying attention to the ELSE clause indentation.\n<--start\nIF(sv_a==1)THEN\nprint(1)\nELSE\nprint(\"not 1\")\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a==1)THEN\n        print(1)\n    ELSE\n        print(\"not 1\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Clean up the indentation in this script with a subroutine.\n<--start\nprint(\"main\")\nGOSUB sub\nEXITSCRIPT\nsub:\nprint(\"sub\")\nRETURN\nend-->",
+    "script": "<--start\n    print(\"main\")\n    GOSUB sub\n    EXITSCRIPT\nsub:\n    print(\"sub\")\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Format the following script and remove the special marker comments:\n<--start\n#{\nsv_a=1\n#}\nprint(\"done\")\nend-->",
+    "script": "<--start\n    sv_a=1\n    print(\"done\")\nend-->"
+  },
+  {
+    "prompt": "Correctly format this script with no logic inside the blocks.\n<--start\nIF (sv_a > 1) THEN\nENDIF\nWHILE (sv_b < 1)\nDO\nend-->",
+    "script": "<--start\n    IF (sv_a > 1) THEN\n    ENDIF\n    WHILE (sv_b < 1)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Reformat this code. The label should be indented one level less than the block it is in.\n<--start\nWHILE(sv_a<1)\nloop_label:\nprint(\"looping\")\nsv_a=sv_a+1\nDO\nend-->",
+    "script": "<--start\n    WHILE(sv_a<1)\n    loop_label:\n        print(\"looping\")\n        sv_a=sv_a+1\n    DO\nend-->"
+  },
+  {
+    "prompt": "Format this script containing only a GOTO and a label.\n<--start\nGOTO final_step\nfinal_step:\nend-->",
+    "script": "<--start\n    GOTO final_step\nfinal_step:\nend-->"
+  },
+  {
+    "prompt": "Fix the formatting of this script with an empty ELSE block.\n<--start\nIF(sv_a>1)THEN\nprint(\"big\")\nELSE\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(\"big\")\n    ELSE\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Please apply correct indentation to this script.\n<--start\nCALL(\"A.scr\")\nCALL(\"B.scr\")\nend-->",
+    "script": "<--start\n    CALL(\"A.scr\")\n    CALL(\"B.scr\")\nend-->"
+  },
+  {
+    "prompt": "Reformat this simple print statement.\n<--start\nprint(\"Hello Finacle\")\nend-->",
+    "script": "<--start\n    print(\"Hello Finacle\")\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation for this script with a final comment.\n<--start\nsv_a = 1\n# End of script\nend-->",
+    "script": "<--start\n    sv_a = 1\n    # End of script\nend-->"
+  },
+  {
+    "prompt": "Format this code block containing a complex condition.\n<--start\nIF ((sv_a>1) AND (sv_b<1)) THEN\nprint(\"ok\")\nENDIF\nend-->",
+    "script": "<--start\n    IF ((sv_a>1) AND (sv_b<1)) THEN\n        print(\"ok\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this while loop that has no content.\n<--start\nWHILE(sv_a<0)\nDO\nend-->",
+    "script": "<--start\n    WHILE(sv_a<0)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Clean up the formatting of this script with misaligned comments.\n<--start\n # Main logic start\n sv_a = 1\n  # Main logic end\nend-->",
+    "script": "<--start\n    # Main logic start\n    sv_a = 1\n    # Main logic end\nend-->"
+  },
+  {
+    "prompt": "Format this script with a subroutine call inside a loop.\n<--start\nWHILE(sv_a<2)\nGOSUB my_sub\nsv_a=sv_a+1\nDO\nmy_sub:\nRETURN\nend-->",
+    "script": "<--start\n    WHILE(sv_a<2)\n        GOSUB my_sub\n        sv_a=sv_a+1\n    DO\nmy_sub:\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Correct the following badly formatted script:\n<--start\n  IF(sv_a>1)THEN\n    print(1)\n  ELSE\n    print(0)\n  ENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(1)\n    ELSE\n        print(0)\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script where the end tag is not on a new line.\n<--start\nsv_a=1 end-->",
+    "script": "<--start\n    sv_a=1\nend-->"
+  },
+  {
+    "prompt": "Apply proper indentation to this script.\n<--start\nsv_a = 10\nsv_b = 20\nsv_c = 30\nend-->",
+    "script": "<--start\n    sv_a = 10\n    sv_b = 20\n    sv_c = 30\nend-->"
+  },
+  {
+    "prompt": "Format a script with a single line inside an IF/ELSE block.\n<--start\nIF(sv_a>1)THEN\nsv_b=1\nELSE\nsv_b=0\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        sv_b=1\n    ELSE\n        sv_b=0\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this script with mixed indentation.\n<--start\n sv_a=1\n  sv_b=2\nsv_c=3\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\n    sv_c=3\nend-->"
+  },
+  {
+    "prompt": "Correctly indent a script that declares and then uses a label.\n<--start\nsv_a=1\nIF(sv_a==1)THEN\nGOTO skip\nENDIF\nsv_b=2\nskip:\nsv_c=3\nend-->",
+    "script": "<--start\n    sv_a=1\n    IF(sv_a==1)THEN\n        GOTO skip\n    ENDIF\n    sv_b=2\nskip:\n    sv_c=3\nend-->"
+  },
+  {
+    "prompt": "Format this script containing only special comments to be removed.\n<--start\n#{\n#}\nend-->",
+    "script": "<--start\nend-->"
+  },
+  {
+    "prompt": "Reformat this code, ensuring the ELSE and its inner IF are correctly indented.\n<--start\nif(sv_a==1)then\nprint(1)\nelse\nif(sv_a==2)then\nprint(2)\nendif\nendif\nend-->",
+    "script": "<--start\n    if(sv_a==1)then\n        print(1)\n    else\n        if(sv_a==2)then\n            print(2)\n        endif\n    endif\nend-->"
+  },
+  {
+    "prompt": "Clean up the spacing and indentation in this script.\n<--start\n    sv_a = 100\n  sv_b=200\nend-->",
+    "script": "<--start\n    sv_a = 100\n    sv_b=200\nend-->"
+  },
+  {
+    "prompt": "Format the following simple script block.\n<--start\nTRACE ON\nTRACE OFF\nend-->",
+    "script": "<--start\n    TRACE ON\n    TRACE OFF\nend-->"
+  },
+  {
+    "prompt": "Correctly format a script with three nested IF statements.\n<--start\nIF(sv_a>1)THEN\nIF(sv_b>1)THEN\nIF(sv_c>1)THEN\nprint(\"ok\")\nENDIF\nENDIF\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        IF(sv_b>1)THEN\n            IF(sv_c>1)THEN\n                print(\"ok\")\n            ENDIF\n        ENDIF\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat a script where a label definition is the last line before the end tag.\n<--start\nGOTO my_end\nmy_end:\nend-->",
+    "script": "<--start\n    GOTO my_end\nmy_end:\nend-->"
+  },
+  {
+    "prompt": "Format this script with a comment between two lines of code.\n<--start\nsv_a = 1\n# An intermediate comment\nsv_b = 2\nend-->",
+    "script": "<--start\n    sv_a = 1\n    # An intermediate comment\n    sv_b = 2\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting to a WHILE loop with no indentation.\n<--start\nWHILE (sv_i < 10)\nprint(sv_i)\nsv_i = sv_i + 1\nDO\nend-->",
+    "script": "<--start\n    WHILE (sv_i < 10)\n        print(sv_i)\n        sv_i = sv_i + 1\n    DO\nend-->"
+  },
+  {
+    "prompt": "Format this script with a GOTO inside a WHILE loop.\n<--start\nWHILE(sv_a>0)\nIF(sv_a==1)THEN\nGOTO end_loop\nENDIF\nsv_a=sv_a-1\nDO\nend_loop:\nprint(\"done\")\nend-->",
+    "script": "<--start\n    WHILE(sv_a>0)\n        IF(sv_a==1)THEN\n            GOTO end_loop\n        ENDIF\n        sv_a=sv_a-1\n    DO\nend_loop:\n    print(\"done\")\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation for a script that starts with a comment.\n<--start\n# Script initialization\nsv_a = \"INIT\"\nprint(sv_a)\nend-->",
+    "script": "<--start\n    # Script initialization\n    sv_a = \"INIT\"\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Reformat this script with multiple labels.\n<--start\nlabel1:\nsv_a=1\nGOTO label2\nlabel2:\nsv_b=2\nend-->",
+    "script": "<--start\nlabel1:\n    sv_a=1\n    GOTO label2\nlabel2:\n    sv_b=2\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting, including removing the special markers.\n<--start\nIF(sv_a>1)THEN\n#{\nprint(\"marker removed\")\n#}\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(\"marker removed\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script with a very long, single line of code.\n<--start\nsv_a = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10\nend-->",
+    "script": "<--start\n    sv_a = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10\nend-->"
+  },
+  {
+    "prompt": "Fix the formatting of this script with an IF inside an ELSE.\n<--start\nif(sv_a>10)then\nprint(\"sv_a>10\")\nelse\nif(sv_a>5)then\nprint(\"sv_a>5\")\nendif\nendif\nend-->",
+    "script": "<--start\n    if(sv_a>10)then\n        print(\"sv_a>10\")\n    else\n        if(sv_a>5)then\n            print(\"sv_a>5\")\n        endif\n    endif\nend-->"
+  },
+  {
+    "prompt": "Reformat this block which includes multiple ELSE clauses.\n<--start\nif(sv_a==1)then\nprint(1)\nelse\nif(sv_a==2)then\nprint(2)\nelse\nprint(3)\nendif\nendif\nend-->",
+    "script": "<--start\n    if(sv_a==1)then\n        print(1)\n    else\n        if(sv_a==2)then\n            print(2)\n        else\n            print(3)\n        endif\n    endif\nend-->"
+  },
+  {
+    "prompt": "Correctly format this script where the DO keyword is on the same line as the last statement.\n<--start\nWHILE(sv_a<1)\nprint(sv_a) DO\nend-->",
+    "script": "<--start\n    WHILE(sv_a<1)\n        print(sv_a)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Format this script, ensuring the label inside the nested block is correctly outdented.\n<--start\nIF(sv_a>1)THEN\nWHILE(sv_b>1)\nmy_inner_label:\nprint(\"inner\")\nDO\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        WHILE(sv_b>1)\n        my_inner_label:\n            print(\"inner\")\n        DO\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this script with several flat statements.\n<--start\nsv_a=1\nsv_b=2\nsv_c=3\nsv_d=4\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\n    sv_c=3\n    sv_d=4\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of this script with many nested levels.\n<--start\nIF(sv_a)THEN\nIF(sv_b)THEN\nIF(sv_c)THEN\nIF(sv_d)THEN\nprint(1)\nENDIF\nENDIF\nENDIF\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n        IF(sv_b)THEN\n            IF(sv_c)THEN\n                IF(sv_d)THEN\n                    print(1)\n                ENDIF\n            ENDIF\n        ENDIF\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting to this script with misaligned block endings.\n<--start\nIF(sv_a)THEN\nprint(1)\n ENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n        print(1)\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script, which uses both GOTO and GOSUB.\n<--start\nIF(sv_a==1)THEN\nGOTO skip\nELSE\nGOSUB process\nENDIF\nskip:\nRETURN\nprocess:\nRETURN\nend-->",
+    "script": "<--start\n    IF(sv_a==1)THEN\n        GOTO skip\n    ELSE\n        GOSUB process\n    ENDIF\nskip:\n    RETURN\nprocess:\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Remove the special formatting markers #{ and #} from this code.\n<--start\n#{ \nsv_a=1\n #}\nsv_b=2\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\nend-->"
+  },
+  {
+    "prompt": "Reformat this script that has an empty WHILE loop.\n<--start\nWHILE(sv_a<1)DO\nend-->",
+    "script": "<--start\n    WHILE(sv_a<1)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation for this script with a label at the very beginning.\n<--start\nstart_point:\nsv_a=1\nend-->",
+    "script": "<--start\nstart_point:\n    sv_a=1\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of this script with back-to-back control blocks.\n<--start\nIF(sv_a)THEN\nprint(1)\nENDIF\nWHILE(sv_b)\nprint(2)\nDO\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n        print(1)\n    ENDIF\n    WHILE(sv_b)\n        print(2)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Apply correct formatting to this script that uses the EXIT command.\n<--start\nIF(sv_a>10)THEN\nEXIT\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>10)THEN\n        EXIT\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this code, ensuring the label inside the ELSE block is outdented properly.\n<--start\nif(sv_a)then\nprint(1)\nelse\nelse_label:\nprint(2)\nendif\nend-->",
+    "script": "<--start\n    if(sv_a)then\n        print(1)\n    else\n    else_label:\n        print(2)\n    endif\nend-->"
+  },
+  {
+    "prompt": "Correctly format this script with a mix of comments and code.\n<--start\n# Init vars\nsv_a=1\n# Check condition\nIF(sv_a>0)THEN\n# Print result\nprint(sv_a)\nENDIF\nend-->",
+    "script": "<--start\n    # Init vars\n    sv_a=1\n    # Check condition\n    IF(sv_a>0)THEN\n        # Print result\n        print(sv_a)\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script with multiple empty lines between statements.\n<--start\nsv_a=1\n\n\n\nIF(sv_a>0)THEN\n\n\nprint(sv_a)\n\nENDIF\nend-->",
+    "script": "<--start\n    sv_a=1\n\n    IF(sv_a>0)THEN\n\n        print(sv_a)\n\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Remove the special marker lines from this script.\n<--start\n#{\nsv_a = 1\n#}\nend-->",
+    "script": "<--start\n    sv_a = 1\nend-->"
+  },
+  {
+    "prompt": "Reformat this script where the start tag has leading spaces.\n  <--start\nsv_a = 1\nend-->",
+    "script": "<--start\n    sv_a = 1\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of a script ending with a label.\n<--start\nsv_a = 1\nend_of_script:\nend-->",
+    "script": "<--start\n    sv_a = 1\nend_of_script:\nend-->"
+  },
+  {
+    "prompt": "Apply correct indentation to a script with multiple subroutines.\n<--start\nGOSUB r1\nGOSUB r2\nEXITSCRIPT\nr1:\nRETURN\nr2:\nRETURN\nend-->",
+    "script": "<--start\n    GOSUB r1\n    GOSUB r2\n    EXITSCRIPT\nr1:\n    RETURN\nr2:\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Format this script containing a WHILE loop inside an ELSE block.\n<--start\nIF(sv_a>10)THEN\nprint(10)\nELSE\nWHILE(sv_a<5)\nprint(sv_a)\nsv_a=sv_a+1\nDO\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>10)THEN\n        print(10)\n    ELSE\n        WHILE(sv_a<5)\n            print(sv_a)\n            sv_a=sv_a+1\n        DO\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Clean up this messy script with inconsistent spacing and indentation.\n<--start\nsv_a=1\n IF (sv_a>0) THEN\n  print(\"A\")\n   ENDIF\nend-->",
+    "script": "<--start\n    sv_a=1\n    IF (sv_a>0) THEN\n        print(\"A\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this code, which contains a label right after a block starts.\n<--start\nIF(sv_a>1)THEN\nstart_if:\nprint(\"start\")\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n    start_if:\n        print(\"start\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script with deeply nested ELSE-IF structures.\n<--start\nif(sv_a==1)then\nprint(1)\nelse\nif(sv_a==2)then\nprint(2)\nelse\nif(sv_a==3)then\nprint(3)\nendif\nendif\nendif\nend-->",
+    "script": "<--start\n    if(sv_a==1)then\n        print(1)\n    else\n        if(sv_a==2)then\n            print(2)\n        else\n            if(sv_a==3)then\n                print(3)\n            endif\n        endif\n    endif\nend-->"
+  },
+  {
+    "prompt": "Please format this script, which has code on the same line as the start tag.\n<--start print(\"hello\")\nend-->",
+    "script": "<--start\n    print(\"hello\")\nend-->"
+  },
+  {
+    "prompt": "Reformat a script where a label is the only thing inside a WHILE loop.\n<--start\nWHILE(sv_a<1)\nmy_label:\nDO\nend-->",
+    "script": "<--start\n    WHILE(sv_a<1)\n    my_label:\n    DO\nend-->"
+  },
+  {
+    "prompt": "Remove the special #{ and #} lines and format the rest.\n<--start\nsv_a = 10\n#{\nsv_b = 20\n#}\nsv_c = 30\nend-->",
+    "script": "<--start\n    sv_a = 10\n    sv_b = 20\n    sv_c = 30\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of this script containing an empty IF block.\n<--start\nIF(sv_a<0)THEN\nELSE\nprint(\"not less than 0\")\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a<0)THEN\n    ELSE\n        print(\"not less than 0\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Apply proper indentation to this script with comments.\n<--start\n# Start process\nIF(sv_a)THEN # Check a\nprint(sv_a) # Print a\nENDIF # End check\nend-->",
+    "script": "<--start\n    # Start process\n    IF(sv_a)THEN # Check a\n        print(sv_a) # Print a\n    ENDIF # End check\nend-->"
+  },
+  {
+    "prompt": "Format a script with a single GOSUB and RETURN.\n<--start\nGOSUB my_sub\nRETURN\nmy_sub:\nRETURN\nend-->",
+    "script": "<--start\n    GOSUB my_sub\n    RETURN\nmy_sub:\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Reformat this script with flat structure and remove blank lines.\n<--start\nsv_a=1\n\nsv_b=2\n\nsv_c=3\nend-->",
+    "script": "<--start\n    sv_a=1\n\n    sv_b=2\n\n    sv_c=3\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation of this script with a GOTO to a label inside a WHILE loop.\n<--start\nIF(sv_a<0)THEN\nGOTO inner_loop\nENDIF\nWHILE(sv_b<1)\ninner_loop:\nprint(sv_b)\nDO\nend-->",
+    "script": "<--start\n    IF(sv_a<0)THEN\n        GOTO inner_loop\n    ENDIF\n    WHILE(sv_b<1)\n    inner_loop:\n        print(sv_b)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Format this completely unindented script.\n<--start\nIF(sv_a>sv_b)THEN\nprint(\"a\")\nELSE\nprint(\"b\")\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>sv_b)THEN\n        print(\"a\")\n    ELSE\n        print(\"b\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this script, removing the special block comment wrapper.\n<--start\n#{ \nIF(sv_a)THEN\nprint(sv_a)\nENDIF\n#}\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n        print(sv_a)\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Fix the formatting of a script that ends with an ELSE clause.\n<--start\nIF(sv_a>1)THEN\nprint(\"ok\")\nELSE\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(\"ok\")\n    ELSE\nend-->"
+  },
+  {
+    "prompt": "Apply correct indentation to a long chain of flat commands.\n<--start\nsv_a=1\nsv_b=2\nsv_c=3\nsv_d=4\nsv_e=5\nsv_f=6\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\n    sv_c=3\n    sv_d=4\n    sv_e=5\n    sv_f=6\nend-->"
+  },
+  {
+    "prompt": "Format this script where a label is defined but not used.\n<--start\nsv_a=1\nunused_label:\nsv_b=2\nend-->",
+    "script": "<--start\n    sv_a=1\nunused_label:\n    sv_b=2\nend-->"
+  },
+  {
+    "prompt": "Clean up this script with extra spaces around keywords.\n<--start\n   IF ( sv_a > 1 ) THEN\n   print(sv_a)\n   ENDIF\nend-->",
+    "script": "<--start\n    IF ( sv_a > 1 ) THEN\n        print(sv_a)\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat a script that contains only labels.\n<--start\nlabel_1:\nlabel_2:\nlabel_3:\nend-->",
+    "script": "<--start\nlabel_1:\nlabel_2:\nlabel_3:\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of this script with a comment on the same line as the DO keyword.\n<--start\nWHILE(sv_a<1)\nprint(sv_a)\nDO # End of loop\nend-->",
+    "script": "<--start\n    WHILE(sv_a<1)\n        print(sv_a)\n    DO # End of loop\nend-->"
+  },
+  {
+    "prompt": "Reformat this long script with multiple nested blocks and messy indentation.\n<--start\nsv_a = 100\nWHILE (sv_a > 0)\nprint(\"Looping...\")\nIF (sv_a < 50) THEN\nprint(\"Nearing end\")\nIF (sv_a == 1) THEN\nGOTO final_exit\nENDIF\nENDIF\nsv_a = sv_a - 1\nDO\nfinal_exit:\nprint(\"Exited.\")\nend-->",
+    "script": "<--start\n    sv_a = 100\n    WHILE (sv_a > 0)\n        print(\"Looping...\")\n        IF (sv_a < 50) THEN\n            print(\"Nearing end\")\n            IF (sv_a == 1) THEN\n                GOTO final_exit\n            ENDIF\n        ENDIF\n        sv_a = sv_a - 1\n    DO\nfinal_exit:\n    print(\"Exited.\")\nend-->"
+  },
+  {
+    "prompt": "Apply correct indentation to this script which has a GOSUB within an ELSE.\n<--start\nIF(sv_a == \"OK\")THEN\nprint(\"OK\")\nELSE\nGOSUB error_handler\nENDIF\nerror_handler:\nRETURN\nend-->",
+    "script": "<--start\n    IF(sv_a == \"OK\")THEN\n        print(\"OK\")\n    ELSE\n        GOSUB error_handler\n    ENDIF\nerror_handler:\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Format this script where labels and comments are mixed inside a loop.\n<--start\nlv_i=0\nWHILE(lv_i<2)\n# Loop start\nloop_top:\nprint(lv_i)\nlv_i=lv_i+1\nDO\nend-->",
+    "script": "<--start\n    lv_i=0\n    WHILE(lv_i<2)\n        # Loop start\n    loop_top:\n        print(lv_i)\n        lv_i=lv_i+1\n    DO\nend-->"
+  },
+  {
+    "prompt": "Clean up the formatting and remove the special markers from this script.\n<--start\nsv_a=1\n#{\nIF(sv_a==1)THEN\nprint(1)\nENDIF\n#}\nend-->",
+    "script": "<--start\n    sv_a=1\n    IF(sv_a==1)THEN\n        print(1)\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this script with back-to-back IF statements.\n<--start\nIF(sv_a>1)THEN\nprint(\"a>1\")\nENDIF\nIF(sv_b>1)THEN\nprint(\"b>1\")\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(\"a>1\")\n    ENDIF\n    IF(sv_b>1)THEN\n        print(\"b>1\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Correctly indent this script with a label immediately following an ELSE.\n<--start\nIF(sv_a>1)THEN\nsv_b=1\nELSE\nerror_case:\nsv_b=0\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        sv_b=1\n    ELSE\n    error_case:\n        sv_b=0\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this very long script with no newlines or indentation.\n<--start\nsv_a=1 sv_b=2 IF(sv_a>sv_b)THEN print(\"a\") ELSE WHILE(sv_b>0) print(sv_b) sv_b=sv_b-1 DO ENDIF end-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\n    IF(sv_a>sv_b)THEN\n        print(\"a\")\n    ELSE\n        WHILE(sv_b>0)\n            print(sv_b)\n            sv_b=sv_b-1\n        DO\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting to this script where the end tag is squeezed together with code.\n<--start\nsv_a=1 print(sv_a)end-->",
+    "script": "<--start\n    sv_a=1\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Reformat this script containing a subroutine that calls another subroutine.\n<--start\nGOSUB sub1\nEXITSCRIPT\nsub1:\nGOSUB sub2\nRETURN\nsub2:\nprint(\"sub2\")\nRETURN\nend-->",
+    "script": "<--start\n    GOSUB sub1\n    EXITSCRIPT\nsub1:\n    GOSUB sub2\n    RETURN\nsub2:\n    print(\"sub2\")\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation for this script with multiple empty blocks.\n<--start\nIF(sv_a)THEN\nELSE\nENDIF\nWHILE(sv_b)\nDO\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n    ELSE\n    ENDIF\n    WHILE(sv_b)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Format this script and handle the special #{ and #} comment lines correctly.\n<--start\nsv_a=1\n#{\n# This block should be removed\n#}\nsv_b=2\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\nend-->"
+  },
+  {
+    "prompt": "Correctly format a script with a comment on the same line as an IF THEN.\n<--start\nIF (sv_a > 10) THEN # Check for high value\nprint(\"High\")\nENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a > 10) THEN # Check for high value\n        print(\"High\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Reformat this code with a label just before an ENDIF.\n<--start\nIF(sv_a)THEN\nprint(1)\nlabel_before_end:\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n        print(1)\n    label_before_end:\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Clean up the formatting for this script with code before the start tag.\nsv_a=0\n<--start\nprint(\"start\")\nend-->",
+    "script": "<--start\n    sv_a=0\n    print(\"start\")\nend-->"
+  },
+  {
+    "prompt": "Format a long script where multiple statements are on each line.\n<--start\nsv_a=1 sv_b=1 WHILE(sv_a<5) sv_a=sv_a+sv_b sv_b=sv_a-sv_b DO print(sv_a)\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=1\n    WHILE(sv_a<5)\n        sv_a=sv_a+sv_b\n        sv_b=sv_a-sv_b\n    DO\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation of a script that contains only a label and a comment.\n<--start\n# Only a label here\nmy_label:\nend-->",
+    "script": "<--start\n    # Only a label here\nmy_label:\nend-->"
+  },
+  {
+    "prompt": "Apply formatting to a script with a mix of tabs and spaces for indentation.\n<--start\n\tIF (sv_a > 0) THEN\n        print(\"ok\")\n\tENDIF\nend-->",
+    "script": "<--start\n    IF (sv_a > 0) THEN\n        print(\"ok\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script with a GOTO that skips an ELSE block.\n<--start\nIF(sv_a>10)THEN\nGOTO skip_else\nELSE\nprint(\"in else\")\nENDIF\nskip_else:\nprint(\"done\")\nend-->",
+    "script": "<--start\n    IF(sv_a>10)THEN\n        GOTO skip_else\n    ELSE\n        print(\"in else\")\n    ENDIF\nskip_else:\n    print(\"done\")\nend-->"
+  },
+  {
+    "prompt": "Reformat this completely flat script with nested logic.\n<--start\nsv_a=1\nWHILE(sv_a<3)\nIF(sv_a==1)THEN\nprint(1)\nENDIF\nsv_a=sv_a+1\nDO\nend-->",
+    "script": "<--start\n    sv_a=1\n    WHILE(sv_a<3)\n        IF(sv_a==1)THEN\n            print(1)\n        ENDIF\n        sv_a=sv_a+1\n    DO\nend-->"
+  },
+  {
+    "prompt": "Remove the special marker comments from this code.\n<--start\nprint(\"before\")\n#{\n#}\nprint(\"after\")\nend-->",
+    "script": "<--start\n    print(\"before\")\n    print(\"after\")\nend-->"
+  },
+  {
+    "prompt": "Format a script where a comment is the only thing inside a WHILE loop.\n<--start\nWHILE(sv_a<1)\n# This loop is empty\nDO\nend-->",
+    "script": "<--start\n    WHILE(sv_a<1)\n        # This loop is empty\n    DO\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation of a script that has no initial indentation.\n<--start\nsv_x=100\nsv_y=200\nsv_z=sv_x+sv_y\nprint(sv_z)\nend-->",
+    "script": "<--start\n    sv_x=100\n    sv_y=200\n    sv_z=sv_x+sv_y\n    print(sv_z)\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of a script that ends with an un-indented comment.\n<--start\nsv_a=1\n#final comment\nend-->",
+    "script": "<--start\n    sv_a=1\n#final comment\nend-->"
+  },
+  {
+    "prompt": "Reformat this code, which has a label on the same line as a command.\n<--start\nsv_a=1 my_label: print(sv_a)\nend-->",
+    "script": "<--start\n    sv_a=1\nmy_label:\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting to this script with several empty lines.\n<--start\n\nsv_a=1\n\n\nsv_b=2\n\nend-->",
+    "script": "<--start\n\n    sv_a=1\n\n    sv_b=2\nend-->"
+  },
+  {
+    "prompt": "Format this script where control structures are on the same line.\n<--start\nIF(sv_a>1)THEN print(sv_a) ENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(sv_a)\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Correctly format this script which includes a RETURN statement outside a subroutine.\n<--start\nsv_a = 1\nRETURN\nend-->",
+    "script": "<--start\n    sv_a = 1\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Reformat this script with inconsistent indentation.\n<--start\nsv_a=1\n  sv_b=2\n    sv_c=3\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\n    sv_c=3\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of this script with a subroutine defined before it is called.\n<--start\nGOTO main_logic\nmy_sub:\nRETURN\nmain_logic:\nGOSUB my_sub\nend-->",
+    "script": "<--start\n    GOTO main_logic\nmy_sub:\n    RETURN\nmain_logic:\n    GOSUB my_sub\nend-->"
+  },
+  {
+    "prompt": "Format a script that has a block comment to be removed.\n<--start\nsv_a = 1\n#{\n This whole block\n should be removed \n#}\nsv_b = 2\nend-->",
+    "script": "<--start\n    sv_a = 1\n    sv_b = 2\nend-->"
+  },
+  {
+    "prompt": "Apply correct indentation to a script ending with an empty WHILE loop.\n<--start\nsv_a=1\nWHILE(sv_a<0)DO\nend-->",
+    "script": "<--start\n    sv_a=1\n    WHILE(sv_a<0)\n    DO\nend-->"
+  },
+  {
+    "prompt": "Reformat this simple script with no spaces.\n<--start\nsv_a=100 print(sv_a)\nend-->",
+    "script": "<--start\n    sv_a=100\n    print(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Correct the formatting of this script with a label inside a deep nest.\n<--start\nIF(sv_a)THEN\nIF(sv_b)THEN\nIF(sv_c)THEN\ninner_label:\nprint(1)\nENDIF\nENDIF\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n        IF(sv_b)THEN\n            IF(sv_c)THEN\n            inner_label:\n                print(1)\n            ENDIF\n        ENDIF\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script that contains only the start and end tags.\n<--start\nend-->",
+    "script": "<--start\nend-->"
+  },
+  {
+    "prompt": "Fix the indentation of a script with a multi-line comment.\n<--start\n# This is line 1\n# This is line 2\nsv_a = 1\nend-->",
+    "script": "<--start\n    # This is line 1\n    # This is line 2\n    sv_a = 1\nend-->"
+  },
+  {
+    "prompt": "Reformat this script with a GOTO inside an ELSE.\n<--start\nIF(sv_a>1)THEN\nprint(1)\nELSE\nGOTO end_label\nENDIF\nend_label:\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(1)\n    ELSE\n        GOTO end_label\n    ENDIF\nend_label:\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting to this script with all statements on one line.\n<--start\nsv_a=1 sv_b=2 sv_c=sv_a-sv_b print(sv_c)\nend-->",
+    "script": "<--start\n    sv_a=1\n    sv_b=2\n    sv_c=sv_a-sv_b\n    print(sv_c)\nend-->"
+  },
+  {
+    "prompt": "Format this script where the ELSE is on the same line as ENDIF.\n<--start\nIF(sv_a>1)THEN\nprint(1)\nELSE ENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a>1)THEN\n        print(1)\n    ELSE\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Correctly format a script with a comment after the end tag.\n<--start\nsv_a=1\nend-->\n# This is after the end",
+    "script": "<--start\n    sv_a=1\nend-->\n# This is after the end"
+  },
+  {
+    "prompt": "Reformat this code, where a label is the first thing after the start tag.\n<--start\nfirst_label:\nsv_a=1\nend-->",
+    "script": "<--start\nfirst_label:\n    sv_a=1\nend-->"
+  },
+  {
+    "prompt": "Fix the formatting for a script that contains only an empty IF/ELSE block.\n<--start\nIF(sv_a)THEN\nELSE\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n    ELSE\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Clean up this script with a mix of correct and incorrect indentation.\n<--start\nsv_a=1\n  IF (sv_b > 1) THEN\n  print(\"ok\")\nENDIF\nend-->",
+    "script": "<--start\n    sv_a=1\n    IF (sv_b > 1) THEN\n        print(\"ok\")\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Format this script where `DO` is incorrectly indented.\n<--start\nWHILE (sv_i < 10)\nprint(sv_i)\nsv_i = sv_i + 1\n  DO\nend-->",
+    "script": "<--start\n    WHILE (sv_i < 10)\n        print(sv_i)\n        sv_i = sv_i + 1\n    DO\nend-->"
+  },
+  {
+    "prompt": "Reformat a script that is just a comment block.\n<--start\n# Line 1\n# Line 2\n# Line 3\nend-->",
+    "script": "<--start\n    # Line 1\n    # Line 2\n    # Line 3\nend-->"
+  },
+  {
+    "prompt": "Correct the indentation of a script with a subroutine containing a loop.\n<--start\nGOSUB sub_loop\nEXITSCRIPT\nsub_loop:\nWHILE(sv_a<1)\nprint(sv_a)\nsv_a=sv_a+1\nDO\nRETURN\nend-->",
+    "script": "<--start\n    GOSUB sub_loop\n    EXITSCRIPT\nsub_loop:\n    WHILE(sv_a<1)\n        print(sv_a)\n        sv_a=sv_a+1\n    DO\n    RETURN\nend-->"
+  },
+  {
+    "prompt": "Format this script with multiple separated blocks.\n<--start\nIF(sv_a)THEN\nENDIF\n\n\nIF(sv_b)THEN\nENDIF\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n    ENDIF\n\n    IF(sv_b)THEN\n    ENDIF\nend-->"
+  },
+  {
+    "prompt": "Apply proper formatting to this script with no newlines.\n<--start\nsv_a=10 sv_b=20 print(sv_a+sv_b)\nend-->",
+    "script": "<--start\n    sv_a=10\n    sv_b=20\n    print(sv_a+sv_b)\nend-->"
+  },
+  {
+    "prompt": "Fix the formatting of this script which uses all control keywords.\n<--start\nIF(sv_a)THEN\nWHILE(sv_b)\nDO\nELSE\nGOTO my_label\nENDIF\nmy_label:\nCALL(\"a.scr\")\nend-->",
+    "script": "<--start\n    IF(sv_a)THEN\n        WHILE(sv_b)\n        DO\n    ELSE\n        GOTO my_label\n    ENDIF\nmy_label:\n    CALL(\"a.scr\")\nend-->"
+  },
+  {
+    "prompt": "Reformat a script containing only a single label.\n<--start\nonly_label:\nend-->",
+    "script": "<--start\nonly_label:\nend-->"
+  }
+]

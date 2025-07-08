@@ -10,19 +10,36 @@ from transformers import (
     BitsAndBytesConfig,
 )
 from peft import get_peft_model, LoraConfig, TaskType
+import os  # <<<< Import the 'os' module for file system operations
 
 
-# --- 1. Dataset Class (No changes) ---
+# --- 1. Dataset Class (UPDATED) ---
+# This class now loads all .json files from a directory
 class FinacleScriptDataset(Dataset):
-    def __init__(self, file_path, tokenizer):
+    def __init__(self, directory_path, tokenizer):
         self.tokenizer = tokenizer
         self.examples = []
-        with open(file_path, "r") as f:
-            data = json.load(f)
-        for item in data:
-            text = f"PROMPT: {item['prompt']}\nSCRIPT: {item['script']}{self.tokenizer.eos_token}"
-            tokenized_text = self.tokenizer(text, truncation=True, max_length=128)
-            self.examples.append(tokenized_text)
+
+        print(f"Loading all .json files from directory: {directory_path}")
+
+        # Check if the directory exists
+        if not os.path.isdir(directory_path):
+            raise ValueError(f"Provided path '{directory_path}' is not a directory.")
+
+        # Loop through all files in the specified directory
+        for filename in os.listdir(directory_path):
+            if filename.endswith(".json"):
+                file_path = os.path.join(directory_path, filename)
+                print(f"  - Loading data from: {filename}")
+                with open(file_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    for item in data:
+                        # The text formatting remains the same
+                        text = f"PROMPT: {item['prompt']}\nSCRIPT: {item['script']}{self.tokenizer.eos_token}"
+                        tokenized_text = self.tokenizer(
+                            text, truncation=True, max_length=512
+                        )
+                        self.examples.append(tokenized_text)
 
     def __len__(self):
         return len(self.examples)
@@ -41,16 +58,14 @@ bnb_config = BitsAndBytesConfig(
 )
 print("Done.")
 
-# --- 3. Load Base Model and Tokenizer (KEY CHANGE HERE) ---
+# --- 3. Load Base Model and Tokenizer (No changes) ---
 print("Loading base model and tokenizer with 4-bit quantization...")
-model_name = (
-    "deepseek-ai/deepseek-coder-6.7b-instruct"  # <<<< UPGRADED TO DEEPSEEK CODER
-)
+model_name = "deepseek-ai/deepseek-coder-6.7b-instruct"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
     quantization_config=bnb_config,
-    device_map="auto",  # This will automatically place the model on the GPU
+    device_map="auto",
 )
 
 if tokenizer.pad_token is None:
@@ -60,7 +75,7 @@ print("Done.")
 # --- 4. Configure and Apply LoRA (No changes) ---
 print("Configuring LoRA adapter...")
 lora_config = LoraConfig(
-    r=16,  # Increased rank for a larger model
+    r=16,
     lora_alpha=32,
     lora_dropout=0.05,
     bias="none",
@@ -70,31 +85,36 @@ lora_config = LoraConfig(
         "k_proj",
         "v_proj",
         "o_proj",
-    ],  # Common targets for these models
+    ],
 )
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 print("Done.")
 
-# --- 5. Prepare Dataset and Collator (No changes) ---
+# --- 5. Prepare Dataset and Collator (UPDATED) ---
 print("Preparing dataset...")
-train_file_path = "training_data.json"
-train_dataset = FinacleScriptDataset(file_path=train_file_path, tokenizer=tokenizer)
+# <<<< Define the directory containing your training files
+train_directory_path = "training_data/"
+# <<<< Instantiate the dataset with the directory path
+train_dataset = FinacleScriptDataset(
+    directory_path=train_directory_path, tokenizer=tokenizer
+)
 data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
+print(f"Dataset prepared with {len(train_dataset)} total examples.")
 print("Done.")
 
-# --- 6. Training Arguments (KEY CHANGES HERE) ---
+# --- 6. Training Arguments (No changes) ---
 training_args = TrainingArguments(
     output_dir="./qlora-finetuned-deepseek-7b",
-    num_train_epochs=10,  # Start with fewer epochs for such a large model
-    per_device_train_batch_size=1,  # <<<< MUST BE 1
-    gradient_accumulation_steps=4,  # <<<< SIMULATE BATCH SIZE OF 4
-    learning_rate=2e-4,  # A common learning rate for QLoRA
+    num_train_epochs=10,
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=4,
+    learning_rate=2e-4,
     warmup_steps=10,
     logging_dir="./logs",
     logging_steps=10,
-    fp16=True,  # Use mixed precision
-    optim="paged_adamw_8bit",  # Use a memory-efficient optimizer
+    fp16=True,
+    optim="paged_adamw_8bit",
 )
 
 # --- 7. Trainer and Training ---

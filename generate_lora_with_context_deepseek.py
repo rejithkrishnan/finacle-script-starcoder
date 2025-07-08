@@ -1,9 +1,8 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel
-import sys
 
-# --- 1. Configure 4-bit Quantization ---
+# --- 1. Configure 4-bit Quantization (No changes) ---
 print("Configuring 4-bit quantization...")
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -13,7 +12,7 @@ bnb_config = BitsAndBytesConfig(
 )
 print("Done.")
 
-# --- 2. Load the Base Model, Tokenizer, and LoRA Adapter ---
+# --- 2. Load the Base Model, Tokenizer, and LoRA Adapter (No changes) ---
 print("Loading the models... This may take a moment.")
 base_model_name = "deepseek-ai/deepseek-coder-6.7b-instruct"
 adapter_path = "./qlora-finetuned-deepseek-7b"
@@ -23,27 +22,32 @@ base_model = AutoModelForCausalLM.from_pretrained(
 )
 tokenizer = AutoTokenizer.from_pretrained(base_model_name)
 model = PeftModel.from_pretrained(base_model, adapter_path)
-print("\n--- Finacle Script Generator is Ready ---")
-print("Type your request below, or type 'exit' or 'quit' to end the session.")
+print("\n--- Finacle Script Generator is Ready (with Context) ---")
+print(
+    "Type your request below, or type 'exit', 'quit', or 'clear' to start a new conversation."
+)
 
+# --- 3. Interactive Chat Loop with History ---
 
-# --- 3. Generation Logic in a Loop ---
+chat_history = []
+
 while True:
-    # Prompt the user for input
-    try:
-        prompt_text = input("\nYour Prompt > ")
-    except KeyboardInterrupt:
-        # Allow exiting with Ctrl+C
-        print("\nExiting...")
-        break
+    prompt_text = input("\nYour Prompt > ")
 
-    # Check if the user wants to exit
     if prompt_text.lower() in ["exit", "quit"]:
         print("Exiting...")
         break
 
-    # Format the prompt for the model
-    formatted_prompt = f"PROMPT: {prompt_text}\nSCRIPT:"
+    if prompt_text.lower() == "clear":
+        chat_history = []
+        print("Conversation history cleared.")
+        continue
+
+    chat_history.append({"role": "user", "content": prompt_text})
+
+    formatted_prompt = tokenizer.apply_chat_template(
+        chat_history, tokenize=False, add_generation_prompt=True
+    )
 
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -52,20 +56,29 @@ while True:
     input_ids = inputs.input_ids.to(model.device)
     attention_mask = inputs.attention_mask.to(model.device)
 
-    # print("Generating script...")
+    print("Generating response...")
 
     with torch.no_grad():
         output = model.generate(
             input_ids=input_ids,
             attention_mask=attention_mask,
-            max_new_tokens=512,
+            max_new_tokens=256,
             eos_token_id=tokenizer.eos_token_id,
             pad_token_id=tokenizer.pad_token_id,
         )
 
-    output_sequence = output[0][input_ids.shape[-1] :]
-    generated_text = tokenizer.decode(output_sequence, skip_special_tokens=True)
+    full_response_text = tokenizer.decode(output[0], skip_special_tokens=True)
 
-    print("\n--- Generated Finacle Script ---")
-    print(generated_text.strip())
+    try:
+        # --- CORRECTED LOGIC ---
+        # Find the last '### Response:' marker to get the latest answer
+        assistant_response = full_response_text.rsplit("### Response:", 1)[1].strip()
+
+    except IndexError:
+        assistant_response = "Could not generate a valid response."
+
+    print("\n--- Model Response ---")
+    print(assistant_response)
     print("--------------------------------")
+
+    chat_history.append({"role": "assistant", "content": assistant_response})

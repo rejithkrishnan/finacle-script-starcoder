@@ -1,0 +1,90 @@
+- prompt: What is a userhook in Finacle Scripting?
+  script: A userhook is a pre-defined function within the Finacle system that can be called from a script to perform a specific, complex task, such as a database operation or a core business logic validation.
+- prompt: What is the general syntax for calling a userhook?
+  script: The general syntax is `sv_a = URHK_FunctionName(Var)`, where `sv_a` is a scratchpad variable to hold the return status and `Var` is the input parameter for the userhook.
+- prompt: How do you typically check if a userhook call was successful?
+  script: A userhook call is typically checked by examining its return value. A return value of 0 indicates success, while a non-zero value (usually 1) indicates failure. [cite_start]This is often done within an IF statement.
+- prompt: What is the purpose of the `urhk_dbSelectWithBind` userhook?
+  script: The `urhk_dbSelectWithBind` userhook is used to execute a SQL SELECT statement that is expected to return a single row of data. It uses bind variables for security and performance.
+- prompt: Write a script that calls a hypothetical userhook named `URHK_CheckCustomerStatus` with an input from `BANCS.INPUT.cifId`.
+  script: |-
+    <--start
+    # Call a userhook to check customer status
+    sv_a = BANCS.INPUT.cifId
+    sv_b = URHK_CheckCustomerStatus(sv_a)
+
+    # Check the return status
+    IF (sv_b == 0) THEN
+        print("Customer status check successful.")
+    ELSE
+        print("Customer status check failed.")
+    ENDIF
+    end-->
+- prompt: Explain the purpose of the `urhk_dbCursorOpenWithBind` userhook.
+  script: It is the first step in processing multiple rows from a database query. It takes a SQL SELECT statement, opens a database cursor, and returns a numeric cursor ID if successful. This ID is then used for fetching rows.
+- prompt: What does the `urhk_dbCursorFetch` userhook do?
+  script: The `urhk_dbCursorFetch` userhook retrieves the next available row from an already open database cursor, identified by its cursor number. It returns 0 as long as there are more rows to fetch.
+- prompt: Why is it important to use the `urhk_dbCursorClose` userhook?
+  script: It is critical to call `urhk_dbCursorClose` after you are done with a cursor to release the database resources associated with it. Failing to do so can lead to resource leaks.
+- prompt: Generate a simple script that calls `urhk_dbSelectWithBind` to get a customer's name based on their ID.
+  script: |-
+    <--start
+    # Set bind variables and SQL query
+    BANCS.INPARAM.BINDVARS = "CUST101"
+    sv_s = "cust_name|SELECT CUST_NAME FROM CUSTOMERS WHERE CUST_ID = ?SVAR"
+
+    # Call the userhook
+    sv_r = urhk_dbSelectWithBind(sv_s)
+
+    # Check for success
+    IF (BANCS.OUTPARAM.DB_ERRCODE == 0) THEN
+        print("Customer Name: " + BANCS.OUTPARAM.cust_name)
+    ELSE
+        print("Error: " + BANCS.OUTPARAM.DB_ERRMSG)
+    ENDIF
+    end-->
+- prompt: How do you pass multiple values to a userhook that uses bind variables?
+  script: You pass multiple values by concatenating them into a single string separated by the pipe character `|` and assigning it to `BANCS.INPARAM.BINDVARS`.
+- prompt: What is the role of `BANCS.OUTPARAM` when using database userhooks?
+  script: BANCS.OUTPARAM is a repository class where the database userhooks write their results. This includes fetched data (e.g., `BANCS.OUTPARAM.cust_name`), error codes (`DB_ERRCODE`), error messages (`DB_ERRMSG`), and cursor numbers (`DB_CURSOR_NUMBER`).
+- prompt: Write a script that calls a userhook `URHK_GetSystemParam` with the input 'MAX_CASH_LIMIT' and stores the result from `BANCS.OUTPARAM.paramValue`.
+  script: |-
+    <--start
+    # Call a userhook to get a system parameter
+    sv_r = URHK_GetSystemParam("MAX_CASH_LIMIT")
+
+    IF (sv_r == 0) THEN
+        # Retrieve the output value from the OUTPARAM class
+        sv_a = BANCS.OUTPARAM.paramValue
+        print("Parameter Value: " + sv_a)
+    ELSE
+        print("Failed to get system parameter.")
+    ENDIF
+    end-->
+- prompt: What is the difference between a `URTN_` function and a `urhk_` function?
+  script: A `URTN_` function is a User Routine, which is custom code written by developers and compiled into an external library. A `urhk_` function is a User Hook, which is a standard, pre-defined function provided by the Finacle application itself.
+- prompt: Show me the full pattern for using a database cursor to loop through multiple records.
+  script: |-
+    <--start
+    # This pattern demonstrates opening, fetching, and closing a cursor
+    BANCS.INPARAM.BINDVARS = "ACTIVE"
+    sv_s = "acct_id,acct_name|SELECT ACID,ACCT_NAME FROM ACCOUNTS WHERE STATUS = ?SVAR"
+    sv_r = urhk_dbCursorOpenWithBind(sv_s)
+
+    IF (sv_r == 0) THEN
+        sv_x = BANCS.OUTPARAM.DB_CURSOR_NUMBER # Store cursor number
+        sv_y = urhk_dbCursorFetch(sv_x) # Initial fetch
+        WHILE (sv_y == 0)
+            print("Account: " + BANCS.OUTPARAM.acct_id)
+            sv_y = urhk_dbCursorFetch(sv_x) # Fetch next record
+        DO
+        sv_z = urhk_dbCursorClose(sv_x) # Close cursor
+        IF (sv_z != 0) THEN
+            print("Error: Failed to close cursor.")
+        ENDIF
+    ELSE
+        print("Error opening cursor: " + BANCS.OUTPARAM.DB_ERRMSG)
+    ENDIF
+    end-->
+- prompt: Can a userhook directly modify a local variable (lv_)?
+  script: No, a userhook cannot directly modify script variables. It communicates its results back to the script by writing to fields in the `BANCS.OUTPARAM` repository class. The script must then read these fields and assign their values to local or scratchpad variables.

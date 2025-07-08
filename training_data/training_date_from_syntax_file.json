@@ -1,0 +1,98 @@
+[
+  {
+    "prompt": "Write a script that assigns a number to a scratchpad variable and includes a comment.",
+    "script": "<--start\n# Assigning a numeric constant\nsv_a = 100.50\nprint(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Create a script that uses a double-quoted string.",
+    "script": "<--start\nsv_s = \"This is a string literal.\"\nprint(sv_s)\nend-->"
+  },
+  {
+    "prompt": "Show me an example of a simple IF/THEN/ELSE conditional block.",
+    "script": "<--start\n# Using IF, THEN, ELSE, ENDIF keywords\nsv_a = 10\nif (sv_a > 5) then\n  print(\"Greater than 5\")\nelse\n  print(\"Not greater than 5\")\nendif\nend-->"
+  },
+  {
+    "prompt": "Create a script with a WHILE/DO loop that iterates 3 times.",
+    "script": "<--start\n# Using WHILE and DO keywords\nlv_c = 0\nwhile (lv_c < 3)\ndo\n  print(\"Iteration\")\n  lv_c = lv_c + 1\nendwhile\nend-->"
+  },
+  {
+    "prompt": "Generate a script that uses GOTO to jump to a label defined at the end.",
+    "script": "<--start\n# Using GOTO and a label definition\nprint(\"About to jump...\")\nGOTO end_label\nprint(\"This line is skipped.\")\nend_label:\nprint(\"Jumped to the end.\")\nend-->"
+  },
+  {
+    "prompt": "Write a script that calls a subroutine with GOSUB and then returns.",
+    "script": "<--start\n# Using GOSUB and RETURN keywords\nGOSUB my_subroutine\nEXITSCRIPT\n\nmy_subroutine:\n  print(\"Inside the subroutine.\")\n  RETURN\nend-->"
+  },
+  {
+    "prompt": "Demonstrate how to call an external script named 'process_data.scr'.",
+    "script": "<--start\n# Using the CALL keyword\nprint(\"Calling external script...\")\nCALL(\"process_data.scr\")\nend-->"
+  },
+  {
+    "prompt": "Create a script that uses the LEFT$ function to extract the first 3 characters of a string.",
+    "script": "<--start\n# Using a built-in function\nsv_a = \"Finacle\"\nsv_b = Left$(sv_a, 3)\nprint(sv_b)\nend-->"
+  },
+  {
+    "prompt": "How do you call a user-defined routine named 'URTN_CALCULATE_FEE'?",
+    "script": "<--start\n# Using a user-defined routine name pattern\nsv_a = \"some_data\"\nsv_b = URTN_CALCULATE_FEE(sv_a)\nprint(sv_b)\nend-->"
+  },
+  {
+    "prompt": "Show how to assign a value to a local variable.",
+    "script": "<--start\n# Using the lv_ variable pattern\nlv_a = \"This is a local variable.\"\nprint(lv_a)\nend-->"
+  },
+  {
+    "prompt": "Write a script that reads from a repository variable.",
+    "script": "<--start\n# Using the repository variable pattern\nsv_a = BANCS.INPUT.userName\nprint(sv_a)\nend-->"
+  },
+  {
+    "prompt": "Demonstrate the use of an arithmetic operator like multiplication.",
+    "script": "<--start\n# Using the * arithmetic operator\nsv_a = 10\nsv_b = 5\nsv_c = sv_a * sv_b\nprint(sv_c)\nend-->"
+  },
+  {
+    "prompt": "Use a comparison operator to check if two variables are not equal.",
+    "script": "<--start\n# Using the != comparison operator\nsv_a = 100\nsv_b = 200\nif (sv_a != sv_b) then\n  print(\"They are not equal.\")\nendif\nend-->"
+  },
+  {
+    "prompt": "Create a script with a logical AND operator in the condition.",
+    "script": "<--start\n# Using the AND logical operator\nsv_a = 10\nsv_b = \"ACTIVE\"\nif ((sv_a > 5) AND (sv_b == \"ACTIVE\")) then\n  print(\"Conditions met.\")\nendif\nend-->"
+  },
+  {
+    "prompt": "Write a script to get the system date and user ID from the repository and print them.",
+    "script": "<--start\n# Accessing multiple repository variables\nsv_a = BANCS.STDIN.sysDate\nsv_b = BANCS.STDIN.userId\nprint(\"Date: \" + sv_a)\nprint(\"User: \" + sv_b)\nend-->"
+  },
+  {
+    "prompt": "If a local variable lv_a is less than 10 AND greater than 0, print 'Single Digit'.",
+    "script": "<--start\n# Using multiple comparison operators with AND\nlv_a = 7\nif ((lv_a < 10) AND (lv_a > 0)) then\n  print(\"Single Digit\")\nendif\nend-->"
+  },
+  {
+    "prompt": "Create a script that uses a GOSUB to a subroutine which itself contains an IF statement.",
+    "script": "<--start\n# Complex GOSUB with internal logic\nsv_a = \"CHECK\"\nGOSUB validation_routine\nEXITSCRIPT\n\nvalidation_routine:\n  if (sv_a == \"CHECK\") then\n    print(\"Validation in progress.\")\n  endif\n  RETURN\nend-->"
+  },
+  {
+    "prompt": "Take a string, convert it to uppercase, and then extract the first 4 characters.",
+    "script": "<--start\n# Chaining function concepts: TOUPPER and LEFT$\nsv_a = \"finacle\"\nsv_b = TOUPPER(sv_a)\nsv_c = Left$(sv_b, 4)\nprint(sv_c)\nend-->"
+  },
+  {
+    "prompt": "Write a script that turns TRACE ON, performs an addition, and then turns TRACE OFF.",
+    "script": "<--start\n# Using TRACE ON/OFF keywords\nTRACE ON\nsv_a = 100 + 200\nprint(sv_a)\nTRACE OFF\nend-->"
+  },
+  {
+    "prompt": "If a variable sv_a equals \"A\", GOTO label_a. If it equals \"B\", GOTO label_b.",
+    "script": "<--start\n# Multiple GOTO statements from different conditions\nsv_a = \"B\"\nif (sv_a == \"A\") then\n  GOTO label_a\nendif\nif (sv_a == \"B\") then\n  GOTO label_b\nendif\nEXITSCRIPT\n\nlabel_a:\n  print(\"In section A.\")\n  EXITSCRIPT\nlabel_b:\n  print(\"In section B.\")\n  EXITSCRIPT\nend-->"
+  },
+  {
+    "prompt": "Use the CINT function to convert a string \"50\" to a number before performing an arithmetic operation.",
+    "script": "<--start\n# Using a conversion function with an operator\nsv_a = \"50\"\nsv_b = CINT(sv_a)\nsv_c = sv_b * 2\nprint(sv_c)\nend-->"
+  },
+  {
+    "prompt": "Check if either a local variable lv_a is \"Y\" OR a scratchpad variable sv_b is \"Y\".",
+    "script": "<--start\n# Using the OR logical operator with different variable types\nlv_a = \"N\"\nsv_b = \"Y\"\nif ((lv_a == \"Y\") OR (sv_b == \"Y\")) then\n  print(\"At least one condition is met.\")\nendif\nend-->"
+  },
+  {
+    "prompt": "Demonstrate a nested loop structure.",
+    "script": "<--start\n# Nested WHILE/DO loops\nlv_a = 0\nwhile (lv_a < 2)\ndo\n  lv_b = 0\n  while (lv_b < 3)\n  do\n    print(\"Inner loop\")\n    lv_b = lv_b + 1\n  endwhile\n  print(\"Outer loop\")\n  lv_a = lv_a + 1\nendwhile\nend-->"
+  },
+  {
+    "prompt": "Define a label and have a GOTO jump to it from within an IF block.",
+    "script": "<--start\nsv_a = 100\nif (sv_a == 100) then\n  print(\"Value is 100, jumping...\")\n  GOTO my_label\nendif\nprint(\"This should be skipped.\")\nmy_label:\nprint(\"Execution continues here.\")\nend-->"
+  }
+]

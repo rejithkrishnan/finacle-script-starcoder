@@ -1,0 +1,1464 @@
+- prompt: Create a script that reads an account number from BANCS.INPUT.acctNum and stores it in a local variable.
+  script: |-
+    <--start
+    # Accessing a repository variable as per page 13
+    lv_a = BANCS.INPUT.acctNum
+    print(lv_a)
+    end-->
+- prompt: If the input transaction code in BANCS.INPUT.tranCode is 'X', set the script's return status to Failure.
+  script: |-
+    <--start
+    # Setting return status to 'F' as shown on page 14
+    if (BANCS.INPUT.tranCode == "X") then
+      BANCS.OUTPUT.successOrFailure = "F"
+    endif
+    end-->
+- prompt: Explicitly set the script's return status to Success.
+  script: |-
+    <--start
+    # Setting return status to 'S' as per page 14
+    BANCS.OUTPUT.successOrFailure = "S"
+    end-->
+- prompt: Take an account number like '01-02-03-04-0001' and reconstruct it without the hyphens.
+  script: |-
+    <--start
+    # Based on the account formatting example on page 11
+    sv_a = "01-02-03-04-0001"
+    sv_b = Mid$(sv_a, 0, 2)
+    sv_c = Mid$(sv_a, 3, 2)
+    sv_d = Mid$(sv_a, 6, 2)
+    sv_e = Mid$(sv_a, 9, 2)
+    sv_f = Mid$(sv_a, 12, 4)
+    sv_g = sv_b + sv_c + sv_d + sv_e + sv_f
+    print(sv_g)
+    end-->
+- prompt: Given an account number '0203040001', format it into the Finacle format '02-03-04-0001'.
+  script: |-
+    <--start
+    # Inspired by the ATM account formatting on page 12
+    sv_a = "0203040001"
+    sv_b = Mid$(sv_a, 0, 2)
+    sv_c = Mid$(sv_a, 2, 2)
+    sv_d = Mid$(sv_a, 4, 2)
+    sv_e = Mid$(sv_a, 6, 4)
+    sv_f = sv_b + "-" + sv_c + "-" + sv_d + "-" + sv_e
+    print(sv_f)
+    end-->
+- prompt: Create a script that assumes a repository 'CUST_DATA' and a STRING class 'INFO' exists, and sets the 'name' field to 'John Doe'.
+  script: |-
+    <--start
+    # Demonstrates manipulating repository variables as on page 13
+    CUST_DATA.INFO.name = "John Doe"
+    print(CUST_DATA.INFO.name)
+    end-->
+- prompt: Write a script that creates a new field 'age' in an INTEGER class 'DETAILS' within a 'CUST_DATA' repository.
+  script: |-
+    <--start
+    # Creating a new field in a repository as on page 13
+    # Assumes repository and class exist
+    CUST_DATA.DETAILS.age = 45
+    print(CUST_DATA.DETAILS.age)
+    end-->
+- prompt: Call a hypothetical userhook 'URHK_ValidateAccount' and if it fails (returns 1), set the script status to 'F'.
+  script: |-
+    <--start
+    # Using userhooks (page 10) and setting return status (page 14)
+    sv_a = URHK_ValidateAccount(BANCS.INPUT.acctNum)
+    if (sv_a == 1) then
+      BANCS.OUTPUT.successOrFailure = "F"
+    endif
+    end-->
+- prompt: Create a temporary repository 'TRANS_REP' and an INTEGER class 'COUNTERS' within it.
+  script: |-
+    <--start
+    # Based on repository concepts from page 10 and 13
+    CREATEREP("TRANS_REP")
+    CREATECLASS("TRANS_REP", "COUNTERS", 1)
+    print("Repository and Class created.")
+    end-->
+- prompt: If a transaction amount from BANCS.INPUT.amount is zero, set the successOrFailure field in BANCS.OUTPUT to 'F'.
+  script: |-
+    <--start
+    # Combining input repositories (page 13) and return status (page 14)
+    if (CDOUBLE(BANCS.INPUT.amount) == 0.0) then
+      BANCS.OUTPUT.successOrFailure = "F"
+    endif
+    end-->
+- prompt: From an account number like '01-02-03-04-0001', extract just the branch code, which is the second part.
+  script: |-
+    <--start
+    # Based on account formatting example on page 11
+    sv_a = "01-02-03-04-0001"
+    sv_b = Mid$(sv_a, 3, 2)
+    print(sv_b)
+    end-->
+- prompt: From an account number like '01-02-03-04-0001', extract the scheme code, the fourth part.
+  script: |-
+    <--start
+    # From page 11 example
+    sv_a = "01-02-03-04-0001"
+    sv_b = Mid$(sv_a, 9, 2)
+    print(sv_b)
+    end-->
+- prompt: Create a script that checks if an input customer ID from BANCS.INPUT.cifId is blank. If so, set the return status to Failure.
+  script: |-
+    <--start
+    # Using concepts from pages 13-14
+    if (BANCS.INPUT.cifId == "") then
+      BANCS.OUTPUT.successOrFailure = "F"
+    endif
+    end-->
+- prompt: Create a FLOAT class named 'RATES' in a repository named 'GLOBAL_CONFIG'.
+  script: |-
+    <--start
+    # Based on repository concepts on page 13
+    # Assumes GLOBAL_CONFIG repository exists, 3 is the type for FLOAT
+    CREATECLASS("GLOBAL_CONFIG", "RATES", 3)
+    print("Class created.")
+    end-->
+- prompt: Assign a value to a field within a CHARACTER class.
+  script: |-
+    <--start
+    # Based on repository concepts on page 13
+    # Assumes repository and class exist, 4 is the type for CHAR
+    CUST_DATA.DETAILS.gender = 'M'
+    print(CUST_DATA.DETAILS.gender)
+    end-->
+- prompt: Write a script that fails if the menu option is 'HTM'.
+  script: |-
+    <--start
+    # Reading from BANCS.STDIN (page 13) and setting failure (page 14)
+    if (BANCS.STDIN.menuOption == "HTM") then
+      BANCS.OUTPUT.successOrFailure = "F"
+    endif
+    end-->
+- prompt: Take an ATM-formatted account number '0203040001' and extract the scheme code, which is characters 5 and 6.
+  script: |-
+    <--start
+    # Based on page 12 example
+    sv_a = "0203040001"
+    sv_b = Mid$(sv_a, 4, 2)
+    print(sv_b)
+    end-->
+- prompt: Create a script that concatenates branch code, currency alias, and scheme code from three repository fields.
+  script: |-
+    <--start
+    # Demonstrates repository field access and concatenation (page 13)
+    sv_a = BANCS.INPUT.branch
+    sv_b = BANCS.INPUT.currency
+    sv_c = BANCS.INPUT.scheme
+    sv_d = sv_a + sv_b + sv_c
+    print(sv_d)
+    end-->
+- prompt: If a process runs successfully, set the 'status_message' in BANCS.OUTPUT to 'Completed' and successOrFailure to 'S'.
+  script: |-
+    <--start
+    # Using BANCS.OUTPUT as described on page 14
+    BANCS.OUTPUT.status_message = "Completed"
+    BANCS.OUTPUT.successOrFailure = "S"
+    end-->
+- prompt: Write a script that accesses the 'myBankCode' field from the standard repository.
+  script: |-
+    <--start
+    # Accessing a standard variable as per Appendix on page 13
+    sv_a = BANCS.STDIN.myBankCode
+    print(sv_a)
+    end-->
+- prompt: If a field BANCS.INPUT.isPreloaded is 'N', set the process to fail.
+  script: |-
+    <--start
+    # Demonstrating conditional failure logic based on repository inputs
+    if (BANCS.INPUT.isPreloaded == "N") then
+      BANCS.OUTPUT.successOrFailure = "F"
+    endif
+    end-->
+- prompt: From a Finacle account number '01-02-03-04-0001', create a 10-digit ATM number by removing the bank code and hyphens.
+  script: |-
+    <--start
+    # This is a direct scenario from page 12
+    sv_a = "01-02-03-04-0001"
+    sv_b = Mid$(sv_a, 3, 2)
+    sv_c = Mid$(sv_a, 6, 2)
+    sv_d = Mid$(sv_a, 9, 2)
+    sv_e = Mid$(sv_a, 12, 4)
+    sv_f = sv_b + sv_c + sv_d + sv_e
+    print(sv_f)
+    end-->
+- prompt: Create a DOUBLE class named 'FINANCIALS' in the 'CUST_DATA' repository and set a 'net_worth' field.
+  script: |-
+    <--start
+    # Based on page 13 class types
+    # Assumes CUST_DATA repository exists, 2 is the type for DOUBLE
+    CREATECLASS("CUST_DATA", "FINANCIALS", 2)
+    CUST_DATA.FINANCIALS.net_worth = 250000.75
+    print(CUST_DATA.FINANCIALS.net_worth)
+    end-->
+- prompt: Write a script that always fails by setting the successOrFailure variable.
+  script: |-
+    <--start
+    # Simple failure script as per page 14
+    BANCS.OUTPUT.successOrFailure = "F"
+    end-->
+- prompt: Read the 'homeCrncyAlias' from BANCS.STDIN and store it in sv_a.
+  script: |-
+    <--start
+    # Using the standard repository variables listed on page 13
+    sv_a = BANCS.STDIN.homeCrncyAlias
+    print(sv_a)
+    end-->
+- prompt: Create a simple Finacle script that prints 'Hello World'.
+  script: |-
+    <--start
+    # This is a comment
+    print("Hello World")
+    end-->
+- prompt: Assign the number 100 to scratchpad variable sv_a and print it.
+  script: |-
+    <--start
+    sv_a = 100
+    print(sv_a)
+    end-->
+- prompt: Assign the string 'Finacle' to a local variable lv_b and print it.
+  script: |-
+    <--start
+    lv_b = "Finacle"
+    print(lv_b)
+    end-->
+- prompt: Add the numbers 55 and 45 and store the result in sv_c.
+  script: |-
+    <--start
+    sv_a = 55
+    sv_b = 45
+    sv_c = sv_a + sv_b
+    print(sv_c)
+    end-->
+- prompt: Subtract 25 from 75 and print the output.
+  script: |-
+    <--start
+    sv_x = 75
+    sv_y = 25
+    sv_z = sv_x - sv_y
+    print(sv_z)
+    end-->
+- prompt: Multiply 12 by 10 and display the result.
+  script: |-
+    <--start
+    sv_m = 12
+    sv_n = 10
+    sv_r = sv_m * sv_n
+    print(sv_r)
+    end-->
+- prompt: Divide 100 by 4 and show the result.
+  script: |-
+    <--start
+    sv_p = 100
+    sv_q = 4
+    sv_r = sv_p / sv_q
+    print(sv_r)
+    end-->
+- prompt: Concatenate the strings 'Core' and 'Banking' with a space in between.
+  script: |-
+    <--start
+    sv_s = "Core"
+    sv_t = "Banking"
+    sv_f = sv_s + " " + sv_t
+    print(sv_f)
+    end-->
+- prompt: Check if sv_a is equal to 50. If so, print 'Equal'.
+  script: |-
+    <--start
+    sv_a = 50
+    if (sv_a == 50) then
+      print("Equal")
+    endif
+    end-->
+- prompt: If variable sv_b is not equal to 'TEST', print 'Not Equal'.
+  script: |-
+    <--start
+    sv_b = "PROD"
+    if (sv_b != "TEST") then
+      print("Not Equal")
+    endif
+    end-->
+- prompt: If sv_c is greater than 100, print 'Greater', otherwise print 'Not Greater'.
+  script: |-
+    <--start
+    sv_c = 101
+    if (sv_c > 100) then
+      print("Greater")
+    else
+      print("Not Greater")
+    endif
+    end-->
+- prompt: Check if sv_d is less than or equal to 5. If it is, print 'OK'.
+  script: |-
+    <--start
+    sv_d = 5
+    if (sv_d <= 5) then
+      print("OK")
+    endif
+    end-->
+- prompt: If sv_a is 'Y' AND sv_b is 'ACTIVE', print 'Proceed'.
+  script: |-
+    <--start
+    sv_a = "Y"
+    sv_b = "ACTIVE"
+    if ((sv_a == "Y") AND (sv_b == "ACTIVE")) then
+      print("Proceed")
+    endif
+    end-->
+- prompt: If sv_t is 'CLOSED' OR sv_t is 'LOCKED', print 'Action Required'.
+  script: |-
+    <--start
+    sv_t = "CLOSED"
+    if ((sv_t == "CLOSED") OR (sv_t == "LOCKED")) then
+      print("Action Required")
+    endif
+    end-->
+- prompt: Use a while loop to print numbers from 1 to 3.
+  script: |-
+    <--start
+    lv_a = 1
+    while (lv_a <= 3)
+    do
+      print(lv_a)
+      lv_a = lv_a + 1
+    endwhile
+    end-->
+- prompt: Use the unary minus operator to make the number 10 negative.
+  script: |-
+    <--start
+    sv_a = 10
+    sv_b = -sv_a
+    print(sv_b)
+    end-->
+- prompt: Jump to a label named 'skip_section' using GOTO.
+  script: |-
+    <--start
+    print("Part 1")
+    GOTO skip_section
+    print("This should not be printed")
+    skip_section:
+    print("Part 2")
+    end-->
+- prompt: Call a subroutine named 'print_routine' using GOSUB and then exit.
+  script: |-
+    <--start
+    GOSUB print_routine
+    EXITSCRIPT
+    print_routine:
+      print("Inside subroutine")
+      RETURN
+    end-->
+- prompt: Call another script named 'child_script.scr'.
+  script: |-
+    <--start
+    print("Calling another script...")
+    CALL("child_script.scr")
+    print("Returned from child script.")
+    end-->
+- prompt: Start execution of a script named 'new_process.scr' and do not return.
+  script: |-
+    <--start
+    print("Starting new process...")
+    START("new_process.scr")
+    # This line will not be reached
+    end-->
+- prompt: Extract 'abc' from the string 'xyzabcdef' using MID$.
+  script: |-
+    <--start
+    sv_s = "xyzabcdef"
+    sv_u = Mid$(sv_s, 3, 3)
+    print(sv_u)
+    end-->
+- prompt: Get the first 4 characters of the string 'FinacleCore'.
+  script: |-
+    <--start
+    sv_s = "FinacleCore"
+    sv_l = Left$(sv_s, 4)
+    print(sv_l)
+    end-->
+- prompt: Get the last 4 characters of 'FinacleCore'.
+  script: |-
+    <--start
+    sv_s = "FinacleCore"
+    sv_r = Right$(sv_s, 4)
+    print(sv_r)
+    end-->
+- prompt: Convert the string '123.45' to a double and print it.
+  script: |-
+    <--start
+    sv_a = CDOUBLE("123.45")
+    print(sv_a)
+    end-->
+- prompt: Convert the string '987' to an integer.
+  script: |-
+    <--start
+    sv_a = CINT("987")
+    print(sv_a)
+    end-->
+- prompt: Convert the string 'HeLLo' to all lowercase.
+  script: |-
+    <--start
+    sv_a = TOLOWER("HeLLo")
+    print(sv_a)
+    end-->
+- prompt: Convert 'world' to all uppercase.
+  script: |-
+    <--start
+    sv_a = TOUPPER("world")
+    print(sv_a)
+    end-->
+- prompt: Find the length of the string 'Extensibility'.
+  script: |-
+    <--start
+    sv_l = STRLEN("Extensibility")
+    print(sv_l)
+    end-->
+- prompt: Get the character at position 5 in the string 'Finacle Scripting'.
+  script: |-
+    <--start
+    sv_c = CHARAT("Finacle Scripting", 5)
+    print(sv_c)
+    end-->
+- prompt: Remove leading spaces from the string '  indented'.
+  script: |-
+    <--start
+    sv_a = "  indented"
+    sv_b = LTRIM(sv_a)
+    print(sv_b)
+    end-->
+- prompt: Remove trailing spaces from 'padded   '.
+  script: |-
+    <--start
+    sv_a = "padded   "
+    sv_b = RTRIM(sv_a)
+    print(sv_b)
+    end-->
+- prompt: Remove both leading and trailing asterisks from '***TRIMMED***'.
+  script: |-
+    <--start
+    sv_a = "***TRIMMED***"
+    sv_b = TRIM(sv_a, "*")
+    print(sv_b)
+    end-->
+- prompt: Left-pad the string 'ID' with zeros to a total length of 8.
+  script: |-
+    <--start
+    sv_a = "ID"
+    sv_b = LPAD(sv_a, 8, "0")
+    print(sv_b)
+    end-->
+- prompt: Right-pad the string 'User' with '#' to a total length of 10.
+  script: |-
+    <--start
+    sv_a = "User"
+    sv_b = RPAD(sv_a, 10, "#")
+    print(sv_b)
+    end-->
+- prompt: Check if a repository named 'GLOBAL' exists.
+  script: |-
+    <--start
+    sv_e = REPEXISTS("GLOBAL")
+    if (sv_e == 1) then
+      print("Repository exists.")
+    else
+      print("Repository does not exist.")
+    endif
+    end-->
+- prompt: Check if a class named 'INPUT' exists in the 'BANCS' repository.
+  script: |-
+    <--start
+    sv_e = CLASSEXISTS("BANCS", "INPUT")
+    if (sv_e == 1) then
+      print("Class exists.")
+    endif
+    end-->
+- prompt: Check if the field 'userId' exists in 'BANCS.STDIN'.
+  script: |-
+    <--start
+    sv_e = FIELDEXISTS(BANCS.STDIN.userId)
+    if (sv_e == 1) then
+      print("Field exists.")
+    endif
+    end-->
+- prompt: Create a temporary repository named 'MY_TEMP_REP'.
+  script: |-
+    <--start
+    CREATEREP("MY_TEMP_REP")
+    print("Repository created.")
+    end-->
+- prompt: Create a STRING class named 'DATA' in the 'MY_TEMP_REP' repository.
+  script: |-
+    <--start
+    # Assumes MY_TEMP_REP exists
+    # 5 is the type for STRING
+    CREATECLASS("MY_TEMP_REP", "DATA", 5)
+    print("Class created.")
+    end-->
+- prompt: Delete the temporary class 'DATA' from the 'MY_TEMP_REP' repository.
+  script: |-
+    <--start
+    DELETECLASS("MY_TEMP_REP", "DATA")
+    print("Class deleted.")
+    end-->
+- prompt: Delete the temporary repository 'MY_TEMP_REP'.
+  script: |-
+    <--start
+    DELETEREP("MY_TEMP_REP")
+    print("Repository deleted.")
+    end-->
+- prompt: Assign the value 'test_user' to the repository field BANCS.INPUT.user.
+  script: |-
+    <--start
+    BANCS.INPUT.user = "test_user"
+    print(BANCS.INPUT.user)
+    end-->
+- prompt: Copy the value from repository field BANCS.STDIN.userId to sv_a.
+  script: |-
+    <--start
+    # This assumes the field has a value
+    sv_a = BANCS.STDIN.userId
+    print(sv_a)
+    end-->
+- prompt: Set the script return status to Failure.
+  script: |-
+    <--start
+    BANCS.OUTPUT.successOrFailure = "F"
+    end-->
+- prompt: Set the script return status to Success.
+  script: |-
+    <--start
+    BANCS.OUTPUT.successOrFailure = "S"
+    end-->
+- prompt: Turn on script tracing.
+  script: |-
+    <--start
+    TRACE ON
+    print("Tracing is now active.")
+    end-->
+- prompt: Turn off script tracing.
+  script: |-
+    <--start
+    TRACE OFF
+    print("Tracing is now inactive.")
+    end-->
+- prompt: Exit the current script immediately.
+  script: |-
+    <--start
+    print("About to exit...")
+    EXITSCRIPT
+    print("This will not be printed.")
+    end-->
+- prompt: Call a user hook function named 'VALIDATE_USER'.
+  script: |-
+    <--start
+    sv_a = URHK_VALIDATE_USER("some_input_data")
+    if (sv_a == 0) then
+      print("User hook successful.")
+    else
+      print("User hook failed.")
+    endif
+    end-->
+- prompt: Call a user routine 'CalculateInterest' from the default library.
+  script: |-
+    <--start
+    sv_a = URTN_CalculateInterest("account_data")
+    print(sv_a)
+    end-->
+- prompt: Set a library name to 'CUSTOM.DLL' for user routines.
+  script: |-
+    <--start
+    LIBNAME "CUSTOM.DLL"
+    sv_a = URTN_CustomRoutine("data")
+    print(sv_a)
+    end-->
+- prompt: Find the position of 'script' in 'Finacle scripting language'.
+  script: |-
+    <--start
+    sv_p = GETPOSITION("Finacle scripting language", "script")
+    print(sv_p)
+    end-->
+- prompt: Do a case-insensitive search for 'FINACLE' in 'Welcome to Finacle'.
+  script: |-
+    <--start
+    sv_p = GETIPOSITION("Welcome to Finacle", "FINACLE")
+    print(sv_p)
+    end-->
+- prompt: Compare the strings 'Hello' and 'hello' without case sensitivity.
+  script: |-
+    <--start
+    sv_r = STRICMP("Hello", "hello")
+    if (sv_r == 1) then
+      print("Strings are the same, ignoring case.")
+    endif
+    end-->
+- prompt: Assign 12 to sv_a, 20 to sv_b. Check if sv_a is less than sv_b.
+  script: |-
+    <--start
+    sv_a = 12
+    sv_b = 20
+    if (sv_a < sv_b) then
+      print("sv_a is less than sv_b")
+    endif
+    end-->
+- prompt: Check if sv_x is greater than or equal to 100.
+  script: |-
+    <--start
+    sv_x = 100
+    if (sv_x >= 100) then
+      print("sv_x is 100 or more.")
+    endif
+    end-->
+- prompt: Loop while a counter lv_i is less than 5, incrementing it each time.
+  script: |-
+    <--start
+    lv_i = 0
+    while (lv_i < 5)
+    do
+      print(lv_i)
+      lv_i = lv_i + 1
+    endwhile
+    end-->
+- prompt: If BANCS.INPUT.acct_type is 'SBA' or 'CAA', print 'Operative Account'.
+  script: |-
+    <--start
+    # Assuming BANCS.INPUT.acct_type is set
+    if ((BANCS.INPUT.acct_type == "SBA") OR (BANCS.INPUT.acct_type == "CAA")) then
+      print("Operative Account")
+    endif
+    end-->
+- prompt: Create an integer class 'COUNTERS' in repository 'SESSION'.
+  script: |-
+    <--start
+    # 1 is the type for INTEGER
+    CREATEREP("SESSION")
+    CREATECLASS("SESSION", "COUNTERS", 1)
+    SESSION.COUNTERS.login_attempts = 0
+    print(SESSION.COUNTERS.login_attempts)
+    end-->
+- prompt: Create a double class 'BALANCES' in repository 'SESSION'.
+  script: |-
+    <--start
+    # 2 is the type for DOUBLE
+    CREATEREP("SESSION")
+    CREATECLASS("SESSION", "BALANCES", 2)
+    SESSION.BALANCES.min_bal = 100.50
+    print(SESSION.BALANCES.min_bal)
+    end-->
+- prompt: Find the difference between 500 and 125.
+  script: |-
+    <--start
+    sv_a = 500
+    sv_b = 125
+    sv_d = sv_a - sv_b
+    print(sv_d)
+    end-->
+- prompt: Calculate 7 times 8.
+  script: |-
+    <--start
+    sv_a = 7
+    sv_b = 8
+    sv_p = sv_a * sv_b
+    print(sv_p)
+    end-->
+- prompt: Divide 99 by 3.
+  script: |-
+    <--start
+    sv_a = 99
+    sv_b = 3
+    sv_q = sv_a / sv_b
+    print(sv_q)
+    end-->
+- prompt: Add 'Mr. ' to the name 'Stark'.
+  script: |-
+    <--start
+    sv_t = "Mr. "
+    sv_n = "Stark"
+    sv_f = sv_t + sv_n
+    print(sv_f)
+    end-->
+- prompt: If a local variable lv_flag is 0, print 'Flag is off'.
+  script: |-
+    <--start
+    lv_flag = 0
+    if (lv_flag == 0) then
+      print("Flag is off")
+    endif
+    end-->
+- prompt: If sv_c is not 'IN', print 'International'.
+  script: |-
+    <--start
+    sv_c = "US"
+    if (sv_c != "IN") then
+      print("International")
+    endif
+    end-->
+- prompt: If sv_a is greater than 60, print 'Senior'. Else, print 'Not senior'.
+  script: |-
+    <--start
+    sv_a = 65
+    if (sv_a > 60) then
+      print("Senior")
+    else
+      print("Not senior")
+    endif
+    end-->
+- prompt: If sv_s is less than 50, print 'Fail'.
+  script: |-
+    <--start
+    sv_s = 49
+    if (sv_s < 50) then
+      print("Fail")
+    endif
+    end-->
+- prompt: If product code is 'A' and region is 'North', print 'Category A-North'.
+  script: |-
+    <--start
+    sv_p = "A"
+    sv_r = "North"
+    if ((sv_p == "A") AND (sv_r == "North")) then
+      print("Category A-North")
+    endif
+    end-->
+- prompt: If sv_e is 'UAT' or 'SIT', print 'Test Environment'.
+  script: |-
+    <--start
+    sv_e = "UAT"
+    if ((sv_e == "UAT") OR (sv_e == "SIT")) then
+      print("Test Environment")
+    endif
+    end-->
+- prompt: Use a while loop to print even numbers from 2 to 10.
+  script: |-
+    <--start
+    lv_a = 2
+    while (lv_a <= 10)
+    do
+      print(lv_a)
+      lv_a = lv_a + 2
+    endwhile
+    end-->
+- prompt: Make sv_b the negative of sv_a, where sv_a is -5.
+  script: |-
+    <--start
+    sv_a = -5
+    sv_b = -sv_a
+    print(sv_b)
+    end-->
+- prompt: Extract 'Script' from 'Finacle-Script-Tool' using MID$.
+  script: |-
+    <--start
+    sv_s = "Finacle-Script-Tool"
+    sv_u = Mid$(sv_s, 8, 6)
+    print(sv_u)
+    end-->
+- prompt: Get the first 7 characters of 'Welcome'.
+  script: |-
+    <--start
+    sv_s = "Welcome"
+    sv_l = Left$(sv_s, 7)
+    print(sv_l)
+    end-->
+- prompt: Get the last 3 characters of 'Automation'.
+  script: |-
+    <--start
+    sv_s = "Automation"
+    sv_r = Right$(sv_s, 3)
+    print(sv_r)
+    end-->
+- prompt: Convert the string '99.99' to a double data type.
+  script: |-
+    <--start
+    sv_a = CDOUBLE("99.99")
+    print(sv_a)
+    end-->
+- prompt: Convert '42' from a string to an integer.
+  script: |-
+    <--start
+    sv_a = CINT("42")
+    print(sv_a)
+    end-->
+- prompt: Convert 'FINACLE' to lowercase.
+  script: |-
+    <--start
+    sv_a = TOLOWER("FINACLE")
+    print(sv_a)
+    end-->
+- prompt: Convert 'custom' to uppercase.
+  script: |-
+    <--start
+    sv_a = TOUPPER("custom")
+    print(sv_a)
+    end-->
+- prompt: What is the length of the string 'Repository'?
+  script: |-
+    <--start
+    sv_l = STRLEN("Repository")
+    print(sv_l)
+    end-->
+- prompt: What is the character at position 0 of 'Script'?
+  script: |-
+    <--start
+    sv_c = CHARAT("Script", 0)
+    print(sv_c)
+    end-->
+- prompt: Trim leading hyphens from '---data'.
+  script: |-
+    <--start
+    sv_a = "---data"
+    sv_b = LTRIM(sv_a, "-")
+    print(sv_b)
+    end-->
+- prompt: Trim trailing slashes from 'path//'.
+  script: |-
+    <--start
+    sv_a = "path//"
+    sv_b = RTRIM(sv_a, "/")
+    print(sv_b)
+    end-->
+- prompt: Remove leading and trailing spaces from '  padded string  '.
+  script: |-
+    <--start
+    sv_a = "  padded string  "
+    sv_b = TRIM(sv_a)
+    print(sv_b)
+    end-->
+- prompt: Left-pad 'Go' with '>' to a length of 5.
+  script: |-
+    <--start
+    sv_a = "Go"
+    sv_b = LPAD(sv_a, 5, ">")
+    print(sv_b)
+    end-->
+- prompt: Right-pad 'End' with '<' to a length of 6.
+  script: |-
+    <--start
+    sv_a = "End"
+    sv_b = RPAD(sv_a, 6, "<")
+    print(sv_b)
+    end-->
+- prompt: If repository 'USER_REP' does not exist, create it.
+  script: |-
+    <--start
+    if (REPEXISTS("USER_REP") == 0) then
+      CREATEREP("USER_REP")
+      print("Repository Created.")
+    endif
+    end-->
+- prompt: If class 'PREFS' does not exist in 'USER_REP', create it as a STRING class.
+  script: |-
+    <--start
+    # Assumes USER_REP exists
+    if (CLASSEXISTS("USER_REP", "PREFS") == 0) then
+      CREATECLASS("USER_REP", "PREFS", 5)
+      print("Class Created.")
+    endif
+    end-->
+- prompt:
+    If field 'theme' does not exist in USER_REP.PREFS, create and set it to
+    'dark'.
+  script: |-
+    <--start
+    if (FIELDEXISTS(USER_REP.PREFS.theme) == 0) then
+      USER_REP.PREFS.theme = "dark"
+      print(USER_REP.PREFS.theme)
+    endif
+    end-->
+- prompt: Assign an integer value 2025 to the repository field CONFIG.SYSTEM.year.
+  script: |-
+    <--start
+    # Assumes CONFIG.SYSTEM is an INTEGER class
+    CONFIG.SYSTEM.year = 2025
+    print(CONFIG.SYSTEM.year)
+    end-->
+- prompt:
+    Read the value of the 'onlineOrBatch' field from the 'BANCS.STDIN' repository
+    into a variable.
+  script: |-
+    <--start
+    sv_m = BANCS.STDIN.onlineOrBatch
+    print(sv_m)
+    end-->
+- prompt: Write a nested if statement. If sv_a > 10, then check if sv_b > 20.
+  script: |-
+    <--start
+    sv_a = 11
+    sv_b = 21
+    if (sv_a > 10) then
+      print("sv_a is greater than 10")
+      if (sv_b > 20) then
+        print("sv_b is also greater than 20")
+      endif
+    endif
+    end-->
+- prompt: Use GOSUB inside an if condition to call a subroutine.
+  script: |-
+    <--start
+    sv_a = 1
+    if (sv_a == 1) THEN
+      GOSUB sub1
+    ENDIF
+    EXITSCRIPT
+    sub1:
+      print("In subroutine 1")
+      RETURN
+    end-->
+- prompt: Dynamically change the type of sv_a from an integer to a string.
+  script: |-
+    <--start
+    sv_a = 12345
+    print("sv_a is an integer now.")
+    sv_a = "Hello"
+    print("sv_a is a string now.")
+    end-->
+- prompt: Call a user hook named 'FETCH_CUST_DATA' and check the return value.
+  script: |-
+    <--start
+    sv_r = URHK_FETCH_CUST_DATA("cif_id_123")
+    if (sv_r == 0) then
+      print("Fetch successful")
+    else
+      print("Fetch failed")
+    endif
+    end-->
+- prompt: Calculate 15 plus 30 minus 10.
+  script: |-
+    <--start
+    sv_r = 15 + 30 - 10
+    print(sv_r)
+    end-->
+- prompt: Create a script to find the difference between 99 and 44.
+  script: |-
+    <--start
+    sv_v = 99
+    sv_w = 44
+    sv_r = sv_v - sv_w
+    print(sv_r)
+    end-->
+- prompt: Calculate 3 multiplied by 4 plus 5.
+  script: |-
+    <--start
+    sv_a = 3
+    sv_b = 4
+    sv_c = 5
+    sv_r = sv_a * sv_b + sv_c
+    print(sv_r)
+    end-->
+- prompt: Check if a string 'test' is equal to 'test'.
+  script: |-
+    <--start
+    if ("test" == "test") then
+      print("Strings are equal")
+    endif
+    end-->
+- prompt: Loop from 10 down to 1 and print each number.
+  script: |-
+    <--start
+    lv_i = 10
+    while (lv_i > 0)
+    do
+      print(lv_i)
+      lv_i = lv_i - 1
+    endwhile
+    end-->
+- prompt: Check if BANCS.INPUT.value is empty. If it is, set success to 'F'.
+  script: |-
+    <--start
+    if (BANCS.INPUT.value == "") then
+      BANCS.OUTPUT.successOrFailure = "F"
+    else
+      BANCS.OUTPUT.successOrFailure = "S"
+    endif
+    end-->
+- prompt: Replace the middle 2 characters of '123456' with 'XX' using SET$.
+  script: |-
+    <--start
+    sv_a = "123456"
+    sv_b = SET$(sv_a, 2, 2, "XX")
+    print(sv_b)
+    end-->
+- prompt: Format the number 12.345 to two decimal places.
+  script: |-
+    <--start
+    sv_a = 12.345
+    sv_b = FORMAT$(sv_a, "%.2f")
+    print(sv_b)
+    end-->
+- prompt:
+    Create a temporary repository 'LOGS', a string class 'MESSAGES', and add
+    a field 'error1' with value 'File not found'.
+  script: |-
+    <--start
+    CREATEREP("LOGS")
+    CREATECLASS("LOGS", "MESSAGES", 5)
+    LOGS.MESSAGES.error1 = "File not found"
+    print(LOGS.MESSAGES.error1)
+    end-->
+- prompt: In a loop, if the counter is 5, use GOTO to jump to the end.
+  script: |-
+    <--start
+    lv_i = 0
+    while (lv_i < 10)
+    do
+      if (lv_i == 5) then
+        GOTO end_loop
+      endif
+      print(lv_i)
+      lv_i = lv_i + 1
+    endwhile
+    end_loop:
+    print("Loop finished.")
+    end-->
+- prompt: What is 200 minus 75?
+  script: |-
+    <--start
+    sv_a = 200
+    sv_b = 75
+    sv_c = sv_a - sv_b
+    print(sv_c)
+    end-->
+- prompt: How do you represent 1500 multiplied by 2?
+  script: |-
+    <--start
+    sv_a = 1500
+    sv_b = 2
+    sv_c = sv_a * sv_b
+    print(sv_c)
+    end-->
+- prompt: Find the sum of 1, 2, 3, 4, and 5 using a loop.
+  script: |-
+    <--start
+    lv_sum = 0
+    lv_i = 1
+    while (lv_i <= 5)
+    do
+      lv_sum = lv_sum + lv_i
+      lv_i = lv_i + 1
+    endwhile
+    print(lv_sum)
+    end-->
+- prompt: If a string sv_a is longer than 10 characters, print 'Too long'.
+  script: |-
+    <--start
+    sv_a = "This is a very long string"
+    if (STRLEN(sv_a) > 10) then
+      print("Too long")
+    endif
+    end-->
+- prompt: Read the home currency code into a variable.
+  script: |-
+    <--start
+    sv_h = BANCS.STDIN.homeCrncyCode
+    print(sv_h)
+    end-->
+- prompt: Check if the current menu option is 'HACLI'.
+  script: |-
+    <--start
+    if (BANCS.STDIN.menuOption == "HACLI") then
+      print("Customer Inquiry Menu")
+    endif
+    end-->
+- prompt: Add a string to the HTML output buffer.
+  script: |-
+    <--start
+    AddToHTML("<h1>Welcome User</h1>")
+    end-->
+- prompt: Execute an external program 'validate.exe' with argument 'data.xml'.
+  script: |-
+    <--start
+    sv_r = UREX("validate.exe", "returndata.tmp", "data.xml")
+    print(sv_r)
+    end-->
+- prompt: If lv_a is not 1 and not 2, print 'Other'.
+  script: |-
+    <--start
+    lv_a = 3
+    if ((lv_a != 1) AND (lv_a != 2)) then
+      print("Other")
+    endif
+    end-->
+- prompt: Combine 'Hello' and 123 into a single string.
+  script: |-
+    <--start
+    sv_a = "Hello"
+    sv_b = 123
+    sv_c = sv_a + sv_b
+    print(sv_c)
+    end-->
+- prompt: Create a float class 'RATES' and add a field 'tax_rate'.
+  script: |-
+    <--start
+    # 3 is the type for FLOAT
+    CREATEREP("CONFIG")
+    CREATECLASS("CONFIG", "RATES", 3)
+    CONFIG.RATES.tax_rate = 0.15
+    print(CONFIG.RATES.tax_rate)
+    end-->
+- prompt: Write a script that does nothing but has a start and end tag.
+  script: |-
+    <--start
+    # This script is empty.
+    end-->
+- prompt: Set a variable to the result of 100/5.
+  script: |-
+    <--start
+    sv_a = 100/5
+    print(sv_a)
+    end-->
+- prompt: In a loop from 1 to 10, print 'Five' when the counter hits 5.
+  script: |-
+    <--start
+    lv_i = 1
+    while (lv_i <= 10)
+    do
+      if (lv_i == 5) then
+        print("Five")
+      else
+        print(lv_i)
+      endif
+      lv_i = lv_i + 1
+    endwhile
+    end-->
+- prompt: What is the result of 10 minus 20?
+  script: |-
+    <--start
+    sv_a = 10
+    sv_b = 20
+    sv_c = sv_a - sv_b
+    print(sv_c)
+    end-->
+- prompt: Take the string 'abcde', get the middle character 'c'.
+  script: |-
+    <--start
+    sv_a = "abcde"
+    sv_b = Mid$(sv_a, 2, 1)
+    print(sv_b)
+    end-->
+- prompt: Check if BANCS.STDIN.WFflg is equal to 'Y'.
+  script: |-
+    <--start
+    # Checks if script is a workflow script
+    if (BANCS.STDIN.WFflg == "Y") then
+      print("This is a workflow script.")
+    endif
+    end-->
+- prompt: Use PUTREPFIELD to set the value of a field named 'MY_REP.MY_CLASS.MY_FIELD'.
+  script: |-
+    <--start
+    CREATEREP("MY_REP")
+    CREATECLASS("MY_REP", "MY_CLASS", 5)
+    sv_a = "MY_REP.MY_CLASS.MY_FIELD"
+    sv_b = "My Value"
+    PUTREPFIELD(sv_a, sv_b)
+    end-->
+- prompt: Use GETREPFIELD to retrieve the value of 'MY_REP.MY_CLASS.MY_FIELD'.
+  script: |-
+    <--start
+    # Assumes the field was set previously
+    sv_a = "MY_REP.MY_CLASS.MY_FIELD"
+    sv_b = GETREPFIELD(sv_a)
+    print(sv_b)
+    end-->
+- prompt: Write a script to check if 25 is greater than 15.
+  script: |-
+    <--start
+    if (25 > 15) then
+      print("Yes, 25 is greater.")
+    endif
+    end-->
+- prompt: Take the number 50 and subtract 5.
+  script: |-
+    <--start
+    sv_a = 50 - 5
+    print(sv_a)
+    end-->
+- prompt: Print the current system date from the BANCS.STDIN repository.
+  script: |-
+    <--start
+    sv_d = BANCS.STDIN.sysDate
+    print(sv_d)
+    end-->
+- prompt:
+    Format an account number by taking the last 4 digits of '12345678' and prefixing
+    with 'ACC-'.
+  script: |-
+    <--start
+    sv_f = "12345678"
+    sv_l = Right$(sv_f, 4)
+    sv_m = "ACC-" + sv_l
+    print(sv_m)
+    end-->
+- prompt:
+    If input value in BANCS.INPUT.amount is less than 1000 and the transaction
+    type is 'CASH', set a flag.
+  script: |-
+    <--start
+    lv_flag = 0
+    if ((CINT(BANCS.INPUT.amount) < 1000) AND (BANCS.INPUT.tranType == "CASH")) then
+      lv_flag = 1
+    endif
+    print(lv_flag)
+    end-->
+- prompt: Create a character class and store the character 'A'.
+  script: |-
+    <--start
+    # 4 is the type for CHAR
+    CREATEREP("TEMP")
+    CREATECLASS("TEMP", "CHARS", 4)
+    TEMP.CHARS.myChar = 'A'
+    print(TEMP.CHARS.myChar)
+    end-->
+- prompt: Use a subroutine to add two numbers.
+  script: |-
+    <--start
+    sv_x = 10
+    sv_y = 20
+    GOSUB add_routine
+    print(sv_z)
+    EXITSCRIPT
+    add_routine:
+      sv_z = sv_x + sv_y
+      RETURN
+    end-->
+- prompt: If sv_a is 1, print 'One'. If it's 2, print 'Two'. Otherwise, print 'Other'.
+  script: |-
+    <--start
+    sv_a = 2
+    if (sv_a == 1) then
+      print("One")
+    else
+      if (sv_a == 2) then
+        print("Two")
+      else
+        print("Other")
+      endif
+    endif
+    end-->
+- prompt: Find the result of (10 + 5) * 2.
+  script: |-
+    <--start
+    sv_r = (10 + 5) * 2
+    print(sv_r)
+    end-->
+- prompt: Print the description of the current service outlet (SOL).
+  script: |-
+    <--start
+    sv_s = BANCS.STDIN.mySolDesc
+    print(sv_s)
+    end-->
+- prompt: Demonstrate a simple GOTO loop that prints 3 times.
+  script: |-
+    <--start
+    sv_a = 3
+    loop_start:
+    if (sv_a == 0) then
+      GOTO loop_end
+    endif
+    print(sv_a)
+    sv_a = sv_a - 1
+    GOTO loop_start
+    loop_end:
+    end-->
+- prompt: If sv_a is not null, process it. (Check for empty string)
+  script: |-
+    <--start
+    sv_a = "some data"
+    if (sv_a != "") then
+      print("Processing data...")
+    endif
+    end-->
+- prompt: Pad the number 123 with leading zeros to make it 5 digits long.
+  script: |-
+    <--start
+    sv_a = 123
+    sv_b = LPAD(sv_a, 5, "0")
+    print(sv_b)
+    end-->
+- prompt: Convert a char 'c' to a string.
+  script: |-
+    <--start
+    sv_a = 'c'
+    sv_b = GETSTRING(sv_a)
+    print(sv_b)
+    end-->
+- prompt: Create a script that calculates 1000 minus 1.
+  script: |-
+    <--start
+    sv_a = 1000 - 1
+    print(sv_a)
+    end-->
+- prompt: Assign 25 to sv_a. Check if sv_a is less than 30 OR greater than 20.
+  script: |-
+    <--start
+    sv_a = 25
+    if ((sv_a < 30) OR (sv_a > 20)) then
+      print("Condition met.")
+    endif
+    end-->
+- prompt: What is 50 divided by 2, plus 10?
+  script: |-
+    <--start
+    sv_r = 50 / 2 + 10
+    print(sv_r)
+    end-->
+- prompt: Check if the length of 'Hello' is 5.
+  script: |-
+    <--start
+    if (STRLEN("Hello") == 5) then
+      print("Length is 5.")
+    endif
+    end-->
+- prompt: Take the uppercase of 'test' and compare it to 'TEST'.
+  script: |-
+    <--start
+    sv_a = TOUPPER("test")
+    if (sv_a == "TEST") then
+      print("Match")
+    endif
+    end-->
+- prompt: "Show me a script that does a subtraction: 42 minus 12."
+  script: |-
+    <--start
+    sv_a = 42
+    sv_b = 12
+    sv_c = sv_a - sv_b
+    print(sv_c)
+    end-->
+- prompt: Calculate 33 - 11 and print the value.
+  script: |-
+    <--start
+    lv_a = 33
+    lv_b = 11
+    lv_c = lv_a - lv_b
+    print(lv_c)
+    end-->
+- prompt: Give me the result of 77 subtracted by 7.
+  script: |-
+    <--start
+    sv_r = 77 - 7
+    print(sv_r)
+    end-->
+- prompt: Loop from 1 to 10. Inside the loop, if the number is 5, call a subroutine named 'process_five'.
+  script: |-
+    <--start
+    lv_a = 1
+    while (lv_a <= 10)
+    do
+      if (lv_a == 5) then
+        GOSUB process_five
+      endif
+      print(lv_a)
+      lv_a = lv_a + 1
+    endwhile
+    EXITSCRIPT
+
+    process_five:
+      print("Processing the special case for 5.")
+      RETURN
+    end-->
+- prompt: Read an account number from BANCS.INPUT.acctNum. If the first two digits are '01', set the 'isLocal' field in BANCS.OUTPUT to 'Y'. Otherwise, set it to 'N' and set the script status to Failure.
+  script: |-
+    <--start
+    # Read from INPUT, manipulate string, write to OUTPUT
+    sv_a = BANCS.INPUT.acctNum
+    sv_b = Left$(sv_a, 2)
+    if (sv_b == "01") then
+      BANCS.OUTPUT.isLocal = "Y"
+      BANCS.OUTPUT.successOrFailure = "S"
+    else
+      BANCS.OUTPUT.isLocal = "N"
+      BANCS.OUTPUT.successOrFailure = "F"
+    endif
+    end-->
+- prompt: Create a repository 'ERRORS' and a class 'LIST'. Then add three distinct fields, 'err_1', 'err_2', and 'err_3' with different error messages.
+  script: |-
+    <--start
+    # Create repository, class, and multiple fields
+    CREATEREP("ERRORS")
+    CREATECLASS("ERRORS", "LIST", 5) # String class
+    ERRORS.LIST.err_1 = "Invalid Amount"
+    ERRORS.LIST.err_2 = "Account Not Found"
+    ERRORS.LIST.err_3 = "Transaction Limit Exceeded"
+    print("Error repository populated.")
+    end-->
+- prompt: Check if BANCS.INPUT.user is not blank AND BANCS.INPUT.password is not blank. If both are present, call a user hook 'URHK_Authenticate'.
+  script: |-
+    <--start
+    # Complex conditional with AND and a user hook call
+    sv_a = BANCS.INPUT.user
+    sv_b = BANCS.INPUT.password
+    if ((sv_a != "") AND (sv_b != "")) then
+      sv_c = URHK_Authenticate(sv_a)
+      print("Authentication attempted.")
+    else
+      print("Username or password missing.")
+    endif
+    end-->
+- prompt: Parse a colon-delimited string 'SBA:1000.50:USD' from BANCS.INPUT.data. Extract each part into separate fields in BANCS.OUTPUT.
+  script: |-
+    <--start
+    # Advanced string parsing using GETPOSITION and MID$
+    sv_a = BANCS.INPUT.data
+    sv_b = GETPOSITION(sv_a, ":")
+    BANCS.OUTPUT.type = Left$(sv_a, sv_b)
+
+    sv_c = Mid$(sv_a, sv_b + 1, 100) # Get the rest of the string
+    sv_d = GETPOSITION(sv_c, ":")
+    BANCS.OUTPUT.amount = Left$(sv_c, sv_d)
+    BANCS.OUTPUT.currency = Mid$(sv_c, sv_d + 1, 100)
+    end-->
+- prompt: Loop backwards from 5 to 1. Inside the loop, pad the number with a leading zero and print it.
+  script: |-
+    <--start
+    # Loop backwards and use LPAD function
+    lv_i = 5
+    while (lv_i > 0)
+    do
+      sv_a = LPAD(lv_i, 2, "0")
+      print(sv_a)
+      lv_i = lv_i - 1
+    endwhile
+    end-->
+- prompt: If the length of the string in BANCS.INPUT.narration is greater than 100, truncate it to 100 characters and set a warning flag in BANCS.OUTPUT.
+  script: |-
+    <--start
+    # Combine STRLEN, if-else, and string manipulation
+    sv_a = BANCS.INPUT.narration
+    if (STRLEN(sv_a) > 100) then
+      BANCS.OUTPUT.narration = Left$(sv_a, 100)
+      BANCS.OUTPUT.warningFlag = "Y"
+    else
+      BANCS.OUTPUT.narration = sv_a
+      BANCS.OUTPUT.warningFlag = "N"
+    endif
+    end-->
+- prompt: Create a script that builds a key by converting the 'userId' to uppercase and concatenating it with the 'mySolId' from BANCS.STDIN.
+  script: |-
+    <--start
+    # Combine repository access, TOUPPER, and concatenation
+    sv_a = TOUPPER(BANCS.STDIN.userId)
+    sv_b = BANCS.STDIN.mySolId
+    sv_c = sv_a + sv_b
+    BANCS.OUTPUT.userKey = sv_c
+    end-->
+- prompt: If a temporary repository 'TEMP_DATA' exists, delete it. Then, create it again.
+  script: |-
+    <--start
+    # Check for repository existence before deleting and creating
+    if (REPEXISTS("TEMP_DATA") == 1) then
+      DELETEREP("TEMP_DATA")
+    endif
+    CREATEREP("TEMP_DATA")
+    print("TEMP_DATA repository has been refreshed.")
+    end-->
+- prompt: Check if the user's work class is 'OFFICER'. If it is, and if the transaction amount is over 50000, set the script to fail.
+  script: |-
+    <--start
+    # Nested conditions reading from standard and input repositories
+    if (BANCS.STDIN.userWorkClass == "OFFICER") then
+      if (CDOUBLE(BANCS.INPUT.amount) > 50000) then
+        BANCS.OUTPUT.successOrFailure = "F"
+      endif
+    endif
+    end-->

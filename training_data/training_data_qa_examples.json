@@ -1,0 +1,398 @@
+[
+  {
+    "prompt": "What is the primary purpose of Finacle Scripting?",
+    "script": "Finacle Scripting is a programming language provided as a customization and extensibility tool. It's used to manipulate data for various events, format account numbers, and interface with other delivery channels."
+  },
+  {
+    "prompt": "What are the mandatory start and end tags for a Finacle script?",
+    "script": "Every Finacle script must begin with a '<--start' tag and should end with an 'end-->' tag. The start tag is mandatory, while the end tag is highly recommended."
+  },
+  {
+    "prompt": "How do you add comments to a Finacle script?",
+    "script": "You can add comments by placing a '#' character as the first non-white space character on a line. Every line that is a comment must start with a '#'."
+  },
+  {
+    "prompt": "What is the difference between scratchpad variables (sv_) and local variables (lv_)?",
+    "script": "Scratchpad variables (e.g., sv_a) are globally accessible across all scripts, while local variables (e.g., lv_a) are limited in scope to the script in which they are declared and are not visible to called scripts."
+  },
+  {
+    "prompt": "How many scratchpad variables are available?",
+    "script": "There are 26 built-in scratchpad variables available, named sv_a, sv_b, and so on, up to sv_z."
+  },
+  {
+    "prompt": "What determines the data type of a variable in Finacle scripting?",
+    "script": "The data type is determined by the value assigned to it. The type can change dynamically whenever a new assignment is made. For example, assigning a number makes it a numeric type, and later assigning a string makes it a string type."
+  },
+  {
+    "prompt": "What is a Repository in Finacle scripting?",
+    "script": "A Repository is a named memory structure used to store user data. Scripts exclusively access data from repositories, which allows for passing information between Finacle programs, user hooks, and other scripts."
+  },
+  {
+    "prompt": "What is the structure of a repository field reference?",
+    "script": "The structure is `[Repository Name].[Class Name].[Field Name]`."
+  },
+  {
+    "prompt": "What is a Class within a Repository?",
+    "script": "A Class is a set of name-value pairs, where the 'name' is a fieldname and the 'value' is a fieldvalue. A Class can only hold one type of fieldvalue, such as Integer, String, or Double."
+  },
+  {
+    "prompt": "What are the valid values for the successOrFailure output variable?",
+    "script": "The valid values are \"S\" for success and \"F\" for failure. The default return status is \"S\"."
+  },
+  {
+    "prompt": "How do you set the return status of a script to Failure?",
+    "script": "You set the return status to Failure by assigning 'F' to the successOrFailure variable in the BANCS repository's OUTPUT class, like this: BANCS.OUTPUT.successOrFailure = \"F\"."
+  },
+  {
+    "prompt": "What is the maximum size limit for a Finacle script file?",
+    "script": "The size limit for any Finacle script file is 128 KB (131072 bytes). A fatal error will be thrown if a script exceeds this size."
+  },
+  {
+    "prompt": "Explain the difference between the GOTO and GOSUB commands.",
+    "script": "GOTO transfers control to a label and does not return, and it can only be forward-referenced. GOSUB transfers control to a subroutine at a label and returns to the next statement after it finds a RETURN command; the label can be anywhere in the script."
+  },
+  {
+    "prompt": "What is the difference between the CALL and START commands for scripts?",
+    "script": "CALL executes another script and then returns control to the calling script after the called script finishes. START executes another script and stops completely after the second script is done; it does not return control."
+  },
+  {
+    "prompt": "What are Userhooks?",
+    "script": "Userhooks are pre-defined functions within Finacle that can be called from a script to perform necessary tasks or operations."
+  },
+  {
+    "prompt": "How do you call a user hook from a script?",
+    "script": "You call a user hook using the syntax `sv_a = URHK_FunctionName(\\\"some_data\\\")`. The return value indicates success (0) or failure (1)."
+  },
+  {
+    "prompt": "What is the purpose of the `TBA_SCRIPTS` environment variable?",
+    "script": "`TBA_SCRIPTS` is an environment variable that points to the directory where all the scripts should exist. The application looks for scripts in specific subdirectories under this path."
+  },
+  {
+    "prompt": "How does the '+' operator work with strings?",
+    "script": "For strings, the '+' operator works as a concatenation operator, joining two strings together."
+  },
+  {
+    "prompt": "Which arithmetic operators only work for numeric type variables?",
+    "script": "The subtraction ('-'), multiplication ('*'), and division ('/') operators work only for numeric type variables."
+  },
+  {
+    "prompt": "How are logical AND/OR operations supposed to be formatted in an 'if' condition?",
+    "script": "When using logical AND or OR, the conditions on either side must be enclosed in their own parentheses for proper evaluation, for example: `if ((condition1) AND (condition2)) then`."
+  },
+  {
+    "prompt": "What is the purpose of the `TRACE ON` and `TRACE OFF` commands?",
+    "script": "These commands are used for debugging. `TRACE ON` enables logging of information about each statement the script engine executes into a trace file. `TRACE OFF` disables this logging."
+  },
+  {
+    "prompt": "Where are the trace files generated by the script engine stored?",
+    "script": "The trace file path is first read from the `SE_TRACE_PATH` environment variable. If that is not set, it defaults to the `..\\\\log` directory, and finally to the current directory."
+  },
+  {
+    "prompt": "What is the purpose of the `PRINT` command?",
+    "script": "The `PRINT` command is a debugging utility used to print the value of a variable or a string to the console or a trace file to help debug the script's execution."
+  },
+  {
+    "prompt": "What is the purpose of the `HSCRIPT` menu option?",
+    "script": "The `HSCRIPT` menu option is provided to test Finacle scripts. It brings up a screen where you can provide a script name and execute it to test its functionality."
+  },
+  {
+    "prompt": "How can you compile a Finacle script, and what is the benefit?",
+    "script": "You can compile a script using the `scrtok` compiler tool. Deploying a compiled script file (`.tok` renamed to `.scr`) ensures faster execution compared to a plain text script file."
+  },
+  {
+    "prompt": "What is the purpose of the `scrtok` utility?",
+    "script": "`scrtok` is a compiler tool that tokenizes a given script file and stores it as a compiled binary file with a `.tok` extension. This improves script execution speed."
+  },
+  {
+    "prompt": "How are Finacle scripts encrypted?",
+    "script": "Scripts can be encrypted using the `bauu9375` utility. This protects the scripts from being viewed or modified at live installations."
+  },
+  {
+    "prompt": "Where are sample script files located?",
+    "script": "Sample scripts can be located in the `$TBA_PROD_ROOT/sample/samscripts` directory. They have a `.sscr` extension."
+  },
+  {
+    "prompt": "What does the `MID$` function do?",
+    "script": "The `MID$` function extracts a substring of a specified length from a variable, starting at a specified position. The syntax is `MID$(Var, StartPosition, Length)`."
+  },
+  {
+    "prompt": "What is the function to get the length of a string?",
+    "script": "The `STRLEN(Var)` function is used to get the length of the variable `Var`."
+  },
+  {
+    "prompt": "How do you convert a string variable to all uppercase?",
+    "script": "You can convert a string to uppercase using the `TOUPPER(Var)` function."
+  },
+  {
+    "prompt": "How do you convert a string variable to all lowercase?",
+    "script": "You can convert a string to lowercase using the `TOLOWER(Var)` function."
+  },
+  {
+    "prompt": "What is the purpose of the `LPAD` and `RPAD` functions?",
+    "script": "`LPAD` (Left Pad) and `RPAD` (Right Pad) are used to add characters to the beginning or end of a string to make it a certain length."
+  },
+  {
+    "prompt": "How can you check if a repository exists before using it?",
+    "script": "You can use the `REPEXISTS(Var1)` function, where `Var1` is the repository name. It returns 1 if it exists and 0 otherwise."
+  },
+  {
+    "prompt": "What is the function to create a new temporary repository?",
+    "script": "The `CREATEREP(Var1)` function is used to create a new temporary repository with the name specified in `Var1`."
+  },
+  {
+    "prompt": "What is the function to delete a temporary repository?",
+    "script": "The `DELETEREP(Var1)` function is used to delete the temporary repository specified in `Var1`."
+  },
+  {
+    "prompt": "How do you create a new class inside a repository?",
+    "script": "You use the `CREATECLASS(RepName, ClassName, Type)` function. The type is a number representing the data type, such as 1 for INTEGER or 5 for STRING."
+  },
+  {
+    "prompt": "What is the difference between a User Routine and a User Hook?",
+    "script": "A User Hook is a pre-defined function within Finacle. A User Routine is a custom function written by the user, compiled into a DLL/so file, and can be called from a script."
+  },
+  {
+    "prompt": "What is the purpose of the `LIBNAME` command?",
+    "script": "The `LIBNAME` command is used within a script to specify the name of the DLL or .so file where the user routines are located."
+  },
+  {
+    "prompt": "How does the `UREX` function work?",
+    "script": "The `UREX(ExecutableName, ReturnDataFile, Arg)` function is used to execute an external program. It passes arguments to the executable and can read return data dumped by the program into a specified file."
+  },
+  {
+    "prompt": "Can you add content directly to the HTML output from a script?",
+    "script": "Yes, you can use the `AddToHTML(STRING)` command to directly add a string to the HTML output buffer from the Script Engine."
+  },
+  {
+    "prompt": "What is the default return status of a script if not explicitly set?",
+    "script": "The default return status from a script is \"S\" for success."
+  },
+  {
+    "prompt": "How does the script engine search for script files?",
+    "script": "It searches in a specific order of directories, starting with custom, bank-specific paths (`$TBA_PROD_ROOT/cust/...`) and then moving to the product base paths (`$TBA_PROD_ROOT/prodbase/...`)."
+  },
+  {
+    "prompt": "Explain the `while-do` loop structure.",
+    "script": "The `WHILE (condition)` `DO` structure executes a block of statements repeatedly as long as the condition in the WHILE is TRUE (evaluates to non-zero). The loop terminates when the condition becomes FALSE (0)."
+  },
+  {
+    "prompt": "Can you nest `IF` conditions?",
+    "script": "Yes, nested IF conditions are allowed. The execution of the inner statements depends on the condition of the outer loop being true."
+  },
+  {
+    "prompt": "How are string comparisons performed with operators like '==' or '>'?",
+    "script": "If both arguments are strings, string comparisons are made. Otherwise, the strings are converted to integers before the comparison is done."
+  },
+  {
+    "prompt": "What does the `CINT(Var)` function do?",
+    "script": "The `CINT(Var)` function converts the variable `Var` to an integer data type."
+  },
+  {
+    "prompt": "What does the `CDOUBLE(Var)` function do?",
+    "script": "The `CDOUBLE(Var)` function converts the variable `Var` to a double-precision floating-point data type."
+  },
+  {
+    "prompt": "What is the purpose of the `EXITSCRIPT` command?",
+    "script": "`EXITSCRIPT` is used to return from a CALLed script back to the calling script. It safely exits the execution of the current script and resumes where the `CALL` was made."
+  },
+  {
+    "prompt": "What is the difference between `EXIT` and `EXITSCRIPT`?",
+    "script": "`EXIT` stops the entire script execution process, even if called from a nested script. `EXITSCRIPT` only exits the current script and returns control to the script that called it."
+  },
+  {
+    "prompt": "Can GOTO be used to jump to a previous line in the script?",
+    "script": "No, the label referred to by a GOTO statement can only be forward-referenced. It cannot reference a label that appears before the GOTO statement."
+  },
+  {
+    "prompt": "Can GOSUB be used to jump to a previous line?",
+    "script": "Yes, the label referred to by a GOSUB statement can be anywhere in the script, either before or after the GOSUB statement."
+  },
+  {
+    "prompt": "How many local variables can be used in a script?",
+    "script": "A maximum of 26 local variables can be used, named lv_a through lv_z."
+  },
+  {
+    "prompt": "What is the structure of the BANCS repository?",
+    "script": "The BANCS repository is a standard repository managed by Finacle. It contains standard classes like STDIN, INPUT, and OUTPUT for passing data to and from the script."
+  },
+  {
+    "prompt": "What information is typically stored in the BANCS.STDIN class?",
+    "script": "The BANCS.STDIN class contains standard system and user information, such as `userId`, `menuOption`, `myBankCode`, `mySolId`, and system dates, which are available to the script."
+  },
+  {
+    "prompt": "What are the INPUT and OUTPUT classes used for?",
+    "script": "The INPUT class contains fields specific to the event that triggered the script. The OUTPUT class is used to store the results or output values from the script for further processing by Finacle."
+  },
+  {
+    "prompt": "Can a bank create its own repositories and classes?",
+    "script": "Yes, banks can create their own repositories, classes, and fields. However, it is their responsibility to clean them up after use to avoid unnecessary memory occupation."
+  },
+  {
+    "prompt": "What is the purpose of the Repository Manager?",
+    "script": "The Repository Manager is a module that provides the capability of storing variable values and identifying them by name. The script engine uses it to store values and transfer them between menu options."
+  },
+  {
+    "prompt": "How does script execution from FINRPT work?",
+    "script": "The `executeScript` method in the `FinCoreUtil` class can be called from a FINRPT template. This allows a report to execute a Finacle Script to fetch additional information that is not in the report's main data file."
+  },
+  {
+    "prompt": "What does the `FIELDEXISTS` function check?",
+    "script": "`FIELDEXISTS(REP.CLA.FLD)` checks if a specific field 'FLD' exists within a class 'CLA' which is in a repository 'REP'."
+  },
+  {
+    "prompt": "Can you perform a case-insensitive string comparison?",
+    "script": "Yes, the `STRICMP(Var1, Var2)` function performs a string comparison of two strings without regard to case."
+  },
+  {
+    "prompt": "How do you find the first position of a substring within a string?",
+    "script": "You can use `GETPOSITION(Var1, Var2)` for a case-sensitive search or `GETIPOSITION(Var1, Var2)` for a case-insensitive search."
+  },
+  {
+    "prompt": "What does the `TRIM` function do?",
+    "script": "The `TRIM(Var1 [, Var2])` function removes characters from both the left and right sides of a string. By default, it trims spaces, but a different character can be specified."
+  },
+  {
+    "prompt": "Is it recommended to place comments before the '<--start' tag?",
+    "script": "No, it is not recommended. For easier debugging, it is recommended to have all comments appear after the start tag only."
+  },
+  {
+    "prompt": "Are scratchpad variables (sv_) carried over when one script CALLs another?",
+    "script": "Yes, all scratchpad variables have a global context and are carried over from the caller script to the called script and vice-versa."
+  },
+  {
+    "prompt": "Are local variables (lv_) carried over when one script CALLs another?",
+    "script": "No, local variables cannot be accessed in the called script. Their scope is limited to the script where they are defined."
+  },
+  {
+    "prompt": "What is the numeric code for a STRING class when using CREATECLASS?",
+    "script": "The numeric code for a STRING class type is 5."
+  },
+  {
+    "prompt": "What is the numeric code for an INTEGER class when using CREATECLASS?",
+    "script": "The numeric code for an INTEGER class type is 1."
+  },
+  {
+    "prompt": "In what format does the UREX function expect return data to be in the data file?",
+    "script": "It expects the data in `REP.CLASS.FIELD=VALUE` format, with each entry separated by a newline, tab, or space."
+  },
+  {
+    "prompt": "What is the value of `onlineOrBatch` in the STDIN repository?",
+    "script": "It indicates whether the script is being executed through an online process (\"O\") or a batch program (\"B\")."
+  },
+  {
+    "prompt": "Can you explain the `SET$` function?",
+    "script": "`SET$(Var1, From, Length, Var2)` modifies the string `Var1` by replacing a portion of it, starting from position `From` for a specific `Length`, with the content of `Var2`."
+  },
+  {
+    "prompt": "What happens if you try to use an arithmetic operator like '*' on two string variables?",
+    "script": "It will result in an error, as the `*`, `/`, and `-` operators work only for numeric type variables."
+  },
+  {
+    "prompt": "How does the script engine determine the type of a value returned from a UREX executable?",
+    "script": "It uses a set of rules. If the value starts with a single quote it is CHAR, a double quote is a STRING, if it contains a '.', it's DOUBLE/FLOAT, otherwise it is an INTEGER."
+  },
+  {
+    "prompt": "Is it possible to disable all script tracing globally?",
+    "script": "Yes, tracing can be disabled globally by setting an environment variable called `GLOBAL_TRACE` to `OFF` before starting the application services."
+  },
+  {
+    "prompt": "What is the file extension for a standard Finacle script?",
+    "script": "All standard Finacle scripts must end with a `.scr` extension."
+  },
+  {
+    "prompt": "What does the `CHARAT(Var, Position)` function return?",
+    "script": "It returns the single character at the specified `Position` within the variable `Var`."
+  },
+  {
+    "prompt": "Can a GOSUB point to a subroutine that is outside the current control structure (like an if-endif block)?",
+    "script": "No, `GOSUB` cannot be used inside a control structure to point to a subroutine that is outside the innermost control structure, as it can lead to errors."
+  },
+  {
+    "prompt": "What is the purpose of the `FORMAT$` function?",
+    "script": "The `FORMAT$(Var, FormatString)` function formats the contents of a variable according to a format string specified in the C printf style."
+  },
+  {
+    "prompt": "If a script called with CALL uses the EXIT command, what happens?",
+    "script": "The `EXIT` command stops the entire script execution process immediately and returns to the upper layer that initiated the script, not just to the calling script."
+  },
+  {
+    "prompt": "Does the `bauu9375` utility warn you if you try to encrypt an already encrypted file?",
+    "script": "Yes, the utility warns the user if they try to encrypt a file that has already been encrypted or decrypt a file that is already decrypted."
+  },
+  {
+    "prompt": "Can a script using `START` also specify a path to the target script?",
+    "script": "Yes, the syntax `START(Path, ScriptName)` is supported, where the path and script name are appended to get the full path to the script file."
+  },
+  {
+    "prompt": "How are scratchpad variables different from repository variables?",
+    "script": "Scratchpad variables (sv_) are built-in, temporary variables for calculations within and between scripts. Repository variables are part of a more structured memory system (REP.CLASS.FIELD) used for persistent data passing between different parts of the Finacle application."
+  },
+  {
+    "prompt": "What is the value of the `mySolId` field in the BANCS.STDIN class?",
+    "script": "It contains the Service Outlet ID (SOLID) of the user who is executing the script."
+  },
+  {
+    "prompt": "What does the `GETSTRING` function do?",
+    "script": "The `GETSTRING(Var1)` function converts a variable of CHAR type to a STRING type."
+  },
+  {
+    "prompt": "Can a single script contain multiple subroutines called by GOSUB?",
+    "script": "Yes, a script can define multiple labeled subroutines, and different GOSUB commands can be used to call them as needed. The documentation implies this by describing GOSUB's general functionality."
+  },
+  {
+    "prompt": "What happens if a script is not found in any of the specified directories?",
+    "script": "If the script is not available in any of the predefined custom or product base directories, the default logic, if available for that specific event, will be applied."
+  },
+  {
+    "prompt": "Do you need to define the type of a local variable (lv_) before using it?",
+    "script": "No, similar to scratchpad variables, you do not need to define the type. The type is set dynamically based on the value assigned to it."
+  },
+  {
+    "prompt": "What happens when you use the `+` operator between a string and a number?",
+    "script": "The script engine will attempt to concatenate them, typically by converting the number to its string representation first, though this behavior should be used with caution to ensure data integrity. The documentation focuses on string-to-string and number-to-number operations."
+  },
+  {
+    "prompt": "Explain the purpose of the `successOrFailure` variable.",
+    "script": "The `successOrFailure` variable in `BANCS.OUTPUT` is the primary mechanism for a script to communicate its final execution status back to the calling Finacle application. \"S\" indicates success, and \"F\" indicates failure."
+  },
+  {
+    "prompt": "What is the main use case for scripting mentioned in the \"About Scripting\" section?",
+    "script": "A primary use case is to provide flexibility in manipulating data, such as formatting account numbers to suit a bank's specific requirements or for interfacing with other channels like ATMs."
+  },
+  {
+    "prompt": "What is the data type for a class that holds monetary values with decimals?",
+    "script": "For values with decimals, you would use a DOUBLE class (type 2) or a FLOAT class (type 3)."
+  },
+  {
+    "prompt": "What is the 'if-then-else' structure used for?",
+    "script": "It is a control structure used for conditional execution. If the condition is true, the statements in the 'then' block are executed. If it is false, the statements in the 'else' block are executed."
+  },
+  {
+    "prompt": "How would you get the bank code, branch code, and currency alias from '01-02-03-04-0001'?",
+    "script": "You would use the MID$ or Left$ functions to extract the substrings. Bank code is `Mid$(str, 0, 2)`, branch code is `Mid$(str, 3, 2)`, and currency alias is `Mid$(str, 6, 2)`."
+  },
+  {
+    "prompt": "Can a script create a new field in a standard repository class like BANCS.OUTPUT?",
+    "script": "Yes, a script can create new fields dynamically by assigning a value to a new field name, such as `BANCS.OUTPUT.myNewFlag = \"Y\"`."
+  },
+  {
+    "prompt": "What does the default logic mean in the context of script execution?",
+    "script": "The default logic refers to the standard Finacle application behavior that will be executed if a custom script for a particular event is not found in any of the specified paths."
+  },
+  {
+    "prompt": "Does the unary '-' operator work on strings?",
+    "script": "No, the unary operator '-' can only be used with numeric types."
+  },
+  {
+    "prompt": "What is the value of the `homeCrncyCode` field in BANCS.STDIN?",
+    "script": "It contains the home currency code of the data center, as defined in the HSCFM menu option."
+  },
+  {
+    "prompt": "Is it possible for a script to know the user ID of the person executing it?",
+    "script": "Yes, the user ID is available in the `BANCS.STDIN.userId` field."
+  },
+  {
+    "prompt": "how to check a class is eixisting in a repository?",
+    "script": "You can use CLASSEXISTS (Var1, Var2), checks if var2 exisitng in rep var1"
+  }
+]

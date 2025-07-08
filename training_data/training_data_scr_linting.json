@@ -1,0 +1,138 @@
+[
+  {
+    "prompt": "What is the error in this script? \n<--start\nIF (sv_a == 1) THEN\n  print(\"test\")\nend-->",
+    "script": "This script has an unmatched 'IF' block. It is missing the corresponding 'ENDIF' keyword to close the conditional statement."
+  },
+  {
+    "prompt": "Find the mistake in this WHILE loop.\n<--start\nWHILE (sv_a < 5)\n print(sv_a)\n sv_a = sv_a + 1\nendwhile\nend-->",
+    "script": "The 'WHILE' block is missing its corresponding 'DO' keyword to terminate the loop correctly. A 'DO' should follow the last statement inside the loop."
+  },
+  {
+    "prompt": "Why is the following script incorrect? \n<--start\nENDIF\nend-->",
+    "script": "This script has an unmatched 'ENDIF' keyword. There is no corresponding 'IF' statement to begin the conditional block."
+  },
+  {
+    "prompt": "Is there an issue with this code? \n<--start\nsv_a = 1\nmy_label:\nsv_b = 2\nGOTO my_label\nend-->",
+    "script": "Yes, this is an error. The GOTO command in Finacle scripting must be a forward reference. It cannot jump to a label that is defined on a previous line."
+  },
+  {
+    "prompt": "What's wrong with this GOTO statement? \n<--start\nGOTO undefined_label\nend-->",
+    "script": "This script will cause an error because the target label 'undefined_label' is not defined anywhere in the script."
+  },
+  {
+    "prompt": "Explain the problem with this IF condition: `if (sv_a == \"Y\" AND sv_b == \"N\") then`",
+    "script": "For proper evaluation, logical operators like 'AND' require their operands to be enclosed in their own parentheses. The correct syntax is `if ((sv_a == \"Y\") AND (sv_b == \"N\")) then`."
+  },
+  {
+    "prompt": "What potential issue exists in this script? \n<--start\nCREATEREP(\"TEMP_REP\")\nCREATEREP(\"TEMP_REP\")\nend-->",
+    "script": "The script attempts to create the repository 'TEMP_REP' twice without checking if it already exists. It is better practice to check for existence first using `IF (REPEXISTS(\"TEMP_REP\") == 0) THEN`."
+  },
+  {
+    "prompt": "Why might this script fail? \n<--start\nCREATECLASS(\"MY_REP\", \"DETAILS\", 5)\nend-->",
+    "script": "This script is likely to fail because it tries to create a class 'DETAILS' within a repository 'MY_REP' without first ensuring that the repository 'MY_REP' actually exists."
+  },
+  {
+    "prompt": "Find the error in this CREATECLASS function call: `CREATECLASS(\"MY_REP\", \"DATA\", 6)`",
+    "script": "The type code '6' is invalid. The valid type codes for CREATECLASS are 1 for INTEGER, 2 for DOUBLE, 3 for FLOAT, 4 for CHAR, and 5 for STRING."
+  },
+  {
+    "prompt": "What is the potential problem with this script? \n<--start\nsv_a = \"hello\" * 3\nend-->",
+    "script": "This will cause an error. The arithmetic operator '*' is intended for numeric types only and cannot be used with string literals in Finacle scripting."
+  },
+  {
+    "prompt": "Why is the ELSE statement misplaced here? \n<--start\nWHILE (sv_a < 1)\nDO\nELSE\nprint(\"else\")\nend-->",
+    "script": "The 'ELSE' keyword is used with 'IF' blocks. It is misplaced here because there is no corresponding 'IF' statement; it is inside a 'WHILE' loop."
+  },
+  {
+    "prompt": "What is wrong with this script that attempts to delete a repository? \n<--start\nDELETEREP(\"NON_EXISTENT_REP\")\nend-->",
+    "script": "This script attempts to delete a repository 'NON_EXISTENT_REP' that was never created. It is safer to check if the repository exists with `REPEXISTS` before attempting to delete it."
+  },
+  {
+    "prompt": "Why will this DELETECLASS call fail? \n<--start\nCREATEREP(\"MY_REP\")\nDELETECLASS(\"MY_REP\", \"NON_EXISTENT_CLASS\")\nend-->",
+    "script": "The script will likely fail or do nothing because it is trying to delete a class 'NON_EXISTENT_CLASS' that was never created within the 'MY_REP' repository."
+  },
+  {
+    "prompt": "How can I suppress all linting for a specific Finacle script file?",
+    "script": "You can suppress all linting for a file by adding a special comment on the very first line: `# finacle-pro-linting-disable-file scr`."
+  },
+  {
+    "prompt": "Is there a problem with using the division operator '/' on a string literal?",
+    "script": "Yes, that will cause an error. The arithmetic operators '/', '*', and '-' are only supported for numeric values."
+  },
+  {
+    "prompt": "Explain the error in this script's block structure. \n<--start\nIF (sv_a == 1) THEN\nWHILE (sv_b < 5)\nDO\nENDIF\nend-->",
+    "script": "The block structure is incorrect. An inner 'WHILE' block is opened but the script tries to close the outer 'IF' block with 'ENDIF' first. The 'WHILE' loop must be closed with 'DO' before the 'ENDIF' is used."
+  },
+  {
+    "prompt": "What does it mean if the linter warns about a class already existing?",
+    "script": "It means you are using `CREATECLASS` for a class name that has already been created in that repository within the script's execution flow. To prevent errors, you should check for the class's existence first with `CLASSEXISTS`."
+  },
+  {
+    "prompt": "My script has `GOSUB my_label` but the linter says the label is not defined. What does that mean?",
+    "script": "It means the linter could not find a line in your script that defines the label 'my_label'. A label definition looks like `my_label:` at the beginning of a line."
+  },
+  {
+    "prompt": "Why would a linter flag this line as an error? `if (sv_a > 1 OR sv_b < 1) then`",
+    "script": "The linter flags this because the operands around the logical 'OR' operator are not enclosed in their own parentheses. For reliable execution, the condition should be written as `if ((sv_a > 1) OR (sv_b < 1)) then`."
+  },
+  {
+    "prompt": "What is wrong with the logical operators in this WHILE loop condition? `WHILE (sv_a < 100 OR sv_b == 'DONE') DO`",
+    "script": "The condition will not evaluate reliably. For logical operators like 'OR', each sub-expression must be enclosed in its own set of parentheses. The correct syntax is `WHILE ((sv_a < 100) OR (sv_b == 'DONE')) DO`."
+  },
+  {
+    "prompt": "This script has a block structure error. Can you find it? \n<--start\nIF (sv_a > 0) THEN\n print(\"Positive\")\nDO\nend-->",
+    "script": "Yes, the block structure is incorrect. An 'IF' block was opened, but it is being closed with 'DO', which is used to close 'WHILE' loops. It should be closed with 'ENDIF'."
+  },
+  {
+    "prompt": "Why would a linter warn about the `DELETEREP` line in this script? \n<--start\nCREATEREP(\"REP1\")\nDELETEREP(\"REP2\")\nend-->",
+    "script": "The linter would warn that the script is attempting to delete a repository named 'REP2' which has not been created or declared. This could cause an error if the repository doesn't exist."
+  },
+  {
+    "prompt": "Is the `GOSUB` call in this script valid? \n<--start\nIF (sv_a == 1) THEN\n GOSUB my_routine\nENDIF\nEXITSCRIPT\nmy_routine:\n RETURN\nend-->",
+    "script": "This specific structure is problematic. `GOSUB` should not be used inside a control structure like 'IF' to call a subroutine defined outside of it, as it can lead to execution errors. The subroutine definition should be moved inside the IF block."
+  },
+  {
+    "prompt": "What is the error in the `CREATECLASS` call here? `CREATECLASS(\"MY_REP\", \"MY_CLASS\", 0)`",
+    "script": "The type code '0' is invalid. The type code for a class must be a number from 1 to 5, where 1 is INTEGER, 2 is DOUBLE, 3 is FLOAT, 4 is CHAR, and 5 is STRING."
+  },
+  {
+    "prompt": "Why is the final `ENDIF` in this script an error? \n<--start\nIF (sv_a > 10) THEN\n print(\"ok\")\nENDIF\nENDIF\nend-->",
+    "script": "The final 'ENDIF' is an error because it is unmatched. There is only one 'IF' statement, which is already correctly closed by the first 'ENDIF'."
+  },
+  {
+    "prompt": "The linter flags the `DELETECLASS` line. Why? \n<--start\nCREATEREP(\"MY_REP\")\nCREATECLASS(\"MY_REP\", \"CLASS_A\", 1)\nDELETECLASS(\"MY_REP\", \"CLASS_B\")\nend-->",
+    "script": "The linter warns that the script is trying to delete a class named 'CLASS_B' which was never created in the 'MY_REP' repository. This action would fail."
+  },
+  {
+    "prompt": "What is the best practice for creating a repository to avoid errors?",
+    "script": "To avoid errors, you should always check if the repository exists before trying to create it. Use a condition like `IF (REPEXISTS(\"MY_REP\") == 0) THEN` to ensure you don't try to create a repository that already exists."
+  },
+  {
+    "prompt": "Why is this script considered to have an unclosed block at the end? \n<--start\nsv_a = 1\nWHILE (sv_a > 0)\n print(\"looping\")",
+    "script": "This script has an unclosed 'WHILE' block because it is missing the terminating 'DO' keyword at the end of the loop's body."
+  },
+  {
+    "prompt": "Can you spot the error in this arithmetic operation? `sv_c = sv_a - \"10\"`",
+    "script": "Yes, the subtraction operator '-' is being used with a string literal '\"10\"'. Arithmetic operators like '-', '*', and '/' are only intended for use with numeric types."
+  },
+  {
+    "prompt": "If I want to call a user routine from a specific library, what must I do first in the script?",
+    "script": "You must first specify the library's name using the `LIBNAME` command. For example: `LIBNAME \"my_custom_lib.so\"`."
+  },
+  {
+    "prompt": "My `GOTO` command is being flagged as an error, but the label exists. What could be the issue? \n`my_label:\n ...\n GOTO my_label`",
+    "script": "The issue is that `GOTO` commands cannot reference labels that appear before them in the script. This is a backward reference, which is not allowed. `GOTO` can only jump forward to a label defined later in the code."
+  },
+  {
+    "prompt": "What is wrong with the structure of this nested conditional? \n<--start\nIF (sv_a > 0) THEN\n IF (sv_b > 0) THEN\n  print(\"Both positive\")\n ENDIF\nend-->",
+    "script": "The outer 'IF' block is not closed. There are two 'IF' statements but only one 'ENDIF'. Every 'IF' requires a corresponding 'ENDIF'."
+  },
+  {
+    "prompt": "The linter gives a warning for the second `CREATECLASS` line. Why? `<--start\nCREATEREP(\"A\")\nCREATECLASS(\"A\", \"B\", 5)\nCREATECLASS(\"A\", \"B\", 5)\nend-->`",
+    "script": "The linter warns that you are trying to create a class 'B' that may already exist in repository 'A'. It is best practice to wrap the second call in a condition like `IF (CLASSEXISTS(\"A\", \"B\") == 0) THEN`."
+  },
+  {
+    "prompt": "What is the error in the following line? `sv_a = \"some text\" / \"other text\"`",
+    "script": "This line will cause an error because the division operator '/' cannot be used on string literals. It is reserved for numeric calculations."
+  }
+]

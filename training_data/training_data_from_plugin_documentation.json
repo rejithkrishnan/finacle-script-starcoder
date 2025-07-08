@@ -1,0 +1,578 @@
+[
+  {
+    "prompt": "What is the <--start tag used for?",
+    "script": "<--start\n\n(Script Tag) Every script must begin with this tag. It is recommended to have this as the very first line."
+  },
+  {
+    "prompt": "What is the purpose of the end--> tag?",
+    "script": "end-->\n\n(Script Tag) Marks the end of the script. While not mandatory, it is highly recommended for clarity."
+  },
+  {
+    "prompt": "How do I enable script execution tracing?",
+    "script": "TRACE ON\n\n(Debugging) Enables tracing of script execution. Useful for debugging."
+  },
+  {
+    "prompt": "How do I disable script execution tracing?",
+    "script": "TRACE OFF\n\n(Debugging) Disables tracing of script execution."
+  },
+  {
+    "prompt": "What is the PRINT command for?",
+    "script": "PRINT\n\n(Debugging) Prints the value of a variable to the console."
+  },
+  {
+    "prompt": "How do you write a comment in Finacle Script?",
+    "script": "# (Comment)\n\nAny line where the first non-white space character is `#` is treated as a comment and is ignored by the script engine."
+  },
+  {
+    "prompt": "Explain the IF/THEN/ELSE/ENDIF control structure.",
+    "script": "IF...THEN...ELSE...ENDIF\n\n(Control Structure) Provides conditional execution of statements."
+  },
+  {
+    "prompt": "What does the WHILE keyword do?",
+    "script": "WHILE...DO\n\n(Control Structure) Executes a block of statements as long as the specified condition is true."
+  },
+  {
+    "prompt": "Explain the GOTO command.",
+    "script": "GOTO\n\n(Control Flow) Transfers script execution to a specified label. The label must be forward-referenced (appear later in the script)."
+  },
+  {
+    "prompt": "What is the difference between GOTO and GOSUB?",
+    "script": "GOSUB\n\n(Control Flow) Calls a subroutine block marked by a label. After the subroutine executes a `RETURN` statement, control returns to the line after the `GOSUB` call."
+  },
+  {
+    "prompt": "What is the function of the RETURN command?",
+    "script": "RETURN\n\n(Control Flow) Exits a subroutine that was called by `GOSUB` and returns control to the caller."
+  },
+  {
+    "prompt": "How does the CALL command work?",
+    "script": "CALL\n\n(Control Flow) Executes another script file and returns to the current script when the called script finds an `EXITSCRIPT` statement."
+  },
+  {
+    "prompt": "What is the START command used for?",
+    "script": "START\n\n(Control Flow) Transfers execution to another script file and does not return. The process stops after the second script finishes."
+  },
+  {
+    "prompt": "Explain the EXIT command.",
+    "script": "EXIT\n\n(Control Flow) Immediately stops the execution of all scripts and returns control to the main Finacle application."
+  },
+  {
+    "prompt": "What is the difference between EXIT and EXITSCRIPT?",
+    "script": "EXITSCRIPT\n\n(Control Flow) Used to return from a script that was invoked by a `CALL` statement."
+  },
+  {
+    "prompt": "Explain the MID$ function and its parameters.",
+    "script": "MID$(Var, StartPosition, Length) (Built-in Utility Function)\n\n---\n\nReturns a substring from `Var` starting at `StartPosition` for a given `Length`."
+  },
+  {
+    "prompt": "What does the LEFT$ function do?",
+    "script": "LEFT$(Var, Length) (Built-in Utility Function)\n\n---\n\nReturns the leftmost `Length` number of bytes from the variable `Var`."
+  },
+  {
+    "prompt": "What does the RIGHT$ function do?",
+    "script": "RIGHT$(Var, Length) (Built-in Utility Function)\n\n---\n\nReturns the rightmost `Length` number of bytes from the variable `Var`."
+  },
+  {
+    "prompt": "How do you convert a variable to an integer?",
+    "script": "CINT(Var) (Built-in Utility Function)\n\n---\n\nConverts the variable `Var` to an integer."
+  },
+  {
+    "prompt": "How do you convert a variable to a double?",
+    "script": "CDOUBLE(Var) (Built-in Utility Function)\n\n---\n\nConverts the variable `Var` to a double."
+  },
+  {
+    "prompt": "What is the function to convert a string to all lowercase letters?",
+    "script": "TOLOWER(Var) (Built-in Utility Function)\n\n---\n\nConverts all characters of a STRING or CHAR variable `Var` to lowercase."
+  },
+  {
+    "prompt": "What is the function to convert a string to all uppercase letters?",
+    "script": "TOUPPER(Var) (Built-in Utility Function)\n\n---\n\nConverts all characters of a STRING or CHAR variable `Var` to uppercase."
+  },
+  {
+    "prompt": "Explain the FORMAT$ function.",
+    "script": "FORMAT$(Var, FormatString) (Built-in Utility Function)\n\n---\n\nFormats the contents of variable `Var` according to the `FormatString` specified in the C printf style."
+  },
+  {
+    "prompt": "What is the purpose of the SET$ function?",
+    "script": "SET$(Var1, From, Length, Var2) (Built-in Utility Function)\n\n---\n\nSets the contents of `Var1` from the `From` position for `Length` bytes to the content of `Var2`."
+  },
+  {
+    "prompt": "How do you encode a variable into MIME format?",
+    "script": "ENCRYPT(Var) (Built-in Utility Function)\n\n---\n\nEncodes the variable `Var` into MIME format \"x-www-form-urlencoded\"."
+  },
+  {
+    "prompt": "What function returns the length of a string?",
+    "script": "STRLEN(Var) (Built-in Utility Function)\n\n---\n\nReturns the length of the variable `Var`."
+  },
+  {
+    "prompt": "How can I get the character at a specific position in a string?",
+    "script": "CHARAT(Var, Position) (Built-in Utility Function)\n\n---\n\nReturns the character at the specified `Position` in variable `Var`."
+  },
+  {
+    "prompt": "Explain the LTRIM function.",
+    "script": "LTRIM(Var1 [, Var2]) (Built-in Utility Function)\n\n---\n\nPerforms a left trim on `Var1`. `Var2` is the character to be trimmed. If `Var2` is not provided, it defaults to a space."
+  },
+  {
+    "prompt": "Explain the RTRIM function.",
+    "script": "RTRIM(Var1 [, Var2]) (Built-in Utility Function)\n\n---\n\nPerforms a right trim on `Var1`. `Var2` is the character to be trimmed. If `Var2` is not provided, it defaults to a space."
+  },
+  {
+    "prompt": "What does the TRIM function do?",
+    "script": "TRIM(Var1 [, Var2]) (Built-in Utility Function)\n\n---\n\nPerforms a trim (left and right) on `Var1`. `Var2` is the character to be trimmed. If `Var2` is not provided, it defaults to a space."
+  },
+  {
+    "prompt": "What is the LPAD function used for?",
+    "script": "LPAD(Var1, Var2 [, Var3]) (Built-in Utility Function)\n\n---\n\nLeft pads `Var1` with the character `Var3` up to a total length of `Var2`. If `Var3` is not provided, it defaults to a space."
+  },
+  {
+    "prompt": "What is the RPAD function used for?",
+    "script": "RPAD(Var1, Var2 [, Var3]) (Built-in Utility Function)\n\n---\n\nRight pads `Var1` with the character `Var3` up to a total length of `Var2`. If `Var3` is not provided, it defaults to a space."
+  },
+  {
+    "prompt": "How do I check if a repository exists?",
+    "script": "REPEXISTS(Var1) (Built-in Utility Function)\n\n---\n\nChecks if the Repository specified in `Var1` exists."
+  },
+  {
+    "prompt": "How can I check if a class exists within a repository?",
+    "script": "CLASSEXISTS(Var1, Var2) (Built-in Utility Function)\n\n---\n\nChecks if the Class `Var2` exists in the Repository `Var1`."
+  },
+  {
+    "prompt": "How do I check for the existence of a specific repository field?",
+    "script": "FIELDEXISTS(REP.CLA.FLD) (Built-in Utility Function)\n\n---\n\nChecks if the Field 'FLD' exists in the Class 'CLA' which exists in the Repository 'REP'."
+  },
+  {
+    "prompt": "Explain the GETPOSITION function.",
+    "script": "GETPOSITION(Var1, Var2) (Built-in Utility Function)\n\n---\n\nReturns the first position of `Var2` in `Var1`. This is a case-sensitive search."
+  },
+  {
+    "prompt": "What is the difference between GETPOSITION and GETIPOSITION?",
+    "script": "GETIPOSITION(Var1, Var2) (Built-in Utility Function)\n\n---\n\nReturns the first position of `Var2` in `Var1`. This is a case-insensitive search."
+  },
+  {
+    "prompt": "How can I compare two strings while ignoring their case?",
+    "script": "STRICMP(Var1, Var2) (Built-in Utility Function)\n\n---\n\nPerforms a string comparison of two strings or characters without regard to case."
+  },
+  {
+    "prompt": "What is the purpose of the GETSTRING function?",
+    "script": "GETSTRING(Var1) (Built-in Utility Function)\n\n---\n\nConverts a variable of type Char to type String."
+  },
+  {
+    "prompt": "What does the CREATEREP function do?",
+    "script": "CREATEREP(Var1) (Built-in Utility Function)\n\n---\n\nCreates a temporary Repository with the name specified in `Var1`."
+  },
+  {
+    "prompt": "Explain the CREATECLASS function and its parameters.",
+    "script": "CREATECLASS(Var1, Var2, Var3) (Built-in Utility Function)\n\n---\n\nCreates a temporary Class `Var2` in Repository `Var1` of the type specified by `Var3`.\n\nType values for Var3:\n* `1`: INTEGER\n* `2`: DOUBLE\n* `3`: FLOAT\n* `4`: CHAR\n* `5`: STRING"
+  },
+  {
+    "prompt": "What is the function to delete a temporary repository?",
+    "script": "DELETEREP(Var1) (Built-in Utility Function)\n\n---\n\nDeletes the temporary Repository specified in `Var1`."
+  },
+  {
+    "prompt": "How do you delete a class from a repository?",
+    "script": "DELETECLASS(Var1, Var2) (Built-in Utility Function)\n\n---\n\nDeletes the temporary Class `Var2` from the Repository `Var1`."
+  },
+  {
+    "prompt": "What is the PUTREPFIELD function used for?",
+    "script": "PUTREPFIELD(Var1, Var2) (Built-in Utility Function)\n\n---\n\nPuts the contents of `Var2` into a field specified by the path in `Var1` (e.g., \"REP.CLASS.FIELD\")."
+  },
+  {
+    "prompt": "What is the GETREPFIELD function used for?",
+    "script": "GETREPFIELD(Var1) (Built-in Utility Function)\n\n---\n\nReturns the value of the field specified by the path in `Var1` (e.g., \"REP.CLASS.FIELD\")."
+  },
+  {
+    "prompt": "How can I add content to the HTML output buffer from a script?",
+    "script": "AddToHTML(STRING) (Built-in Utility Function)\n\n---\n\nDirectly appends the given STRING to the HTML output buffer from the ScriptEngine."
+  },
+  {
+    "prompt": "What are scratchpad variables like sv_a?",
+    "script": "sv_a ... sv_z (Scratchpad Variable)\n\nGlobally accessible variables that do not need to be declared. Their type is determined by assignment."
+  },
+  {
+    "prompt": "What are local variables like lv_a?",
+    "script": "lv_a ... lv_z (Local Variable)\n\nLocal variables whose scope is limited to the current script. They are not accessible in called scripts."
+  },
+  {
+    "prompt": "What is the '!!' snippet?",
+    "script": "!! (Basic Script Template)\n\n---\n\nGenerates a basic Finacle Script template, including trace, and repository/class creation/deletion boilerplate."
+  },
+  {
+    "prompt": "What is the purpose of the LIBNAME keyword?",
+    "script": "LIBNAME\n\nUsed within a script to specify the name of the DLL or .so file where custom user routines (URTN functions) are located."
+  },
+  {
+    "prompt": "Explain the `!!` snippet's purpose.",
+    "script": "!! (Basic Script Template)\n\n---\n\nGenerates a basic Finacle Script template. This includes boilerplate code for turning on tracing and safely creating/deleting repositories and classes."
+  },
+  {
+    "prompt": "What is the REPCLASS snippet?",
+    "script": "REP_CLASS_CREATE_PATTERN (Snippet)\n\n---\n\nThis provides a safe and idempotent pattern for creating a repository and a class. It uses `REPEXISTS` and `CLASSEXISTS` to ensure they don't already exist before attempting creation."
+  },
+  {
+    "prompt": "In the REPCLASS snippet, what does `<TYPE_CODE>` represent?",
+    "script": "`<TYPE_CODE>` is a placeholder for the data type code for the class. The valid codes are 1 for INTEGER, 2 for DOUBLE, 3 for FLOAT, 4 for CHAR, and 5 for STRING."
+  },
+  {
+    "prompt": "What is the DBCURSOR_OPERATION_PATTERN snippet used for?",
+    "script": "DBCURSOR_OPERATION_PATTERN (Snippet)\n\n---\n\nThis snippet provides a comprehensive pattern for database cursor operations, including opening a cursor with bind variables, fetching records in a loop, and safely closing the cursor."
+  },
+  {
+    "prompt": "In the DBCURSOR_OPERATION_PATTERN, what is the role of `sv_x`?",
+    "script": "The `sv_x` variable is used to store the cursor number that is returned from a successful `urhk_dbCursorOpenWithBind` call. This number is then used to identify the cursor for fetching and closing operations."
+  },
+  {
+    "prompt": "In the DBCURSOR_OPERATION_PATTERN, what is the purpose of `sv_y`?",
+    "script": "The `sv_y` variable holds the return status of the `urhk_dbCursorFetch` function. The `WHILE (sv_y == 0)` loop continues as long as records are being successfully fetched."
+  },
+  {
+    "prompt": "What does the `CALLSCRIPTIFEXIST` command do?",
+    "script": "CALLSCRIPTIFEXIST\n\n(Control Flow) This command checks if a script file exists before trying to execute it with a `CALL`. It returns control to the current script when the called script finishes."
+  },
+  {
+    "prompt": "What is the general purpose of arithmetic operators in Finacle Script?",
+    "script": "Arithmetic Operators (`+`, `-`, `*`, `/`)\n\n---\n\nThese operators are used to perform mathematical calculations like addition, subtraction, multiplication, and division on numeric variables."
+  },
+  {
+    "prompt": "What are comparison operators used for?",
+    "script": "Comparison Operators (`==`, `!=`, `<`, `>`, `<=`, `>=`)\n\n---\n\nThese operators are used to compare two values, typically within the condition of an `IF` or `WHILE` statement, to control the script's execution flow."
+  },
+  {
+    "prompt": "What is the purpose of logical operators?",
+    "script": "Logical Operators (`AND`, `OR`)\n\n---\n\nThese operators are used to combine multiple conditions in an `IF` or `WHILE` statement."
+  },
+  {
+    "prompt": "What is the syntax for a label definition?",
+    "script": "A label definition consists of a name followed by a colon, at the beginning of a line. For example: `my_label_name:`"
+  },
+  {
+    "prompt": "How are labels used with GOTO and GOSUB?",
+    "script": "Labels act as named targets for `GOTO` and `GOSUB` commands, allowing you to control the flow of execution by jumping to specific points in the script."
+  },
+  {
+    "prompt": "What kind of data is held by a variable assigned a numeric literal like `123` or `45.67`?",
+    "script": "These are treated as numeric constants. The script engine will assign a numeric data type (like integer or double) to the variable holding this value."
+  },
+  {
+    "prompt": "Does the `urhk_dbSelectWithBind` function handle multiple rows of data?",
+    "script": "No, `urhk_dbSelectWithBind` is designed to fetch a single row of data. For multiple rows, you must use a cursor-based operation like the `DBCURSOR_OPERATION_PATTERN`."
+  },
+  {
+    "prompt": "What information does BANCS.OUTPARAM.DB_ERRCODE contain after a database operation?",
+    "script": "After a database hook like `urhk_dbSelectWithBind` is executed, `BANCS.OUTPARAM.DB_ERRCODE` will contain a status code. A value of `0` typically indicates success."
+  },
+  {
+    "prompt": "What is BANCS.OUTPARAM.DB_ERRMSG used for?",
+    "script": "If a database userhook fails, `BANCS.OUTPARAM.DB_ERRMSG` contains the corresponding database error message, which is useful for debugging."
+  },
+  {
+    "prompt": "How do you access the data from a column named `cust_name` after a successful cursor fetch?",
+    "script": "You would access it through the BANCS.OUTPARAM repository class, using the column name or its alias as the field name. For example: `sv_a = BANCS.OUTPARAM.cust_name`."
+  },
+  {
+    "prompt": "What is the purpose of `BANCS.INPARAM.BINDVARS`?",
+    "script": "`BANCS.INPARAM.BINDVARS` is used to pass values safely into your SQL queries. The values are separated by the pipe `|` character and correspond to the `?SVAR` or `?NVAR` placeholders in the SQL string."
+  },
+  {
+    "prompt": "What do the placeholders `?SVAR` and `?NVAR` mean in a SQL query string for a userhook?",
+    "script": "They are bind variable placeholders. `?SVAR` is used for string values, and `?NVAR` is used for numeric values that will be supplied via the `BANCS.INPARAM.BINDVARS` field."
+  },
+  {
+    "prompt": "What is the recommended way to handle creating a repository that might already exist?",
+    "script": "The recommended way is to use the `REPEXISTS` function within an `IF` condition to check if the repository exists before calling `CREATEREP`."
+  },
+  {
+    "prompt": "What is the numeric type code for a DOUBLE class in CREATECLASS?",
+    "script": "The type code for a DOUBLE class is `2`."
+  },
+  {
+    "prompt": "What is the numeric type code for a FLOAT class in CREATECLASS?",
+    "script": "The type code for a FLOAT class is `3`."
+  },
+  {
+    "prompt": "What is the numeric type code for a CHAR class in CREATECLASS?",
+    "script": "The type code for a CHAR class is `4`."
+  },
+  {
+    "prompt": "What is a key difference in scope between `sv_` and `lv_` variables?",
+    "script": "The key difference is scope. `sv_` variables are global and maintain their value when calling other scripts. `lv_` variables are local and their values are lost when another script is called."
+  },
+  {
+    "prompt": "Does the `TRIM` function modify the original variable?",
+    "script": "No, `TRIM` and other string functions do not modify the original variable. They return a new, modified string that must be assigned to another variable. For example: `sv_b = TRIM(sv_a)`."
+  },
+  {
+    "prompt": "Can the second argument of `LTRIM`, `RTRIM`, and `TRIM` be a string of multiple characters?",
+    "script": "No, the second argument specifies a single character to be trimmed. For example, `TRIM(sv_a, \"*\")` will trim all leading and trailing asterisks."
+  },
+  {
+    "prompt": "What happens if the `StartPosition` in `MID$` is out of bounds?",
+    "script": "If the `StartPosition` is invalid or out of the bounds of the string, the function will typically return an empty string or handle the error gracefully without crashing the script."
+  },
+  {
+    "prompt": "Is the search performed by `GETPOSITION` case-sensitive?",
+    "script": "Yes, `GETPOSITION` performs a case-sensitive search. For a case-insensitive search, you must use `GETIPOSITION`."
+  },
+  {
+    "prompt": "Can the `FORMAT$` function be used for padding numbers?",
+    "script": "Yes, `FORMAT$` can be used for padding and formatting numbers in complex ways, similar to the `printf` function in C. For example, `FORMAT$(12, \"%05d\")` would produce \"00012\"."
+  },
+  {
+    "prompt": "What happens if `CINT` is used on a string that is not a valid integer, like \"abc\"?",
+    "script": "If `CINT` is used on a non-numeric string, it will result in a runtime error or an unexpected value (often 0). It's important to ensure the variable contains a valid number representation before conversion."
+  },
+  {
+    "prompt": "How are `urhk_` functions different from other functions like `STRLEN`?",
+    "script": "Functions prefixed with `urhk_` are User Hooks, which often interact with the core Finacle system (like databases) and use the INPARAM/OUTPARAM repositories. Functions like `STRLEN` are built-in utilities that perform simple data manipulation."
+  },
+  {
+    "prompt": "Can I define a label inside an IF block?",
+    "script": "Yes, you can define a label inside an `IF` block, but it can only be referenced by a `GOTO` or `GOSUB` from a valid position (e.g., a forward GOTO from earlier in the script)."
+  },
+  {
+    "prompt": "Is it a good idea to have many GOTO statements in a script?",
+    "script": "While `GOTO` is available, overusing it can lead to \"spaghetti code\" that is hard to read and debug. It's often better to use structured control flow like `IF/ELSE` and `WHILE` loops."
+  },
+  {
+    "prompt": "Can a script CALL itself?",
+    "script": "Calling a script recursively (where a script calls itself) is generally not supported or recommended and can lead to an infinite loop or a stack overflow error."
+  },
+  {
+    "prompt": "How does the `splitAndConcatenateString` helper function in the VS Code extension work?",
+    "script": "This is a helper function in the extension's TypeScript code, not a Finacle Script function. It takes a long SQL string and automatically breaks it into smaller, concatenated lines to fit within Finacle Script's line length recommendations."
+  },
+  {
+    "prompt": "Does `urhk_dbCursorClose` take the cursor's name or number as an argument?",
+    "script": "It takes the cursor number, which is a value retrieved from `BANCS.OUTPARAM.DB_CURSOR_NUMBER` after a successful call to `urhk_dbCursorOpenWithBind`."
+  },
+  {
+    "prompt": "What is the purpose of the `isPreferred` flag in the VS Code action?",
+    "script": "This is a setting within the VS Code extension's TypeScript code. `isPreferred = true` makes a particular code action (like 'Convert to urhk_dbSelectWithBind') appear more prominently, for instance, as the default choice in the lightbulb menu."
+  },
+  {
+    "prompt": "Can I use single quotes for strings in Finacle Script?",
+    "script": "No, based on the syntax definition, strings are enclosed in double quotes (`\"`). Single quotes are not the standard for defining string literals."
+  },
+  {
+    "prompt": "How does the linter check for unmatched blocks?",
+    "script": "The linter uses a stack. When it sees an opening keyword like `IF` or `WHILE`, it pushes it onto the stack. When it sees a closing keyword like `ENDIF` or `DO`, it pops from the stack. If it tries to pop from an empty stack or the file ends with items still on the stack, it reports an error."
+  },
+  {
+    "prompt": "Why does the linter recommend checking for existence before deleting a repository or class?",
+    "script": "It's a defensive programming practice. Attempting to delete something that doesn't exist can cause a runtime error. Checking first ensures the delete operation is only performed when it's safe to do so."
+  },
+  {
+    "prompt": "What is the purpose of the `warnings` array in the `convertSelectToDbSelectWithBind` function?",
+    "script": "This is part of the VS Code extension's TypeScript code. It's used to collect potential issues found during the automatic refactoring (like an un-converted literal in a subquery) and display them to the user as a warning message in the editor."
+  },
+  {
+    "prompt": "In the `DBCURSOR_OPERATION_PATTERN`, what happens if `urhk_dbCursorOpenWithBind` fails?",
+    "script": "If it fails, it returns a non-zero value. The `IF (sv_r == 0) THEN` block is skipped, and the script proceeds to the `ELSE` block, which typically prints an error message from `BANCS.OUTPARAM.DB_ERRMSG`."
+  },
+  {
+    "prompt": "Can I access repository variables using dynamic names?",
+    "script": "No, Finacle Script does not support dynamic variable names. You must use the literal name of the repository, class, and field, for example, `BANCS.INPUT.myField`. You cannot build this path from other string variables."
+  },
+  {
+    "prompt": "What is the difference in output between `urhk_dbSelectWithBind` and `urhk_dbCursorOpenWithBind`?",
+    "script": "`urhk_dbSelectWithBind` directly populates the `BANCS.OUTPARAM` class with the column values from the single fetched row. `urhk_dbCursorOpenWithBind` does not fetch data itself; it returns a cursor number in `BANCS.OUTPARAM.DB_CURSOR_NUMBER`, which must then be used with `urhk_dbCursorFetch`."
+  },
+  {
+    "prompt": "What happens if a `GOSUB` is called but there is no `RETURN` in the subroutine?",
+    "script": "If there is no `RETURN` statement, the execution will not return to the line after the `GOSUB`. It will simply continue executing line-by-line from the subroutine, which will likely lead to incorrect and unpredictable script behavior."
+  },
+  {
+    "prompt": "Is it possible to use `THEN` on a separate line from `IF`?",
+    "script": "Based on the standard syntax, the `THEN` keyword must appear on the same line as the `IF (condition)` statement."
+  },
+  {
+    "prompt": "In the `REPCLASS` snippet, what is the purpose of checking `REPEXISTS` before `CREATEREP`?",
+    "script": "This check prevents a runtime error by ensuring the script does not attempt to create a repository that already exists. It's a defensive programming practice for script stability."
+  },
+  {
+    "prompt": "What is the primary difference between how `urhk_dbSelectWithBind` and `urhk_dbCursorOpenWithBind` return data?",
+    "script": "`urhk_dbSelectWithBind` returns data directly into `BANCS.OUTPARAM` fields. `urhk_dbCursorOpenWithBind` returns a numeric cursor ID to `BANCS.OUTPARAM.DB_CURSOR_NUMBER`, which must then be used with `urhk_dbCursorFetch` to get data."
+  },
+  {
+    "prompt": "What are the placeholders like `${1:bind_value1}` seen in the documentation for snippets?",
+    "script": "These are VS Code snippet placeholders, not part of the Finacle Script language. They indicate locations where the developer using the snippet should insert their own custom values, like variable names or table names."
+  },
+  {
+    "prompt": "When should I use a `WHILE` loop instead of an `IF` statement?",
+    "script": "Use an `IF` statement to execute a block of code one time based on a condition. Use a `WHILE` loop to execute a block of code repeatedly as long as a condition remains true."
+  },
+  {
+    "prompt": "What does the `urhk_dbCursorFetch` function do in the cursor pattern?",
+    "script": "The `urhk_dbCursorFetch` function retrieves the next available row from an open database cursor and populates the `BANCS.OUTPARAM` fields with its data. It returns `0` as long as a row is successfully fetched."
+  },
+  {
+    "prompt": "Is it mandatory to close a database cursor after opening it?",
+    "script": "Yes, it is critical to use `urhk_dbCursorClose` after you are finished fetching data. Failing to close cursors can lead to resource leaks in the database."
+  },
+  {
+    "prompt": "Can I use `GOTO` to jump into the middle of a `WHILE` loop?",
+    "script": "While syntactically possible, jumping into the middle of a loop with `GOTO` is strongly discouraged as it bypasses the loop's entry condition and can lead to unpredictable behavior and code that is very difficult to debug."
+  },
+  {
+    "prompt": "What kind of data would you store in a class created with type code 1?",
+    "script": "Type code `1` creates an INTEGER class. It should be used for storing whole numbers, such as counters, IDs, or status codes."
+  },
+  {
+    "prompt": "What kind of data would you store in a class created with type code 2?",
+    "script": "Type code `2` creates a DOUBLE class. It is used for storing numeric values that require high precision with decimal points, such as monetary amounts or precise calculations."
+  },
+  {
+    "prompt": "Why is it important that `GOTO` can only be forward-referenced?",
+    "script": "This restriction prevents the creation of infinite loops with a single `GOTO` command. It forces a more structured, top-to-bottom flow, which makes the script easier to read and maintain."
+  },
+  {
+    "prompt": "How would a script handle a database error after calling `urhk_dbCursorOpenWithBind`?",
+    "script": "The function would return a non-zero value. A well-written script would check this return value with an `IF` statement and execute an `ELSE` block to print the error message from `BANCS.OUTPARAM.DB_ERRMSG`."
+  },
+  {
+    "prompt": "What is the purpose of the `sv_s` variable in the `DBCURSOR_OPERATION_PATTERN`?",
+    "script": "The `sv_s` variable is used to construct the complete command string that is passed to the database userhook. It typically contains the column aliases and the full SQL query, separated by a pipe (`|`)."
+  },
+  {
+    "prompt": "Can I have a script that only contains a `TRACE ON` and `TRACE OFF` command?",
+    "script": "Yes, a script can be very simple. As long as it has the `<--start` tag, it is a valid script, even if it only contains debugging commands."
+  },
+  {
+    "prompt": "What is the best way to handle multiple bind variables for a database hook?",
+    "script": "You should concatenate them into a single string, separated by the pipe `|` character, and assign them to the `BANCS.INPARAM.BINDVARS` field."
+  },
+  {
+    "prompt": "Is it possible to use a scratchpad variable as an argument in the `CREATEREP` function?",
+    "script": "Yes. For example, you can have `sv_a = \"MY_REP\"` and then call `CREATEREP(sv_a)`. The function accepts string literals or variables containing the repository name."
+  },
+  {
+    "prompt": "Explain the concept of a \"snippet\" in the documentation file, like `!!`.",
+    "script": "A snippet, in this context, refers to a VS Code editor feature. It's a pre-defined template of code that can be inserted quickly to avoid writing boilerplate code manually. It is not a command in the Finacle Script language itself."
+  },
+  {
+    "prompt": "What is the main benefit of using bind variables (`?SVAR`, `?NVAR`) instead of concatenating values directly into a SQL string?",
+    "script": "Using bind variables is a critical security practice that prevents SQL injection attacks. It also improves performance as the database can reuse the execution plan for the same query with different values."
+  },
+  {
+    "prompt": "Can I use a `RETURN` statement without a `GOSUB`?",
+    "script": "No, a `RETURN` statement should only be used to exit a subroutine that was entered with a `GOSUB`. Using it outside of a subroutine context would be a logical error."
+  },
+  {
+    "prompt": "If I call a script using `START`, can the called script access `sv_` variables from the first script?",
+    "script": "Yes, scratchpad variables (`sv_`) have a global context, so their values are carried over to a script initiated with `START`."
+  },
+  {
+    "prompt": "How would you debug a script that is not behaving as expected?",
+    "script": "The primary method is to use `TRACE ON` at the beginning of the script and use `PRINT` statements at various points to check the values of variables during execution."
+  },
+  {
+    "prompt": "What's the difference between a keyword like `IF` and a function like `PRINT`?",
+    "script": "A keyword like `IF` is part of the language's fundamental structure and controls the flow of execution. A function like `PRINT` is a callable command that performs a specific action, in this case, outputting data."
+  },
+  {
+    "prompt": "Does `CLASSEXISTS` check across all repositories?",
+    "script": "No, `CLASSEXISTS(RepName, ClassName)` is specific. It only checks for the existence of `ClassName` within the single repository specified by `RepName`."
+  },
+  {
+    "prompt": "Can I use `ENDIF` to close a `WHILE` loop?",
+    "script": "No, `ENDIF` is used exclusively to close an `IF` block. A `WHILE` block is terminated by a `DO` keyword. Mismatching block terminators is a syntax error."
+  },
+  {
+    "prompt": "Why is it important to define column aliases in the string passed to a database hook?",
+    "script": "The column aliases you define (e.g., `\"alias1,alias2|SELECT...\"`) become the field names you use to retrieve the data from the `BANCS.OUTPARAM` class (e.g., `BANCS.OUTPARAM.alias1`)."
+  },
+  {
+    "prompt": "Can a script have labels but no `GOTO` or `GOSUB` commands?",
+    "script": "Yes, a script can have defined labels (e.g., `my_label:`) that are never used. They would simply act like comments and have no effect on the script's execution."
+  },
+  {
+    "prompt": "Is the logical operator `AND` case-sensitive?",
+    "script": "No, the documentation shows it matches `(?i)(AND|OR)`, where `(?i)` signifies a case-insensitive match. So, `and`, `And`, and `AND` would all be treated as the same keyword."
+  },
+  {
+    "prompt": "Can the `DELETEREP` function be undone?",
+    "script": "No, `DELETEREP` permanently deletes the temporary repository and all classes and data within it for the current session. There is no 'undo' command."
+  },
+  {
+    "prompt": "How would you write a script that does nothing?",
+    "script": "The simplest valid script that does nothing would contain only the start tag, a comment, and the end tag: `<--start\\n# Does nothing.\\nend-->`"
+  },
+  {
+    "prompt": "What is the recommended way to handle potential errors when calling an external script with `CALL`?",
+    "script": "The called script should set the `BANCS.OUTPUT.successOrFailure` flag. The calling script should then check the value of this flag immediately after the `CALL` statement returns to determine if the operation was successful."
+  },
+  {
+    "prompt": "Can a `GOSUB` routine have its own local variables?",
+    "script": "No, `lv_` variables are local to the entire script file. A subroutine does not have its own separate scope; it shares the same local and scratchpad variables as the main script."
+  },
+  {
+    "prompt": "How is a `CHAR` type different from a `STRING` type with one character?",
+    "script": "While they may seem similar, they are treated as distinct types by the system. `GETSTRING` exists specifically to convert a CHAR to a STRING, indicating they are not interchangeable for all operations."
+  },
+  {
+    "prompt": "If `urhk_dbCursorFetch` returns a non-zero value, what does it mean?",
+    "script": "A non-zero return value typically indicates that there are no more rows to fetch from the cursor or that an error occurred during the fetch operation. This is the signal to exit the `WHILE` loop."
+  },
+  {
+    "prompt": "Can I use `AddToHTML` to create a full webpage?",
+    "script": "While you can use `AddToHTML` to append any string of HTML, it's designed for adding fragments to an existing HTML output buffer, not for building an entire webpage from scratch within the script."
+  },
+  {
+    "prompt": "What's a good use case for the `SET$` function?",
+    "script": "A good use case is for targeted data replacement, such as masking part of an account number (e.g., replacing middle digits with 'X') or updating a specific part of a fixed-format string."
+  },
+  {
+    "prompt": "Why would `GETIPOSITION` be preferred over `GETPOSITION` when searching for user input?",
+    "script": "User input can have inconsistent casing (e.g., \"active\", \"Active\", \"ACTIVE\"). Using `GETIPOSITION` provides a case-insensitive search, making the logic more robust and less prone to errors from simple typing variations."
+  },
+  {
+    "prompt": "What is the purpose of the `sv_r` variable in the documentation's database patterns?",
+    "script": "`sv_r` is conventionally used to store the return code (status) of the database userhook call. The script then checks the value of `sv_r` to see if the database operation was successful (`0`) or failed."
+  },
+  {
+    "prompt": "Can I use a numeric variable in a `GOTO` statement, like `GOTO sv_a`?",
+    "script": "No, the `GOTO` command requires a literal label name. It cannot use a variable to dynamically determine the jump target."
+  },
+  {
+    "prompt": "What happens if `DELETEREP` is called on a repository that has open cursors associated with it?",
+    "script": "This would likely lead to errors or unpredictable behavior. It is critical to ensure all resources, such as database cursors, associated with a repository are properly closed before deleting the repository itself."
+  },
+  {
+    "prompt": "In the `DBCURSOR_OPERATION_PATTERN`, why is the final cursor close (`urhk_dbCursorClose`) placed after the loop?",
+    "script": "The cursor must remain open for the entire duration of the `WHILE` loop to fetch all the rows. It is only closed after the loop has finished processing all records."
+  },
+  {
+    "prompt": "Can I use `CALL` and `GOSUB` together? For example, can a subroutine called by `GOSUB` contain a `CALL` to another script?",
+    "script": "Yes, that is a valid and common pattern. A subroutine is just a section of code, and it can contain any valid command, including calling another script with `CALL`."
+  },
+  {
+    "prompt": "Is it possible to know which script is currently running from within the script itself?",
+    "script": "Yes, the `BANCS.STDIN` class contains a `ScriptName` field which holds the name of the currently executing script."
+  },
+  {
+    "prompt": "What is the recommended way to handle a `SELECT` statement that might return no rows when using `urhk_dbSelectWithBind`?",
+    "script": "A `SELECT` that returns no rows is often considered a type of database \"error\" or a specific condition by the hook. You must check the `BANCS.OUTPARAM.DB_ERRCODE`. A specific error code usually indicates \"no data found\"."
+  },
+  {
+    "prompt": "How do you format a prompt for the DeepSeek Coder Instruct model to get the best results?",
+    "script": "The model works best with its official chat template. This involves structuring the conversation as a series of turns with 'user' and 'system' roles, and then using the tokenizer's `apply_chat_template` function to format it correctly."
+  },
+  {
+    "prompt": "In the context of our fine-tuning, what does QLoRA stand for?",
+    "script": "QLoRA stands for Quantized Low-Rank Adaptation. It's a highly efficient fine-tuning technique that involves loading the base model in a quantized 4-bit format and then training a small set of adapter layers (LoRA) on top of it."
+  },
+  {
+    "prompt": "What is the purpose of `gradient_accumulation_steps` in the TrainingArguments?",
+    "script": "Gradient accumulation is a technique used to simulate a larger batch size without using more VRAM. The system processes a number of smaller batches and accumulates their gradients before performing a single model update, which can stabilize training."
+  },
+  {
+    "prompt": "Why did we switch from GPT-2 to models like StarCoder2 and DeepSeek Coder?",
+    "script": "We switched because StarCoder2 and DeepSeek Coder are models specifically pre-trained on source code. They have a much stronger innate understanding of programming syntax and logic, which makes them a better starting point for fine-tuning on a niche language like Finacle Script."
+  },
+  {
+    "prompt": "What does the `model.print_trainable_parameters()` command show?",
+    "script": "This command, from the PEFT library, shows a summary of how many parameters in the model are being trained versus the total number of parameters. It's useful for confirming that LoRA is configured correctly and only a small fraction of the model is being updated."
+  },
+  {
+    "prompt": "Can I fine-tune a 7-billion-parameter model on a GPU with only 8GB of VRAM?",
+    "script": "Yes, but it is very challenging. It is only possible by using advanced optimization techniques like QLoRA (4-bit quantization) to drastically reduce the model's memory footprint, along with a small batch size and gradient accumulation."
+  }
+]
