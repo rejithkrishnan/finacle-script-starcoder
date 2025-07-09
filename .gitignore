@@ -2,3 +2,5 @@ fine-tuned-model/
 qlora-finetuned-starcoder2-3b/
 qlora-finetuned-deepseek-7b/
 documentation/
+merged-finacle-model/
+finacle-coder.gguf

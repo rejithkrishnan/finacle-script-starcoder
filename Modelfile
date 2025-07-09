@@ -1,0 +1,23 @@
+# Point to the GGUF file we just created
+FROM ./finacle-coder.gguf
+
+# Set the prompt template the model was fine-tuned with
+TEMPLATE """{{- if .System }}
+<|system_prompt|>
+{{ .System }}<|end_system_prompt|>
+{{- end }}
+{{- if .Prompt }}
+### Instruction:
+{{ .Prompt }}
+### Response:
+{{- end }}
+{{- if .Response }}
+{{ .Response }}<|end_of_turn|>
+{{- end }}
+"""
+
+# Set the system prompt
+SYSTEM """You are an expert Finacle script developer. Your task is to generate clean, correct, and complete Finacle scripts based on the user's request. Always enclose the script within <--start and end--> tags."""
+
+# Set the stop token
+PARAMETER stop "<|end_of_turn|>"
