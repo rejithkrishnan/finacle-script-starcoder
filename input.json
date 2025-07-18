@@ -1,0 +1,14 @@
+[
+    {
+        "prompt": "Can you perform a case-insensitive string comparison?",
+        "script": "Yes, the `STRICMP(Var1, Var2)` function performs a string comparison of two strings without regard to case."
+    },
+    {
+        "prompt": "How do I get the current date?",
+        "script": "You can use the `GETDATE()` function to retrieve the current system date."
+    },
+    {
+        "prompt": "What is the syntax for a conditional statement?",
+        "script": "The syntax is `IF (condition) THEN ... ELSE ... ENDIF`."
+    }
+]
